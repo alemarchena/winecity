@@ -1,0 +1,2 @@
+[27-Nov-2018 10:56:12 America/Chicago] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home2/winecity/public_html/plataforma/controladores/desconectar.php on line 2
+[27-Nov-2018 10:56:12 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/winecity/public_html/plataforma/controladores/desconectar.php:2) in /home2/winecity/public_html/plataforma/controladores/desconectar.php on line 3
