@@ -1,3 +1,8 @@
+
+<?php
+    include("funciones/bodegasfunciones.php");
+?>
+
 <head>
     <meta charset="utf-8">
     <link href="css/estilo.css" rel="stylesheet">
@@ -12,13 +17,13 @@
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
                                                     <!-- ID - BOTON Y LISTA-->
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOneB" aria-expanded="true" aria-controls="collapseOneB">
                   <p class="mensajeservidor" align="center">REGISTRO DE BODEGAS</p>
                 </button>
               </h5>
             </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOneB" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
                 <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
                 <div class="row" align="center">
@@ -79,15 +84,17 @@
                     </div>
                     <div class="col-md-4">
                         <form class="form-signin" action="">
-                            <button type="button"  class="btn btn-md btn-primary btn-block" id="consultabodegas"> Consultar</button>
+                            <button type="button"  class="btn btn-md btn-primary btn-block" id="consultabodegas_abm"> Consultar</button>
                         </form>
                     </div>
                 </div>
 
                 <div class="table-responsive-md">
-                    <table id="tabla_bodegas" class="table w-auto table-bordered table-striped">
+                    <table id="tabla_bodegas" class="table  table-sm w-auto table-bordered table-striped">
                         <thead>
                             <tr class="btn-info">
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">email</th>                                        
@@ -105,178 +112,3 @@
       </div>
     </div>
                                                     <!-- FIN ACORDEON -->
-<script>
-
-   //declaracion global de la funcion
-
-    function nuevo()
-    {
-        $("#id").val("");
-        $("#nombrenuevo").val("");
-        $("#email").val("");
-        $("#telefono").val("")
-    }
-
-    function guardar()
-    {
-
-        if($( "#nombrenuevo" ).val().length<=0) 
-        {
-            $("#faltanombre").css("display","inline").fadeOut(2000);
-
-            alert("Escriba un nombre");
-
-        }else{
-            var id = $("#id").val();
-            var nombre = $("#nombrenuevo").val();
-            var email = $("#email").val();
-            var telefono = $("#telefono").val();
-
-            $.ajax({
-
-                url:"controladores/consultabodegas.php",
-                data: {id:id,tipo:"alta",nombre:nombre,email:email,telefono:telefono},
-                type: "post",
-
-            success:function(data){
-
-                console.log("Data devolvio:" + data);
-
-                if(data!="consultavacia")
-                {
-                    consulta();
-                    nuevo();
-                    alert(data); //muestra un mensaje con el texto devuelto por el controlador
-
-                }else{
-
-                    alert("Error al crear el registro");
-                }
-            },
-
-            error: function(e)
-            {
-                alert("Error en el alta.");
-            }
-
-            });
-            $("#collapseTwo").collapse("show");
-        }
-    }
-
-    function consulta()
-    {
-        $('#tabla_bodegas tr').not(':first').remove(); //elimina todas las filas menos la primera
-
-        var id = $("#idbodega").val(); 
-
-        $.ajax({
-            url:"controladores/consultabodegas.php",
-            data: {id:id,tipo:"consulta",nombre:"",email:"",telefono:""},
-            type: "post",
-
-            success:function(data){
-
-                if(data!="consultavacia")
-                {
-                    datadecodificado = JSON.parse(data);
-
-                    $.each(datadecodificado,function(key,value)
-                    {
-                         var fila = "<tr><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td></tr>";
-
-                            $("#tabla_bodegas").append(fila);
-                    });
-                }
-            },
-
-            error: function(e)
-            {
-                alert("Error en la consulta.");
-            }
-        });
-    }
-
-    function eliminar(id,nombre,email,telefono)
-    {
-        var opcion = confirm("Desea Eliminar?");
-        if (opcion == true) {
-            $.ajax({
-
-                url:"controladores/consultabodegas.php",
-
-                data: {id:id,tipo:"baja",nombre:nombre,email:email,telefono:telefono},
-                type: "post",                     
-                success:function(data)
-                {
-                    consulta();
-                }
-            })
-
-            .fail(function() {
-                alert('Error al procesar la solicitud.');
-            });
-        }
-    }
-
-    function editar(id,nombre,email,telefono)
-    {
-        $("#id").val(id);
-        $("#nombrenuevo").val(nombre);
-        $("#email").val(email);
-        $("#telefono").val(telefono)
-
-        $("#collapseOne").collapse("show");
-    }
-</script> 
-
-<script>
-$(document).ready(function()
-{
-    $("#nuevo").click(function()
-    {
-        nuevo();
-    });
-
-    $("#consultabodegas").click(function(e)
-    {
-        consulta();
-    });
-
-
-    $("#guardar").click(function()
-    {
-        guardar();
-    });
-
-
-    $( "#nombrenuevo" ).focus(function()
-    {
-        verificanombre(); 
-    });
-
-    function verificanombre()
-    {
-        if($( "#nombrenuevo" ).val().length<=0) 
-        {
-            $("#faltanombre").css("display","inline").fadeOut(2000);
-        } 
-    }
-
-    $( "#telefono" ).focus(function(){
-        if($( "#telefono" ).val().length<=0) 
-
-        {
-            $("#faltatelefono").css("display","inline").fadeOut(2000);
-        }   
-    });
-
-    $( "#guardar").click(function(){
-        if($( "#nombrenuevo" ).val().length<=0) 
-        {
-            $("#faltanombre").css("display","inline").fadeOut(2000);
-            return false;
-        }   
-    });
-});
-</script>
