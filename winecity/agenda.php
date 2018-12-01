@@ -19,13 +19,13 @@
 				<div class="card">
 					<div class="card-header" id="headingCero">
 						<h5 class="mb-0">
-				            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCero" aria-expanded="true" aria-controls="collapseCero">
+				            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCal" aria-expanded="true" aria-controls="collapseCal">
 				                <p class="mensajeservidor">CALENDARIO</p>
 				            </button>
 				          </h5>
 					</div>
 
-				 	<div id="collapseCero" class="collapse show" aria-labelledby="headingCero" data-parent="#accordionExample0">
+				 	<div id="collapseCal" class="collapse" aria-labelledby="headingCero" data-parent="#accordionExample0">
 			            <div class="card-body">
 							<div id="calendario"">
 								
@@ -41,15 +41,16 @@
 		<div class="col-lg-5" align="center">
 			<div class="accordion" id="accordionExample2"> <!--Acordeon -->
 		        <div class="card">
+
 			        <div class="card-header" id="headingTwo">
 			          <h5 class="mb-0">
-			            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+			            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#colapsobodega" aria-expanded="true" aria-controls="colapsobodega">
 			                <p class="mensajeservidor">LISTA DE BODEGAS</p>
 			            </button>
 			          </h5>
 			        </div>
 
-			        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
+			        <div id="colapsobodega" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
 			            <div class="card-body">
 			                <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
 			                <div class="row">
@@ -67,7 +68,6 @@
 			                    <table id="tabla_bodegas" class="table table-sm w-auto table-bordered table-striped">
 			                        <thead>
 			                            <tr class="btn-info">
-			                            	<th scope="col"></th>
                                 			<th scope="col"></th>
 			                                <th scope="col">#</th>
 			                                <th scope="col">Nombre</th>
@@ -86,6 +86,7 @@
 		      	</div>	<!--fin de card -->
 			</div><!--fin de acordeon -->
 		</div>
+
 		<div class="col-lg-4" align="center">
 			<div class="accordion" id="accordionExample1">
 				<div class="card">
@@ -118,7 +119,7 @@
 			                                <th scope="col">#</th>
 			                                <th scope="col">Nombre</th>
 			                                <th scope="col"></th>
-                                			<th scope="col"></th>                          
+                    
 			                            </tr>
 			                        </thead>
 			                        <tbody id = "body_consumos"> 
@@ -132,7 +133,27 @@
 		      	</div>
 			</div>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" id="agendar" action="" type="submit"><small>Agendar</small></button>
+		<div class="container">
+			<div class="col-lg-12">
+				<div class="table-responsive-md">
+                    <table id="tabla_agenda" class="table w-auto table-bordered table-striped">
+                        <thead>
+                            <tr class="btn-info">
+                                <th scope="col">fecha</th>
+                                <th scope="col">Bodega</th>
+                                <th scope="col">Consumo</th>
+        
+                            </tr>
+                        </thead>
+                        <tbody id = "body_consumos"> 
+                            
+                        </tbody>
+                    </table>
+                </div>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" id="agendar" action="" type="submit"><small>Agendar</small></button>
+		</div>
+		
 	</div>
 
 

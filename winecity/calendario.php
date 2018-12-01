@@ -68,7 +68,7 @@ $(document).ready(function()
 		
 		$("#diafecha").val($(this).html());
 		$("#textofecha").html($(this).html() + " de " +$("#label").html());
-		
+		//$("#collapseCal").hide();
 	});
 
 	$('#agendar').click(function(e){

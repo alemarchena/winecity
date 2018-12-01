@@ -64,13 +64,7 @@
     }
 
     
-    function seleccionar(id,nombre,email,telefono){
 
-    }
-
-    function noseleccionar(id,nombre,email,telefono){
-
-    }
 
     function eliminar(id,nombre,email,telefono)
     {
@@ -92,6 +86,16 @@
                 alert('Error al procesar la solicitud.');
             });
         }
+    }
+
+    function seleccionarbodegas(id,nombre,email,telefono)
+    {
+        //$("#colapsobodega").toggle();
+    }
+
+    function noseleccionarbodegas(id,nombre,email,telefono)
+    {
+
     }
 
     function editar(id,nombre,email,telefono)
@@ -123,10 +127,12 @@
 
                     $.each(datadecodificado,function(key,value)
                     {
-                        if(tipo==="seleccionable"){//agrego botones SI y NO
-                         var fila = "<tr><td><input type='button' value = 'NO' class = 'btn btn-sm btn-danger' onclick='noseleccionar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = 'SI' class = 'btn btn-sm btn-info' onclick='seleccionar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
-
-                        }else if(tipo==="abm"){ //agrego botones BORRAR y EDITAR
+                        if(tipo==="seleccionable")
+                        {//agrego botones SI 
+                         var fila = "<tr><td><input type='button' value = 'SI' class = 'btn btn-sm btn-info' onclick='seleccionarbodegas(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
+                        }else 
+                        if(tipo==="abm")
+                        { //agrego botones BORRAR y EDITAR
                             var fila = "<tr><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
                         }
 
@@ -140,59 +146,61 @@
                 alert("Error en la consulta.");
             }
         });
-    }
+    }       
+</script>
 
-$(document).ready(function()
-{
-    $("#nuevo").click(function()
+<script>
+    $(document).ready(function()
     {
-        nuevo();
-    });
-
-    $("#consultabodegas_abm").click(function(e)
-    {
-        consulta("abm");
-    });
-
-    $("#consultabodegas_seleccionable").click(function(e)
-    {
-        consulta("seleccionable");
-    });
-
-
-    $("#guardar").click(function()
-    {
-        guardar();
-    });
-
-
-    $( "#nombrenuevo" ).focus(function()
-    {
-        verificanombre(); 
-    });
-
-    function verificanombre()
-    {
-        if($( "#nombrenuevo" ).val().length<=0) 
+        $("#nuevo").click(function()
         {
-            $("#faltanombre").css("display","inline").fadeOut(2000);
-        } 
-    }
+            nuevo();
+        });
 
-    $( "#telefono" ).focus(function(){
-        if($( "#telefono" ).val().length<=0) 
-
+        $("#consultabodegas_abm").click(function(e)
         {
-            $("#faltatelefono").css("display","inline").fadeOut(2000);
-        }   
-    });
+            consulta("abm");
+        });
 
-    $( "#guardar").click(function(){
-        if($( "#nombrenuevo" ).val().length<=0) 
+        $("#consultabodegas_seleccionable").click(function(e)
         {
-            $("#faltanombre").css("display","inline").fadeOut(2000);
-            return false;
-        }   
+            consulta("seleccionable");
+        });
+
+
+        $("#guardar").click(function()
+        {
+            guardar();
+        });
+
+
+        $( "#nombrenuevo" ).focus(function()
+        {
+            verificanombre(); 
+        });
+
+        function verificanombre()
+        {
+            if($( "#nombrenuevo" ).val().length<=0) 
+            {
+                $("#faltanombre").css("display","inline").fadeOut(2000);
+            } 
+        }
+
+        $( "#telefono" ).focus(function(){
+            if($( "#telefono" ).val().length<=0) 
+
+            {
+                $("#faltatelefono").css("display","inline").fadeOut(2000);
+            }   
+        });
+
+        $( "#guardar").click(function(){
+            if($( "#nombrenuevo" ).val().length<=0) 
+            {
+                $("#faltanombre").css("display","inline").fadeOut(2000);
+                return false;
+            }   
+        });
     });
-});
 </script>
