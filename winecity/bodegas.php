@@ -23,7 +23,7 @@
               </h5>
             </div>
 
-            <div id="collapseOneB" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOneB" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
                 <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
                 <div class="row" align="center">
@@ -75,7 +75,7 @@
           </h5>
         </div>
 
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
                 <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
                 <div class="row">

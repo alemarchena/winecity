@@ -3,8 +3,7 @@
 <meta charset="utf-8">
 <link href="css/estilo.css" rel="stylesheet">
 
-<script src="js/bodegasConsulta_abm.js"></script>
-<script src="js/bodegasConsulta_seleccionable.js"></script>
+
 
 </head>
 
@@ -44,7 +43,7 @@
 
                 if(data!="consultavacia")
                 {
-                    consulta_abm();
+                    consulta("abm");
                     nuevo();
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
 
@@ -85,7 +84,7 @@
                 type: "post",                     
                 success:function(data)
                 {
-                    consulta_abm();
+                    consulta("abm");
                 }
             })
 
@@ -105,6 +104,44 @@
         $("#collapseOneB").collapse("show");
     }
 
+    function consulta(tipo)
+    {
+        $('#tabla_bodegas tr').not(':first').remove(); //elimina todas las filas menos la primera
+
+        var id = $("#idbodega").val(); 
+
+        $.ajax({
+            url:"controladores/consultabodegas.php",
+            data: {id:id,tipo:"consulta",nombre:"",email:"",telefono:""},
+            type: "post",
+
+            success:function(data){
+
+                if(data!="consultavacia")
+                {
+                    datadecodificado = JSON.parse(data);
+
+                    $.each(datadecodificado,function(key,value)
+                    {
+                        if(tipo==="seleccionable"){//agrego botones SI y NO
+                         var fila = "<tr><td><input type='button' value = 'NO' class = 'btn btn-sm btn-danger' onclick='noseleccionar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = 'SI' class = 'btn btn-sm btn-info' onclick='seleccionar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
+
+                        }else if(tipo==="abm"){ //agrego botones BORRAR y EDITAR
+                            var fila = "<tr><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editar(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
+                        }
+
+                        $("#tabla_bodegas").append(fila);
+                    });
+                }
+            },
+
+            error: function(e)
+            {
+                alert("Error en la consulta.");
+            }
+        });
+    }
+
 $(document).ready(function()
 {
     $("#nuevo").click(function()
@@ -114,12 +151,12 @@ $(document).ready(function()
 
     $("#consultabodegas_abm").click(function(e)
     {
-        consulta_abm();
+        consulta("abm");
     });
 
     $("#consultabodegas_seleccionable").click(function(e)
     {
-        consulta_seleccionable();
+        consulta("seleccionable");
     });
 
 

@@ -3,9 +3,6 @@
 <meta charset="utf-8">
 <link href="css/estilo.css" rel="stylesheet">
 
-<script src="js/consumisionesConsulta_abm.js"></script>
-<script src="js/consumisionesConsulta_seleccionable.js"></script>
-
 </head>
 
 <script>
@@ -45,7 +42,7 @@
 
                 if(data!="consultavacia")
                 {
-                    consulta_consumisiones_abm();
+                    consulta_consumisiones("abm");
                     nuevo();
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
 
@@ -79,7 +76,7 @@
                 type: "post",                     
                 success:function(data)
                 {
-                    consulta_consumisiones_abm();
+                    consulta_consumisiones("abm");
                 }
             })
 
@@ -104,6 +101,42 @@
     function noseleccionar(id,nombre){
 
     }
+    function consulta_consumisiones(tipo)
+    {
+        $('#tabla_consumos tr').not(':first').remove(); //elimina todas las filas menos la primera
+
+        var id = $("#idconsumo").val(); 
+
+        $.ajax({
+            url:"controladores/consultaconsumisiones.php",
+            data: {id:id,tipo:"consulta",nombre:""},
+            type: "post",
+
+            success:function(data){
+
+                if(data!="consultavacia")
+                {
+                    datadecodificado = JSON.parse(data);
+
+                    $.each(datadecodificado,function(key,value)
+                    {
+                        if(tipo==="seleccionable")
+                        {
+                         var fila = "<tr><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombre_consumision+"</td><td><input type='button' value = 'NO' class = 'btn btn-sm btn-danger' onclick='noseleccionar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+"\")' /></td><td><input type='button' value = 'SI' class = 'btn btn-sm btn-info' onclick='seleccionar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+ "\")' /></td></tr>";
+                        }else{
+                        var fila = "<tr><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombre_consumision+"</td><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+"\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+ "\")' /></td></tr>";
+                        }
+                        $("#tabla_consumos").append(fila);
+                    });
+                }
+            },
+
+            error: function(e)
+            {
+                alert("Error en la consulta.");
+            }
+        });
+    }
 </script> 
 
 <script>
@@ -116,12 +149,12 @@ $(document).ready(function()
 
     $("#consultaconsumisiones_abm").click(function(e)
     {
-        consulta_consumisiones_abm();
+        consulta_consumisiones("abm");
     });
 
     $("#consultaconsumisiones_seleccionable").click(function(e)
     {
-        consulta_consumisiones_seleccionable();
+        consulta_consumisiones("seleccionable");
     });
 
 
