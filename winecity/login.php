@@ -74,8 +74,6 @@
 		    		<div class="col">
 						<label for="inputcorreo" class="sr-only">email</label>
 						<input type="email"  name="email" id="inputcorreo" class="form-control" placeholder="dirección de email" value="<?php  if(isset($email)) echo $email ?>" required autofocus><span id="faltaemail">Escribe un email</span>
-						<br>
-
 						<label for="inputPassword" class="sr-only">clave</label>
 						<input type="password" id="inputPassword"  name="clave" class="form-control" placeholder="clave" value="<?php  if(isset($clave)) echo $clave ?>"required>
 					</div>
@@ -84,13 +82,9 @@
 		    </form>
 
 		    <form action="recuperarclave.php" method="get">
-			    <input type="text" id="emailrecupero" name="emailrecupero" style="visibility:hidden" required><br>
-
+			    <input type="text" id="emailrecupero" name="emailrecupero" style="visibility:hidden" required>
 		    	<button class="btn btn-light btn-block" type="submit" id="recuperarclave" name="recuperarclave"><small>Recuperar o Cambiar clave</small></button>
 			</form>
-
-		    <p>o bien</p>
-
 		    <form class="form-signin" action="nuevousuario.php" method="post">
 		    	<button class="btn btn-lg btn-info btn-block" name="nuevousuario" type="submit"><small>Nuevo usuario</small></button>
 		    </form>
