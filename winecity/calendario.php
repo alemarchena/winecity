@@ -3,15 +3,14 @@
 <!DOCTYPE html> 
   <html> 
   <head> 
-      <meta charset="utf-8" /> 
-      <title>Calendario</title> 
       <link rel="stylesheet" href="css/calendar.css" /> 
-
+<!-- lo activo para probar el calendario solo
       <script
 			src="https://code.jquery.com/jquery-3.3.1.min.js"
 			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			crossorigin="anonymous">
 		</script>
+	-->
 		<script src="js/calendario.js"></script>
   </head> 
   <body> 

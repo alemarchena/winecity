@@ -1,17 +1,10 @@
-<head>
-	<meta charset="utf-8">
-</head>
 <br>
 	<div class="col-sm-12">
-
 		<a class="btn btn-outline-info btn-block" id="bodegas" ref="#">Bodegas</a>
-
 	</div>
 
 	<div class="col-sm-12">
-
 		<a class="btn btn-outline-info btn-block" id="consumisiones" ref="#">Consumisiones</a>
-
 	</div>
 	<div class="col-sm-12">
 		<div id="subcontenedor" class="jumbotron" align="center">

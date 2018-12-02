@@ -1,14 +1,4 @@
 
-<?php
-    include("funciones/bodegasfunciones.php");
-?>
-
-<head>
-    <meta charset="utf-8">
-    <link href="css/estilo.css" rel="stylesheet">
-
-</head>
-
 <div class="border border-success">
     <br>
                                                         <!--  ACORDEON -->
@@ -112,3 +102,7 @@
       </div>
     </div>
                                                     <!-- FIN ACORDEON -->
+
+<?php
+    include("funciones/bodegasfunciones.php");
+?>

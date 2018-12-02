@@ -1,10 +1,3 @@
-    
-<head>
-<meta charset="utf-8">
-<link href="css/estilo.css" rel="stylesheet">
-
-</head>
-
 <script>
 
    //declaracion global de la funcion
@@ -97,7 +90,8 @@
      function seleccionar_consumision(id,nombre){
          
         //$("#collapseDos").toggle();
-        
+        $("#idconsumisionelegida").val(id);
+        $("#nombreconsumisionelegida").val(nombre);
     }
 
     function noseleccionar_consumision(id,nombre){
@@ -124,9 +118,9 @@
                     {
                         if(tipo==="seleccionable")
                         {
-                         var fila = "<tr><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombre_consumision+"</td><td><input type='button' value = 'SI' class = 'btn btn-sm btn-info' onclick='seleccionar_consumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+ "\")' /></td></tr>";
+                         var fila = "<tr><td><input type='button' value = 'SI' class = 'btn btn-sm btn-info' onclick='seleccionar_consumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+ "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombre_consumision+"</td></tr>";
                         }else{
-                        var fila = "<tr><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombre_consumision+"</td><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+"\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+ "\")' /></td></tr>";
+                        var fila = "<tr><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+"\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editar(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+ "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombre_consumision+"</td></tr>";
                         }
                         $("#tabla_consumos").append(fila);
                     });

@@ -3,12 +3,6 @@
     include("funciones/consumisionesfunciones.php");
 ?>
 
-<head>
-	<meta charset="utf-8">
-    <link href="css/estilo.css" rel="stylesheet">
-
-</head>
-
 <div class="border border-success">
                                                         <!--  ACORDEON -->
     <div class="accordion" id="accordionExample">
@@ -86,10 +80,10 @@
                     <table id="tabla_consumos" class="table w-auto table-bordered table-striped">
                         <thead>
                             <tr class="btn-info">
+                                <th scope="col"></th>                        
+                                <th scope="col"></th> 
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th> 
-                                <th scope="col"></th>                        
-                                <th scope="col"></th>                        
                             </tr>
                         </thead>
                         <tbody id = "body_consumos"> 

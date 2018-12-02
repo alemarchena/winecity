@@ -1,11 +1,3 @@
-    
-<head>
-<meta charset="utf-8">
-<link href="css/estilo.css" rel="stylesheet">
-
-
-
-</head>
 
 <script>
     function nuevo()
@@ -91,6 +83,9 @@
     function seleccionarbodegas(id,nombre,email,telefono)
     {
         //$("#colapsobodega").toggle();
+
+        $("#idbodegaelegida").val(id);
+        $("#nombrebodegaelegida").val(nombre);
     }
 
     function noseleccionarbodegas(id,nombre,email,telefono)
@@ -106,6 +101,7 @@
         $("#telefono").val(telefono)
 
         $("#collapseOneB").collapse("show");
+       
     }
 
     function consulta(tipo)
