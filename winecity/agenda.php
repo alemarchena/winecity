@@ -56,9 +56,7 @@
 
 <div class="jumbotron jumbotron-fluid">
 
-	<div class="row">
-
-
+	<div class="row" style="margin: 10px">
 
 		<div class="col-lg-2" align="center">
 
@@ -66,13 +64,32 @@
 
 				<div class="col" align="center">
 
-					<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control" >
+					<div class="row">
+						<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control" >
 
 						<div id="calendario">
 
 									
 
 						</div>
+					</div>
+					<div class="row">
+
+						<div class="input-group clockpicker">
+
+						    <input id="horaseleccionada" type="text" placeholder="hora" class="form-control" value="" >
+
+						    <span class="input-group-addon">
+
+						        <span class="glyphicon glyphicon-time"></span>
+
+						    </span>
+
+						</div>
+					</div>
+					<div class="row">
+						<input type="text" id="montocliente" value="" placeholder="Monto" class="form-control" >
+					</div>
 
 				</div>
 
@@ -80,31 +97,68 @@
 
 		</div>
 
+		<!-- ------------------------------------------------ CLIENTES -------------------------------------------------------------- -->
+
+		<div class="col-lg-5">
+
+			<div class="row">
+				<div class="col">
 			
+					<div class="accordion" id="idacorclientes"> <!--Acordeon -->
+				        <div class="card">
+					        <div class="card-header" id="cabeceraClientes">
+					          	<h5 class="mb-0">
+									<button class="btn btn-link" id="botoncolapsarclientes" type="button" data-toggle="collapse" data-target="#colapsoclientes" aria-expanded="true" aria-controls="colapsoclientes">
+									    
+									    <small><p class="mensajeservidor text-danger">Clientes</p></small>
+									</button>
+					    		</h5>
 
-		<div class="col-lg-2" align="center">
+					            <input type="Text" id="idclienteelegido"  width="50" style="display:none">
+								<input type="email" id="emailclienteelegido" value="<?php  if(isset($emailclienteelegido)) echo $emailclienteelegido ?>" placeholder="email cliente" class="form-control" disabled></small><span id="faltaemail" style="display:none">	Ingrese un email</span>
 
-			<div class="input-group clockpicker">
+				          	
+					          	<button class="btn btn-info" id="botonguardarcliente" action="" type="submit"><small>Guardar cliente</small></button>
+									<button class="btn btn-info" id="nuevocliente" action="" type="submit"><small>Nuevo cliente</small></button>
+					        </div>
 
-			    <input id="horaseleccionada" type="text" placeholder="hora" class="form-control" value="" >
 
-			    <span class="input-group-addon">
+							<div id="colapsoclientes" class="collapse" aria-labelledby="cabeceraClientes" data-parent="#idacorclientes">
+			            		<div class="card-body">
+						            	<div class="row">
+						            		<div class="offset-md-3 col-md-2">
+						                        <input type="text" id="idcontactocliente" name="idcontactocliente" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactocliente)) echo $idcontactocliente ?>" >
+						                    </div>
+						                    <div class="col-md-4">
+						                        <form class="form-signin" action="">
+						                            <button type="button"  class="btn btn-md btn-info btn-block" id="botonclientes_seleccionable"><small>Ver</small></button>
+						                        </form>
+						                    </div>
+					                    </div>
+					                    <div>
+					                    <table id="tabla_clientes" class="table table-sm w-auto table-bordered table-striped">
+					                        <thead>
+					                            <tr class="btn-info">
+		                                			<th scope="col"></th>
+		                                			<th scope="col"></th>
+		                                			<th scope="col"></th>
+					                                <th scope="col">#</th>
+					                                <th scope="col">email</th>
+					                                                             
+					                            </tr>
+					                        </thead>
+					                        <tbody id = "body_clientes"> 
 
-			        <span class="glyphicon glyphicon-time"></span>
+					                        </tbody>
+					                    </table>
+			            			</div>
+			            		</div>
+		            		</div>
 
-			    </span>
-
+					    </div><!--fin de la tarjeta -->
+				    </div><!-- fin del acordeon -->
+				</div>
 			</div>
-
-		</div>
-
-			
-
-		<div class="col-lg-3">
-
-			<input type="email" id="emailcliente" value="<?php  if(isset($emailcliente)) echo $emailcliente ?>" placeholder="email cliente" class="form-control" >
-
-			<input type="text" id="montocliente" value="" placeholder="Monto" class="form-control" >
 
 		</div>
 
@@ -115,7 +169,7 @@
 		<div class="col-lg-5">
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col">
 			
 					<div class="accordion" id="idacorcontacto"> <!--Acordeon -->
 				        <div class="card">
@@ -129,7 +183,7 @@
 
 					            <input type="Text" id="idcontactobodegaelegido"  width="50" style="display:none">
 
-		  						<small><input type="Text" id="contactobodegaelegido" placeholder="contacto elegido" disabled></small><span id="faltanombre" style="display:none">	Ingrese un Nombre</span>
+		  						<input type="Text" id="contactobodegaelegido" class="form-control" placeholder="contacto elegido"  disabled><span id="faltanombre" style="display:none"><small>	Ingrese un Nombre</small></span>
 					          	
 					          	<button class="btn btn-info" id="botonguardarcontacto" action="" type="submit"><small>Guardar contacto</small></button>
 									<button class="btn btn-info" id="nuevocontacto" action="" type="submit"><small>Nuevo contacto</small></button>
@@ -172,14 +226,12 @@
 				    </div><!-- fin del acordeon -->
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 
 
 	<!--  -------------------------------------------- LISTAS DE BODEGAS -------------------------------------------->
-	<div class="row">
+	<div class="row  style="margin: 10px"">
 
 		<div class="col-lg-7" align="center">
 			<div class="accordion" id="accordionExample2"> <!--Acordeon -->
@@ -191,7 +243,7 @@
 			            </button>
 			            <br>
 			            <input type="Text" id="idbodegaelegida"  width="50" style="display:none">
-  						<small><input type="Text" id="nombrebodegaelegida" placeholder="bodega elegida" disabled></small>
+  						<small><input type="Text" id="nombrebodegaelegida" class="form-control" placeholder="bodega elegida" disabled></small>
 			          </h5>
 			        </div>
 
@@ -231,9 +283,6 @@
 			        </div>
 		      	</div>	<!--fin de card -->
 			</div><!--fin de acordeon -->
-
-
-
 		</div>
 
 
@@ -248,7 +297,7 @@
 			            </button>
 			            <br>
 			            <input type="Text" id="idconsumisionelegida" style="display:none">
-  						<small><input type="Text" id="nombreconsumisionelegida" placeholder="consumo elegido" disabled></small>
+  						<small><input type="Text" id="nombreconsumisionelegida" class="form-control" placeholder="consumo elegido" disabled></small>
 			          </h5>
 			        </div>
 
@@ -295,6 +344,7 @@
 
 
 
+
 <div class="container">
 
 	<button class="btn btn-lg btn-info btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
@@ -331,6 +381,8 @@
 
                     <th scope="col">Consumo</th>
 
+                    <th scope="col" style="display:none;">id cliente</th>
+
                     <th scope="col">cliente</th>
 
                     <th scope="col">Monto</th>
@@ -340,7 +392,7 @@
                     <th scope="col">Contacto Bod</th>
 
                     <th scope="col" style="display:none;">id Estado</th>
-                    
+
                     <th scope="col">Estado</th>
 
                 </tr>
@@ -403,6 +455,8 @@
 
 
 <?php
+
+	include("funciones/clientesfunciones.php");
 
 	include("funciones/contactosbodegasfunciones.php");
 

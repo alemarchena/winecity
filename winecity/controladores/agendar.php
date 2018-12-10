@@ -14,12 +14,17 @@
     $horaagendado = $_POST['horaagendado'];
     $id_bodega = $_POST['id_bodega'];
 
+    $id_cliente = $_POST['id_cliente'];
     $emailcliente = $_POST['emailcliente'];
 
     $id_consumision = $_POST['id_consumision'];
     $id_contactobodega = $_POST['id_contactobodega'];
     $id_estadoagendado = $_POST['id_estadoagendado'];
     $monto= $_POST['monto'];
+
+
+    
+
 
    	if($tipo == "consulta")
     {
@@ -55,13 +60,13 @@
 
         if( $resultado->num_rows > 0)
         {
-            $sql = "update agendados set fechaagendado ='$fechaagendado', horaagendado = '$horaagendado',id_agendado = $id_agendado, id_bodega=id_bodega, id_consumision=id_consumision,id_contactobodega=id_contactobodega,id_estadoagendado=id_estadoagendado,monto=$monto where id_agendado= $id";
+            $sql = "update agendados set fechaagendado ='$fechaagendado', horaagendado = '$horaagendado',id_agendado = $id_agendado, id_bodega=id_bodega,id_cliente=id_cliente,id_consumision=id_consumision,id_contactobodega=id_contactobodega,id_estadoagendado=id_estadoagendado,monto=$monto where id_agendado= $id";
             $resultado  = $cnx->query($sql);
             echo "Agenda actualizada !!!";
             
         }else{
-            $sql = "insert into agendados(fechaagendado,horaagendado,id_bodega,id_consumision,id_contactobodega,id_estadoagendado,monto) values('$fechaagendado','$horaagendado','$id_bodega','$id_consumision','$id_contactobodega','$id_estadoagendado',$monto)";
-            echo "console.log($sql);";
+            $sql = "insert into agendados(fechaagendado,horaagendado,id_bodega,id_consumision,id_contactobodega,id_cliente,id_estadoagendado,monto) values('$fechaagendado','$horaagendado','$id_bodega','$id_consumision','$id_contactobodega','$id_cliente','$id_estadoagendado',$monto)";
+           
             $resultado  = $cnx->query($sql);
             echo "Registros creados en la agenda !!!";
         }

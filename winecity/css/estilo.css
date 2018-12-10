@@ -1,14 +1,26 @@
- body {
-  position: relative;
-}
-		
-.mensajeservidor{
-	font-family: 'Montserrat', sans-serif;
-}
-
-<style>
-	tr {background-color:##5cb98f;}
-	
-</style>
-
+ body {
+
+  position: relative;
+
+}
+
+		
+
+.mensajeservidor{
+
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+
+<style>
+
+	tr {background-color:##5cb98f;}
+
+	
+
+</style>
+
+
+
 }

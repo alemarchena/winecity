@@ -26,6 +26,12 @@
 
 	}
 
+function nuevaagenda()
+
+{
+	$('#tabla_agenda tr').not(':first').remove(); 
+
+}
 
 function confirmaragendado(id,nombre,estado)
 
@@ -73,40 +79,43 @@ function guardaragenda()
 {
 	id_agendado="";
 	var filas = $("#body_agenda").find("tr");
-		var resultado = "";
-
+	var resultado = "";
+	if(filas.length>0)
+	{
 		//RECORRE EL LISTADO DE LA AGENDA
-	for(i=0; i<filas.length; i++){ //Recorre las filas 1 a 1
-		var celdas = $(filas[i]).find("td"); //devolverá las celdas de una fila
-		fechaagendado = $(celdas[1]).text();
-		horaagendado= $(celdas[2]).text();
+	
+		for(i=0; i<filas.length; i++){ //Recorre las filas 1 a 1
+			var celdas = $(filas[i]).find("td"); //devolverá las celdas de una fila
+			fechaagendado = $(celdas[1]).text();
+			horaagendado= $(celdas[2]).text();
 
-		id_bodega= $(celdas[3]).text();
-		nombrebodega= $(celdas[4]).text();
-		id_consumision = $(celdas[5]).text();
-		nombreconsumo= $(celdas[6]).text();
-		emailcliente= $(celdas[7]).text();
-		monto= $(celdas[8]).text();
-		id_contactobodega=$(celdas[9]).text();
-		nombrecontacto=$(celdas[10]).text();
-		id_estadoagendado=$(celdas[11]).text();
-		estado=$(celdas[11]).text();
-		
+			id_bodega= $(celdas[3]).text();
+			nombrebodega= $(celdas[4]).text();
+			id_consumision = $(celdas[5]).text();
+			nombreconsumo= $(celdas[6]).text();
+			id_cliente= $(celdas[7]).text();
+			emailcliente= $(celdas[8]).text();
+			monto= $(celdas[9]).text();
+			id_contactobodega=$(celdas[10]).text();
+			nombrecontacto=$(celdas[11]).text();
+			id_estadoagendado=$(celdas[12]).text();
+			estado=$(celdas[13]).text();
+			
 
-		resultado += fechaagendado + "-" + horaagendado + "-" + id_bodega + "-" + nombrebodega + "-" + id_consumision + "-" + nombreconsumo + "-" + emailcliente + "-" + monto + "-" + id_contactobodega + "-" + nombrecontacto + "-" + id_estadoagendado + "-" + estado + "\n";
-		
-	}
+			resultado += fechaagendado + "-" + horaagendado + "-" + id_bodega + "-" + nombrebodega + "-" + id_consumision + "-" + nombreconsumo + "-" +id_cliente + "-" + emailcliente + "-" + monto + "-" + id_contactobodega + "-" + nombrecontacto + "-" + id_estadoagendado + "-" + estado + "\n";
+			
+		}
 
 //alert(resultado);
 
 
-            $.ajax({
+        $.ajax({
 
-                url:"controladores/agendar.php",
+            url:"controladores/agendar.php",
 
-                data: {id_agendado:id_agendado,fechaagendado:fechaagendado,horaagendado:horaagendado,id_bodega:id_bodega,tipo:"alta",id_consumision:id_consumision,id_contactobodega:id_contactobodega,id_estadoagendado:id_estadoagendado,emailcliente:emailcliente,monto:monto},
+            data: {id_agendado:id_agendado,fechaagendado:fechaagendado,horaagendado:horaagendado,id_bodega:id_bodega,tipo:"alta",id_consumision:id_consumision,id_contactobodega:id_contactobodega,id_estadoagendado:id_estadoagendado,id_cliente:id_cliente,emailcliente:emailcliente,monto:monto},
 
-                type: "post",
+            type: "post",
 
             success:function(data){
 
@@ -116,9 +125,9 @@ function guardaragenda()
 
                 {
 
-                    consultacontactobodega("cabm");
+                    //consultaagenda("cabm");
 
-                    nuevocontactobodega();
+                    nuevaagenda();
 
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
 
@@ -137,16 +146,13 @@ function guardaragenda()
                 alert("Error en el alta.");
 
             }
+        });
+    }else{
+                alert("Agregue datos a la agenda");
 
-            });
+    }   
 
-
-
-            //$("#collapseTwo").collapse("show");
-
-       
-
-    }
+}	
 
 	function AgregaBotonEvento()
 
@@ -236,9 +242,9 @@ function guardaragenda()
 
 					var nombreconsumisione = $("#nombreconsumisionelegida").val();
 
+					var idcliente = $("#idclienteelegido").val();
 
-
-					var emailcliente = $("#emailcliente").val();
+					var emailcliente = $("#emailclienteelegido").val();
 
 					
 
@@ -252,7 +258,7 @@ function guardaragenda()
 
 					var estado = "Pendiente"
 
-					var fila = "<tr><td><input type='button' value = 'X' class = 'quitar btn btn-sm btn-info' onclick='noseleccionaitem()' /></td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td></tr>";
+					var fila = "<tr><td><input type='button' value = 'X' class = 'quitar btn btn-sm btn-info' onclick='noseleccionaitem()' /></td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td></tr>";
 
 
 
