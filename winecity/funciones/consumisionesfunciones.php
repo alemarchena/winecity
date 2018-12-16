@@ -240,11 +240,11 @@
 
                         {
 
-                         var fila = "<tr><td><span style='font-size: 20px; color: Dodgerblue;'><i class='fas fa-check-circle'></i></span><input type='button' value = '' class = 'btn btn-sm btn-info' onclick='seleccionar_consumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision+ "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision+"</td></tr>";
+                         var fila = "<tr><td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-info' onclick='seleccionar_consumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision+ "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision+"</td></tr>";
 
                         }else{
 
-                        var fila = "<tr><td><input type='button' value = 'Borrar' class = 'btn btn-sm btn-danger' onclick='eliminarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+"\")' /></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision+ "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision+"</td></tr>";
+                        var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision+"\")' /></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision+ "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision+"</td></tr>";
 
                         }
 

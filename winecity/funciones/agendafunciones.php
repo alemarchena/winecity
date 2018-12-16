@@ -97,7 +97,7 @@ function consultaagenda()
 
                     $.each(datade,function(key,value)
                     {
-						var fila = "<tr><td><input type='button' value = 'X' class = 'quitar btn btn-sm btn-info' onclick='noseleccionaitem()' /></td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+datade[key].nombre_bodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+datade[key].nombreconsumision+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+datade[key].emailcliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+datade[key].nombrecontactobodega+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td></tr>";
+						var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-info' onclick='noseleccionaitem()' /></td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+datade[key].nombre_bodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+datade[key].nombreconsumision+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+datade[key].emailcliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+datade[key].nombrecontactobodega+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td></tr>";
 
 						$("#tabla_agenda").append(fila);
 						
@@ -266,7 +266,7 @@ function guardaragenda()
 					var estado = "Pendiente";
 
 			
-					var fila = "<tr><td><input type='button' value = 'X' class = 'quitar btn btn-sm btn-info' onclick='noseleccionaitem()' /></td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td>"+cantidad+"</td><td>"+observaciones+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td></tr>";
+					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-info' onclick='noseleccionaitem()' /></td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td>"+cantidad+"</td><td>"+observaciones+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td></tr>";
 
 					$("#tabla_agenda").append(fila);
 

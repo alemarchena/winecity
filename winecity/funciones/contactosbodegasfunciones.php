@@ -196,7 +196,7 @@
                         if(tipo==="seleccionable")
                         {//agrego botones SI 
                         
-                            var fila = "<tr><td><span style='font-size: 20px; color: Dodgerblue;'><i class='fas fa-check-circle'></i></span><input type='button' value = '' class = 'btn btn-sm btn-info' onclick='seleccionarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td><td>"+datadecodificado[key].id_contactobodega+"</td><td>"+datadecodificado[key].nombrecontactobodega+"</td></tr>";
+                            var fila = "<tr><td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-success' onclick='seleccionarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td><td>"+datadecodificado[key].id_contactobodega+"</td><td>"+datadecodificado[key].nombrecontactobodega+"</td></tr>";
         
                         }else 
 
@@ -204,13 +204,13 @@
 
                         { //agrego botones BORRAR y EDITAR
 
-                            var fila = "<tr><td><input type='button' value = 'X' class = 'btn btn-sm btn-danger' onclick='eliminarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\"><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td> <td>"+datadecodificado[key].id_contactobodega+"</td><td>"+datadecodificado[key].nombrecontactobodega+"</td></tr>";
+                            var fila = "<tr><td><input type='button' value = ''&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\"><td><input type='button' value = '&#9998' class = 'btn btn-sm btn-info' onclick='editarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td> <td>"+datadecodificado[key].id_contactobodega+"</td><td>"+datadecodificado[key].nombrecontactobodega+"</td></tr>";
                         }else 
                         if(tipo==="cabm")
 
                         { //agrego botones CONSULTAR, EDITAR Y BORRAR
 
-                            var fila = "<tr> <td><span style='font-size: 20px; color: Dodgerblue;'><i class='fas fa-check-circle'></i></span><input type='button' value = '' class = 'btn btn-sm btn-info' onclick='seleccionarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td><td><input type='button' value = 'Editar' class = 'btn btn-sm btn-info' onclick='editarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td> <td><input type='button' value = 'X' class = 'btn btn-sm btn-danger' onclick='eliminarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'></td> <td>"+datadecodificado[key].id_contactobodega+"</td><td>"+datadecodificado[key].nombrecontactobodega+"</td></tr>";
+                            var fila = "<tr> <td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-success' onclick='seleccionarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td><td><input type='button' value = '&#9998' class = 'btn btn-sm btn-info' onclick='editarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'/></td> <td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarcontactobodega(\"" +datadecodificado[key].id_contactobodega+ "\",\"" +datadecodificado[key].nombrecontactobodega+ "\")'></td> <td>"+datadecodificado[key].id_contactobodega+"</td><td>"+datadecodificado[key].nombrecontactobodega+"</td></tr>";
                         }
                         $("#tabla_contactos").append(fila);
 
