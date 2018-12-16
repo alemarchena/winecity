@@ -1,2 +1,9 @@
-[27-Nov-2018 10:56:12 America/Chicago] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home2/winecity/public_html/plataforma/controladores/desconectar.php on line 2
-[27-Nov-2018 10:56:12 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home2/winecity/public_html/plataforma/controladores/desconectar.php:2) in /home2/winecity/public_html/plataforma/controladores/desconectar.php on line 3
+[15-Dec-2018 16:00:00 America/Chicago] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home2/winecity/public_html/plataforma/controladores/agendar.php on line 44
+[15-Dec-2018 16:01:05 America/Chicago] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home2/winecity/public_html/plataforma/controladores/agendar.php on line 44
+[15-Dec-2018 16:02:16 America/Chicago] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home2/winecity/public_html/plataforma/controladores/agendar.php on line 44
+[15-Dec-2018 16:03:32 America/Chicago] PHP Fatal error:  Uncaught exception 'Exception' with message 'DateTimeZone::__construct(): Unknown or bad timezone (America/Argentina)' in /home2/winecity/public_html/plataforma/controladores/agendar.php:43
+Stack trace:
+#0 /home2/winecity/public_html/plataforma/controladores/agendar.php(43): DateTimeZone->__construct('America/Argenti...')
+#1 {main}
+  thrown in /home2/winecity/public_html/plataforma/controladores/agendar.php on line 43
+[15-Dec-2018 16:09:43 America/Chicago] PHP Catchable fatal error:  Object of class DateTime could not be converted to string in /home2/winecity/public_html/plataforma/controladores/agendar.php on line 80

@@ -33,30 +33,9 @@
 	</header>
 
 
-
-	<div class="row">
-
-		<div class="col-md-4">
-
-			<button class="btn btn-lg btn-success btn-block" id="ver" action="" type="submit"><small>Ver Reservas</small></button>
-
-		</div>
-
-		<br>
-
-		<div class="offset-md-4 col-md-4">
-
-			<button class="btn btn-lg btn-primary btn-block" id="agendar" action="" type="submit"><small>Guardar Reserva</small></button>
-
-		</div>
-
-	</div>
-
-
-
 <div class="jumbotron jumbotron-fluid">
 
-	<div class="row" style="margin: 10px">
+	<div class="row" style="margin: 0px 5px 0px 5px">
 
 		<div class="col-lg-2" align="center">
 
@@ -90,7 +69,10 @@
 					<div class="row">
 						<input type="text" id="montocliente" value="" placeholder="Monto" class="form-control" >
 					</div>
-
+					<div class="row">
+						<input type="text" id="cantidadpersonas" value="" placeholder="Cantidad Personas" class="form-control" >
+					</div>
+					
 				</div>
 
 			</div>
@@ -106,11 +88,19 @@
 			
 					<div class="accordion" id="idacorclientes"> <!--Acordeon -->
 				        <div class="card">
+				        	<div class="row justify-content-around">
+								<div class="col-xs-6">
+									<button class="btn btn-primary" id="botonguardarcliente" action="" type="submit"><small>Guardar cliente</small></button>
+								</div>
+								<div  class="col-xs-6">
+									<button class="btn btn-info" id="nuevocliente" action="" type="submit"><small>Nuevo cliente</small></button>
+								</div>
+							</div>
 					        <div class="card-header" id="cabeceraClientes">
 					          	<h5 class="mb-0">
-									<button class="btn btn-link" id="botoncolapsarclientes" type="button" data-toggle="collapse" data-target="#colapsoclientes" aria-expanded="true" aria-controls="colapsoclientes">
+									<button class="btn btn-block" id="botoncolapsarclientes" type="button" data-toggle="collapse" data-target="#colapsoclientes" aria-expanded="true" aria-controls="colapsoclientes">
 									    
-									    <small><p class="mensajeservidor text-danger">Clientes</p></small>
+									    <small><p class="btn btn-info btn-block mensajeservidor">Clientes</p></small>
 									</button>
 					    		</h5>
 
@@ -118,27 +108,27 @@
 								<input type="email" id="emailclienteelegido" value="<?php  if(isset($emailclienteelegido)) echo $emailclienteelegido ?>" placeholder="email cliente" class="form-control" disabled></small><span id="faltaemail" style="display:none">	Ingrese un email</span>
 
 				          	
-					          	<button class="btn btn-info" id="botonguardarcliente" action="" type="submit"><small>Guardar cliente</small></button>
-									<button class="btn btn-info" id="nuevocliente" action="" type="submit"><small>Nuevo cliente</small></button>
+					          	
 					        </div>
 
 
 							<div id="colapsoclientes" class="collapse" aria-labelledby="cabeceraClientes" data-parent="#idacorclientes">
 			            		<div class="card-body">
-						            	<div class="row">
-						            		<div class="offset-md-3 col-md-2">
-						                        <input type="text" id="idcontactocliente" name="idcontactocliente" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactocliente)) echo $idcontactocliente ?>" >
-						                    </div>
-						                    <div class="col-md-4">
-						                        <form class="form-signin" action="">
-						                            <button type="button"  class="btn btn-md btn-info btn-block" id="botonclientes_seleccionable"><small>Ver</small></button>
-						                        </form>
-						                    </div>
+					            	<div class="row">
+					            		<div class="offset-md-3 col-md-2">
+					                        <input type="text" id="idcontactocliente" name="idcontactocliente" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactocliente)) echo $idcontactocliente ?>" >
 					                    </div>
-					                    <div>
+					                    <div class="col-md-4">
+					                        <form class="form-signin" action="">
+					                            <button type="button"  class="btn btn-md btn-info btn-block" id="botonclientes_seleccionable"><small>Ver</small></button>
+					                        </form>
+					                    </div>
+				                    </div>
+				                    <div>
 					                    <table id="tabla_clientes" class="table table-sm w-auto table-bordered table-striped">
+					                    	
 					                        <thead>
-					                            <tr class="btn-info">
+					                            <tr class="btn-dark">
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
@@ -155,11 +145,14 @@
 			            		</div>
 		            		</div>
 
+							
+
+
 					    </div><!--fin de la tarjeta -->
 				    </div><!-- fin del acordeon -->
 				</div>
 			</div>
-
+			
 		</div>
 
 		
@@ -173,39 +166,44 @@
 			
 					<div class="accordion" id="idacorcontacto"> <!--Acordeon -->
 				        <div class="card">
+				        	<div class="row justify-content-around">
+								<div class="col-xs-6">
+				          			<button class="btn btn-primary" id="botonguardarcontacto" action="" type="submit"><small>Guardar contacto</small></button>
+								</div>
+								<div  class="col-xs-6">
+									<button class="btn btn-info" id="nuevocontacto" action="" type="submit"><small>Nuevo contacto</small></button>		
+								</div>
+							</div>
 					        <div class="card-header" id="cabeceraContactos">
 					          	<h5 class="mb-0">
-									<button class="btn btn-link" id="botoncolapsarcontacto" type="button" data-toggle="collapse" data-target="#colapsocontacto" aria-expanded="true" aria-controls="colapsocontacto">
+									<button class="btn btn-block" id="botoncolapsarcontacto" type="button" data-toggle="collapse" data-target="#colapsocontacto" aria-expanded="true" aria-controls="colapsocontacto">
 									    
-									    <small><p class="mensajeservidor text-danger">Contactos de Bodegas</p></small>
+									    <small><p class="btn btn-info btn-block mensajeservidor">Contactos de Bodegas</p></small>
 									</button>
 					    		</h5>
 
 					            <input type="Text" id="idcontactobodegaelegido"  width="50" style="display:none">
 
 		  						<input type="Text" id="contactobodegaelegido" class="form-control" placeholder="contacto elegido"  disabled><span id="faltanombre" style="display:none"><small>	Ingrese un Nombre</small></span>
-					          	
-					          	<button class="btn btn-info" id="botonguardarcontacto" action="" type="submit"><small>Guardar contacto</small></button>
-									<button class="btn btn-info" id="nuevocontacto" action="" type="submit"><small>Nuevo contacto</small></button>
 					        </div>
 
-
+							
 							<div id="colapsocontacto" class="collapse" aria-labelledby="cabeceraContactos" data-parent="#idacorcontacto">
 			            		<div class="card-body">
-						            	<div class="row">
-						            		<div class="offset-md-3 col-md-2">
-						                        <input type="text" id="idcontactobodega" name="idcontactobodega" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactobodega)) echo $idcontactobodega ?>" >
-						                    </div>
-						                    <div class="col-md-4">
-						                        <form class="form-signin" action="">
-						                            <button type="button"  class="btn btn-md btn-info btn-block" id="botoncontactosbodegas_seleccionable"><small>Ver</small></button>
-						                        </form>
-						                    </div>
+					            	<div class="row">
+					            		<div class="offset-md-3 col-md-2">
+					                        <input type="text" id="idcontactobodega" name="idcontactobodega" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactobodega)) echo $idcontactobodega ?>" >
 					                    </div>
-					                    <div>
+					                    <div class="col-md-4">
+					                        <form class="form-signin" action="">
+					                            <button type="button"  class="btn btn-md btn-info btn-block" id="botoncontactosbodegas_seleccionable"><small>Ver</small></button>
+					                        </form>
+					                    </div>
+				                    </div>
+				                    <div>
 					                    <table id="tabla_contactos" class="table table-sm w-auto table-bordered table-striped">
 					                        <thead>
-					                            <tr class="btn-info">
+					                            <tr class="btn-dark">
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
@@ -221,7 +219,7 @@
 			            			</div>
 			            		</div>
 		            		</div>
-
+							
 					    </div><!--fin de la tarjeta -->
 				    </div><!-- fin del acordeon -->
 				</div>
@@ -229,7 +227,13 @@
 		</div>
 	</div>
 
-
+	<div class="row">
+		<div class="col-lg-7">
+			<div class="form-group green-border-focus">
+			  <textarea class="form-control" placeholder="Observaciones" id="observaciones" rows="3" maxlength="150"></textarea>
+			</div>
+		</div>
+	</div>
 	<!--  -------------------------------------------- LISTAS DE BODEGAS -------------------------------------------->
 	<div class="row  style="margin: 10px"">
 
@@ -238,8 +242,8 @@
 		        <div class="card">
 			        <div class="card-header" id="headingTwo">
 			          <h5 class="mb-0">
-			            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#colapsobodega" aria-expanded="true" aria-controls="colapsobodega">
-			                <small><p class="mensajeservidor text-danger">Lista de Bodegas</p></small>
+			            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#colapsobodega" aria-expanded="true" aria-controls="colapsobodega">
+			                <small><p class="btn btn-info btn-block mensajeservidor">Lista de Bodegas</p></small>
 			            </button>
 			            <br>
 			            <input type="Text" id="idbodegaelegida"  width="50" style="display:none">
@@ -265,7 +269,7 @@
 							<div>
 			                    <table id="tabla_bodegas" class="table table-sm w-auto table-bordered table-striped">
 			                        <thead>
-			                            <tr class="btn-info">
+			                            <tr class="btn-dark">
                                 			<th scope="col"></th>
 			                                <th scope="col">#</th>
 			                                <th scope="col">Nombre</th>
@@ -292,8 +296,8 @@
 				<div class="card">
 			        <div class="card-header" id="headingUno">
 			          <h5 class="mb-0">
-			            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDos" aria-expanded="true" aria-controls="collapseDos">
-			                <small><p class="mensajeservidor text-danger">Lista de Consumos</p></small>
+			            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseDos" aria-expanded="true" aria-controls="collapseDos">
+			                <small><p class="btn btn-info btn-block mensajeservidor">Lista de Consumos</p></small>
 			            </button>
 			            <br>
 			            <input type="Text" id="idconsumisionelegida" style="display:none">
@@ -321,7 +325,7 @@
 			                    <table id="tabla_consumos" class="table table-sm w-auto table-bordered table-striped">
 			   
 			                        <thead>
-			                            <tr class="btn-info">
+			                            <tr class="btn-dark">
 			                            	<th scope="col"></th>
 			                                <th scope="col">#</th>
 			                                <th scope="col">Nombre</th>
@@ -346,15 +350,29 @@
 
 
 <div class="container">
+	<div class="row justify-content-between">
+		<div class="col">
+			<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
+			<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
+		</div>
+		<div class="col">
 
-	<button class="btn btn-lg btn-info btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
+			<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
 
-	<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
-
-	<br>
-
+		</div>
+		<div class="col">
+			<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit"><small>Guardar Reserva</small></button>
+		</div>
+	</div>
 </div>
 
+
+
+	
+
+
+
+		
 
 
 <div class="col-lg-12">
@@ -365,7 +383,7 @@
 
             <thead>
 
-                <tr class="btn-info">
+                <tr class="btn-dark">
 
                     <th scope="col"></th>
 
@@ -383,9 +401,13 @@
 
                     <th scope="col" style="display:none;">id cliente</th>
 
-                    <th scope="col">cliente</th>
+                    <th scope="col">Cliente</th>
 
                     <th scope="col">Monto</th>
+
+                    <th scope="col">Cantidad</th>
+                    
+                    <th scope="col">Observaciones</th>
 
                     <th scope="col" style="display:none;">id Contacto</th>
 
@@ -394,6 +416,8 @@
                     <th scope="col" style="display:none;">id Estado</th>
 
                     <th scope="col">Estado</th>
+
+                    <th scope="col style="display:none;"">Fecha carga</th>
 
                 </tr>
 
@@ -421,7 +445,10 @@
 
 		$('#fechaactual').val(diadehoy());
 
-
+		$("#veragenda").click(function()
+    	{
+    		consultaagenda();
+    	});
 
     	$("#agregarreserva").click(function()
 
@@ -442,7 +469,7 @@
 
 
 
-    	})
+    	});
 
 
 
