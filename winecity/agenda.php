@@ -45,7 +45,7 @@
 
 					<div class="row">
 						<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control" >
-
+						
 						<div id="calendario">
 
 									
@@ -124,11 +124,11 @@
 					                        </form>
 					                    </div>
 				                    </div>
-				                    <div>
+				                    <div class="table-responsive-sm">
 					                    <table id="tabla_clientes" class="table table-sm w-auto table-bordered table-striped">
 					                    	
 					                        <thead>
-					                            <tr class="btn-dark">
+					                            <tr class="btn-secondary">
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
@@ -200,10 +200,10 @@
 					                        </form>
 					                    </div>
 				                    </div>
-				                    <div>
+				                    <div class="table-responsive-sm">
 					                    <table id="tabla_contactos" class="table table-sm w-auto table-bordered table-striped">
 					                        <thead>
-					                            <tr class="btn-dark">
+					                            <tr class="btn-secondary">
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
 		                                			<th scope="col"></th>
@@ -266,10 +266,10 @@
 			                    </div>
 			                </div>
 			                <!--<div class="table-responsive-md">-->
-							<div>
+							<div class="table-responsive-sm">
 			                    <table id="tabla_bodegas" class="table table-sm w-auto table-bordered table-striped">
 			                        <thead>
-			                            <tr class="btn-dark">
+			                            <tr class="btn-secondary">
                                 			<th scope="col"></th>
 			                                <th scope="col">#</th>
 			                                <th scope="col">Nombre</th>
@@ -321,11 +321,11 @@
 			                    </div>
 							</div>
 
-			                <div>
+			                <div class="table-responsive-sm">
 			                    <table id="tabla_consumos" class="table table-sm w-auto table-bordered table-striped">
 			   
 			                        <thead>
-			                            <tr class="btn-dark">
+			                            <tr class="btn-secondary">
 			                            	<th scope="col"></th>
 			                                <th scope="col">#</th>
 			                                <th scope="col">Nombre</th>
@@ -349,8 +349,8 @@
 
 
 
-<div class="container">
-	<div class="row justify-content-between">
+<div class="jumbotron">
+	<div class="row justify-content-center">
 		<div class="col">
 			<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
 			<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
@@ -363,29 +363,46 @@
 		<div class="col">
 			<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit"><small>Guardar Reserva</small></button>
 		</div>
+		<div class="col">
+			<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" disabled action="" type="submit"><small>Nueva Reserva</small></button>
+		</div>
 	</div>
 </div>
 
-
-
-	
-
-
-
-		
-
-
-<div class="col-lg-12">
-
-	<div class="table-responsive-md">
+<div class=" jumbotron col-xs-12">
+	<small><span class="mensajeservidor">Lista de reservas</span></small>
+	<!-- <input type="Text" id="id_agendado" style="display:none"> -->
+	<div class="row justify-content-center">
+		<div class="col-xs-4">
+			<small><span id="labelid"  style="display: none" disabled class="mensajeservidor">Id Seleccionado </span></small>
+			<br>
+			<input type="Text" align="center" id="id_agendado" style="display: none" disabled>
+			<input type="Text" id="id_estadoagendado" style="display: none" disabled>
+		</div>
+	</div>
+	<br>
+	<div class="row justify-content-center">
+		<div class="col-xs-1">
+			<button class="btn btn-success" id="confirmado"  style="display: none" disabled>Confirmado</button>
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-secondary" id="disponible"  style="display: none" disabled>Disponible</button>
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-danger" id="cancelado"  style="display: none" disabled>Cancelado</button>
+		</div>
+	</div>
+	<div class="table-responsive-sm">
 
         <table id="tabla_agenda" class="table w-auto table-bordered table-striped">
 
             <thead>
 
-                <tr class="btn-dark">
+                <tr class="btn-secondary">
 
                     <th scope="col"></th>
+
+                    <th scope="col">Id</th>
 
                     <th scope="col">fecha</th>
 
@@ -411,7 +428,7 @@
 
                     <th scope="col" style="display:none;">id Contacto</th>
 
-                    <th scope="col">Contacto Bod</th>
+                    <th scope="col">Contacto Bodega</th>
 
                     <th scope="col" style="display:none;">id Estado</th>
 
@@ -419,6 +436,8 @@
 
                     <th scope="col style="display:none;"">Fecha carga</th>
 
+                    <th scope="col"></th>
+                    
                 </tr>
 
             </thead>
@@ -451,30 +470,18 @@
     	});
 
     	$("#agregarreserva").click(function()
-
     	{
-
     		AgregaBotonEvento();
-
     	});
 		
 		$("#agendar").click(function(){
 			guardaragenda();
 		});
 
-
     	$('#fechaactual').change(function(){
 
 			$('#fechaactual').val( formatearfecha( $('#fechaactual').val() )   );
-
-
-
     	});
-
-
-
-    	
-
 	});
 
 </script>

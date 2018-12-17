@@ -29,13 +29,15 @@
     $cantidad= $_POST['cantidad'];
     $observaciones= $_POST['observaciones'];
 
+    //echo "console.log($id)";
+
    	if($tipo == "consulta")
     {
         if($id=="")
         {
             //$sql = "Select * from agendados  order by fechaagendado";
 
-            $sql = "Select agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado 
+            $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado 
                 from (((((agendados 
                 INNER JOIN bodegas ON agendados.id_bodega = bodegas.id_bodega) 
                 INNER JOIN consumisiones ON agendados.id_consumision = consumisiones.id_consumision) 
@@ -72,11 +74,12 @@
         $sql = "Select * from agendados where id_agendado=" . $id;
         $resultado  = $cnx->query($sql);
         
-
+        
         if( $resultado->num_rows > 0)
         {
-            $sql = "update agendados set fechahoraoperativa='$fechahoraoperativa' fechaagendado ='$fechaagendado', horaagendado = '$horaagendado',id_agendado = $id_agendado, id_bodega=id_bodega,id_cliente=id_cliente,id_consumision=id_consumision,id_contactobodega=id_contactobodega,id_estadoagendado=id_estadoagendado,monto=$monto,cantidad=$cantidad,observaciones='$observaciones' where id_agendado= $id";
+            $sql = "update agendados set agendados.fechahoraoperativa='$fechahoraoperativa',agendados.id_estadoagendado=$id_estadoagendado where agendados.id_agendado= $id";
             $resultado  = $cnx->query($sql);
+             //echo "console.log($sql)";
             echo "Agenda actualizada !!!";
             
         }else{
@@ -87,7 +90,7 @@
         }
     }else if($tipo == "baja")
     {
-        $sql = "delete from agendados where id_agendado = '$id'";
+        $sql = "delete from agendados where agendados.id_agendado= $id";
 
         $resultado  = $cnx->query($sql);
         echo "Registo de agenda Eliminado !!!";
