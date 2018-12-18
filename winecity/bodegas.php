@@ -1,5 +1,6 @@
 <div class="border border-success">
-    <br>
+    <h2 class="mensajeservidor" align="center">BODEGAS</h2>
+
                                                         <!--  ACORDEON -->
 
     <div class="accordion" id="accordionExample">

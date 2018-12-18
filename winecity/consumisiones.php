@@ -3,6 +3,8 @@
 ?>
 
 <div class="border border-success">
+    <h2 class="mensajeservidor" align="center">CONSUMISIONES</h2>
+
                                                         <!--  ACORDEON -->
     <div class="accordion" id="accordionExample">
         <div class="card">

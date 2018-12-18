@@ -72,7 +72,28 @@
 					<div class="row">
 						<input type="text" id="cantidadpersonas" value="" placeholder="Cantidad Personas" class="form-control" >
 					</div>
-					
+					<br>
+					<div class="row">
+						<small><p class="mensajeservidor">Verificar al Agregar</p></small>
+					</div>
+					<div class="row">
+						 <div class="form-check">
+						    <input type="checkbox" class="form-check-input" id="chkBodegas" checked>
+						    <label class="form-check-label" for="chkBodegas">Bodegas</label>
+						  </div>
+					</div>
+					<div class="row">
+						  <div class="form-check">
+						    <input type="checkbox" class="form-check-input" id="chkConsumisiones" checked>
+						    <label class="form-check-label" for="chkConsumisiones">Consumisiones</label>
+						  </div>
+					</div>
+					<div class="row">
+						  <div class="form-check">
+						    <input type="checkbox" class="form-check-input" id="chkServicios" checked>
+						    <label class="form-check-label" for="chkServicios">Servicios</label>
+						  </div>
+					</div>
 				</div>
 
 			</div>
@@ -144,15 +165,17 @@
 			            			</div>
 			            		</div>
 		            		</div>
-
-							
-
-
 					    </div><!--fin de la tarjeta -->
 				    </div><!-- fin del acordeon -->
+
+				   
+					<div class="form-group green-border-focus">
+					  <textarea class="form-control" placeholder="Observaciones" id="observaciones" rows="3" maxlength="150"></textarea>
+					</div>
+					
+
 				</div>
 			</div>
-			
 		</div>
 
 		
@@ -222,18 +245,69 @@
 							
 					    </div><!--fin de la tarjeta -->
 				    </div><!-- fin del acordeon -->
+
+
+
+				    <!--  -------------------------------------------- LISTAS DE SERVICIOS -------------------------------------------->
+					
+					<div class="accordion" id="accordionExample3">
+						<div class="card">
+					        <div class="card-header" id="headingTres">
+					          <h5 class="mb-0">
+					            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
+					                <small><p class="btn btn-info btn-block mensajeservidor">Lista de Servicios</p></small>
+					            </button>
+					            <br>
+					            <input type="Text" id="idservicioelegido" style="display:none">
+		  						<small><input type="Text" id="nombreservicioelegido" class="form-control" placeholder="servicio elegido" disabled></small>
+					          </h5>
+					        </div>
+
+
+					        <div id="collapseTres" class="collapse" aria-labelledby="headingTres" data-parent="#accordionExample3">
+					            <div class="card-body">
+					                <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
+					                <div class="row">
+					                    <div class="offset-md-3 col-md-2">
+					                        <input type="text" id="idservicio" name="idservicio" placeholder="Id" class="form-control"  value="<?php  if(isset($idservicio)) echo $idservicio ?>" >
+					                    </div>
+
+					                    <div class="col-md-4">
+					                        <form class="form-signin" action="">
+					                            <button type="button"  class="btn btn-md btn-info btn-block" id="consultaservicios_seleccionable"><small>Ver</small></button>
+					                        </form>
+					                    </div>
+									</div>
+
+					                <div class="table-responsive-sm">
+					                    <table id="tabla_servicios" class="table table-sm w-auto table-bordered table-striped">
+					   
+					                        <thead>
+					                            <tr class="btn-secondary">
+					                            	<th scope="col"></th>
+					                                <th scope="col">#</th>
+					                                <th scope="col">Nombre</th>
+					                            </tr>
+					                        </thead>
+					                        <tbody id = "body_servicios"> 
+
+
+					                        </tbody>
+					                    </table>
+					                </div>
+					            <!-- FIN DE MOSTRAR EN LA TARJETA-->
+					            </div>
+					        </div>
+				      	</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-lg-7">
-			<div class="form-group green-border-focus">
-			  <textarea class="form-control" placeholder="Observaciones" id="observaciones" rows="3" maxlength="150"></textarea>
-			</div>
-		</div>
-	</div>
+	
+	
+	
 	<!--  -------------------------------------------- LISTAS DE BODEGAS -------------------------------------------->
 	<div class="row  style="margin: 10px"">
 
@@ -290,7 +364,7 @@
 		</div>
 
 
-
+		<!--  -------------------------------------------- LISTAS DE CONSUMISIONES -------------------------------------------->
 		<div class="col-lg-5" align="center">
 			<div class="accordion" id="accordionExample1">
 				<div class="card">
@@ -499,5 +573,7 @@
     include("funciones/bodegasfunciones.php");
 
     include("funciones/consumisionesfunciones.php");
+
+    include("funciones/serviciosfunciones.php");
 
 ?>
