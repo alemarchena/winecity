@@ -74,7 +74,7 @@
 					</div>
 					<br>
 					<div class="row">
-						<small><p class="mensajeservidor">Verificar al Agregar</p></small>
+						<small><p class="mensajeservidor">Verificador al Agregar item</p></small>
 					</div>
 					<div class="row">
 						 <div class="form-check">
@@ -121,7 +121,7 @@
 					          	<h5 class="mb-0">
 									<button class="btn btn-block" id="botoncolapsarclientes" type="button" data-toggle="collapse" data-target="#colapsoclientes" aria-expanded="true" aria-controls="colapsoclientes">
 									    
-									    <small><p class="btn btn-info btn-block mensajeservidor">Clientes</p></small>
+									    <small><p class="btn btn-info btn-block mensajeservidor text-dark" >Clientes</p></small>
 									</button>
 					    		</h5>
 
@@ -201,7 +201,7 @@
 					          	<h5 class="mb-0">
 									<button class="btn btn-block" id="botoncolapsarcontacto" type="button" data-toggle="collapse" data-target="#colapsocontacto" aria-expanded="true" aria-controls="colapsocontacto">
 									    
-									    <small><p class="btn btn-info btn-block mensajeservidor">Contactos de Bodegas</p></small>
+									    <small><p class="btn btn-info btn-block mensajeservidor text-dark">Contactos</p></small>
 									</button>
 					    		</h5>
 
@@ -255,7 +255,7 @@
 					        <div class="card-header" id="headingTres">
 					          <h5 class="mb-0">
 					            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
-					                <small><p class="btn btn-info btn-block mensajeservidor">Lista de Servicios</p></small>
+					                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Servicios</p></small>
 					            </button>
 					            <br>
 					            <input type="Text" id="idservicioelegido" style="display:none">
@@ -317,7 +317,7 @@
 			        <div class="card-header" id="headingTwo">
 			          <h5 class="mb-0">
 			            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#colapsobodega" aria-expanded="true" aria-controls="colapsobodega">
-			                <small><p class="btn btn-info btn-block mensajeservidor">Lista de Bodegas</p></small>
+			                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Bodegas</p></small>
 			            </button>
 			            <br>
 			            <input type="Text" id="idbodegaelegida"  width="50" style="display:none">
@@ -371,7 +371,7 @@
 			        <div class="card-header" id="headingUno">
 			          <h5 class="mb-0">
 			            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseDos" aria-expanded="true" aria-controls="collapseDos">
-			                <small><p class="btn btn-info btn-block mensajeservidor">Lista de Consumos</p></small>
+			                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Consumos</p></small>
 			            </button>
 			            <br>
 			            <input type="Text" id="idconsumisionelegida" style="display:none">
@@ -443,8 +443,8 @@
 	</div>
 </div>
 
-<div class=" jumbotron col-xs-12">
-	<small><span class="mensajeservidor">Lista de reservas</span></small>
+<div class=" jumbotron col-xs-12" style="margin: 0px 5px 0px 5px">
+	<small><h2 class="mensajeservidor">Agendado</h2></small>
 	<!-- <input type="Text" id="id_agendado" style="display:none"> -->
 	<div class="row justify-content-center">
 		<div class="col-xs-4">
@@ -490,6 +490,10 @@
 
                     <th scope="col">Consumo</th>
 
+                    <th scope="col" style="display:none;">id servicio</th>
+
+                    <th scope="col">Servicio</th>
+
                     <th scope="col" style="display:none;">id cliente</th>
 
                     <th scope="col">Cliente</th>
@@ -502,7 +506,7 @@
 
                     <th scope="col" style="display:none;">id Contacto</th>
 
-                    <th scope="col">Contacto Bodega</th>
+                    <th scope="col">Contacto</th>
 
                     <th scope="col" style="display:none;">id Estado</th>
 
@@ -523,9 +527,7 @@
             </tbody>
 
         </table>
-
 	</div>
-
 </div>
 
 

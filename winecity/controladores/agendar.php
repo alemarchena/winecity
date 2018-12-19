@@ -23,6 +23,7 @@
     $emailcliente = $_POST['emailcliente'];
 
     $id_consumision = $_POST['id_consumision'];
+    $id_servicio = $_POST['id_servicio'];
     $id_contactobodega = $_POST['id_contactobodega'];
     $id_estadoagendado = $_POST['id_estadoagendado'];
     $monto= $_POST['monto'];
@@ -37,17 +38,16 @@
         {
             //$sql = "Select * from agendados  order by fechaagendado";
 
-            $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado 
-                from (((((agendados 
-                INNER JOIN bodegas ON agendados.id_bodega = bodegas.id_bodega) 
-                INNER JOIN consumisiones ON agendados.id_consumision = consumisiones.id_consumision) 
-                INNER JOIN clientes ON agendados.id_cliente = clientes.id_cliente) 
-                INNER JOIN bodegascontactos ON agendados.id_contactobodega = bodegascontactos.id_contactobodega) 
-                INNER JOIN estadosagendados ON agendados.id_estadoagendado = estadosagendados.id_estadoagendado)  
+
+                $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,servicios.id_servicio,servicios.nombreservicio,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado from ( ( ( ( ( (agendados 
+                LEFT JOIN bodegas ON agendados.id_bodega = bodegas.id_bodega) 
+                LEFT JOIN consumisiones ON agendados.id_consumision = consumisiones.id_consumision) 
+                LEFT JOIN servicios ON agendados.id_servicio = servicios.id_servicio) 
+                LEFT JOIN clientes ON agendados.id_cliente = clientes.id_cliente) 
+                LEFT JOIN bodegascontactos ON agendados.id_contactobodega = bodegascontactos.id_contactobodega) 
+                LEFT JOIN estadosagendados ON agendados.id_estadoagendado = estadosagendados.id_estadoagendado)  
                 where agendados.fechaagendado = '" . $fechaagendado . "' order by fechaagendado";
-                
-                //echo "console.log($sql)";
-                
+  
         }else
         {
             $sql = "Select * from agendados where id_agendado=" . $id;
@@ -83,8 +83,8 @@
             echo "Agenda actualizada !!!";
             
         }else{
-            $sql = "insert into agendados(fechahoraoperativa,fechaagendado,horaagendado,id_bodega,id_consumision,id_contactobodega,id_cliente,id_estadoagendado,monto,cantidad,observaciones) values('$fechahoraoperativa','$fechaagendado','$horaagendado','$id_bodega','$id_consumision','$id_contactobodega','$id_cliente','$id_estadoagendado',$monto,$cantidad,'$observaciones')";
-           
+            $sql = "insert into agendados(fechahoraoperativa,fechaagendado,horaagendado,id_bodega,id_consumision,id_servicio,id_contactobodega,id_cliente,id_estadoagendado,monto,cantidad,observaciones) values('$fechahoraoperativa','$fechaagendado','$horaagendado','$id_bodega','$id_consumision','$id_servicio','$id_contactobodega','$id_cliente','$id_estadoagendado',$monto,$cantidad,'$observaciones')";
+           //echo "console.log($sql)";
             $resultado  = $cnx->query($sql);
             echo "Registros creados en la agenda !!!";
         }

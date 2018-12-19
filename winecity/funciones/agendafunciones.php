@@ -178,9 +178,22 @@ function consultaagenda()
                     {
                     	//datade[key].nombreestado
 
+                		verbodega = datade[key].nombre_bodega;
+                		if(verbodega==null) {verbodega="";}
 
+                		verconsumision = datade[key].nombreconsumision;
+                		if(verconsumision==null) {verconsumision="";}
 
-					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+datade[key].nombre_bodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+datade[key].nombreconsumision+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+datade[key].emailcliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+datade[key].nombrecontactobodega+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+")'/></td></tr>";
+                		verservicio = datade[key].nombreservicio;
+                		if(verservicio==null) {verservicio="";}
+
+                		vercontacto = datade[key].nombrecontactobodega;
+                		if(vercontacto==null) {vercontacto="";}
+
+                		vercliente = datade[key].emailcliente;
+                		if(vercliente==null) {vercliente="";}
+
+					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+")'/></td></tr>";
 
 						$("#tabla_agenda").append(fila);
 
@@ -206,37 +219,60 @@ function guardaragenda()
 	
 		for(i=0; i<filas.length; i++){ //Recorre las filas 1 a 1
 			var celdas = $(filas[i]).find("td"); //devolverá las celdas de una fila
-			id_agendado = $(celdas[1]).text();
-			fechaagendado = $(celdas[2]).text();
-			horaagendado= $(celdas[3]).text();
+			var id_agendado = $(celdas[1]).text();
+			
+			var fechaagendado = $(celdas[2]).text();
+			var horaagendado= $(celdas[3]).text();
 
-			id_bodega= $(celdas[4]).text();
-			nombrebodega= $(celdas[5]).text();
-			id_consumision = $(celdas[6]).text();
-			nombreconsumo= $(celdas[7]).text();
-			id_cliente= $(celdas[8]).text();
-			emailcliente= $(celdas[9]).text();
-			monto= $(celdas[10]).text();
-			cantidad=$(celdas[11]).text();
-			observaciones=$(celdas[12]).text();
-			id_contactobodega=$(celdas[13]).text();
-			nombrecontacto=$(celdas[14]).text();
-			id_estadoagendado=$(celdas[15]).text();
-			estado=$(celdas[16]).text();
+			var id_bodega= $(celdas[4]).text();
+			if(id_bodega==""){id_bodega=-1;}//si el id_bodega = "" coloca -1
+
+			var nombrebodega= $(celdas[5]).text();
+
+			var id_consumision = $(celdas[6]).text();
+			if(id_consumision==""){id_consumision=-1;}
+			var nombreconsumo= $(celdas[7]).text();
+
+			var id_servicio = $(celdas[8]).text();
+			if(id_servicio==""){id_servicio=-1;}
+			var nombreservicio= $(celdas[9]).text();
+
+			var id_cliente= $(celdas[10]).text();
+			if(id_cliente==""){id_cliente=-1;}
+
+			var emailcliente= $(celdas[11]).text();
+
+			var monto= $(celdas[12]).text();
+			if(monto==""){monto=0;}
+
+			var cantidad=$(celdas[13]).text();
+			if(cantidad==""){cantidad=0;}
+
+			var observaciones=$(celdas[14]).text();
+
+			var id_contactobodega=$(celdas[15]).text();
+			if(id_contactobodega==""){id_contactobodega=-1;}
+
+			var nombrecontacto=$(celdas[16]).text();
+
+			var id_estadoagendado=$(celdas[17]).text();
+			if(id_estadoagendado==""){id_estadoagendado=-1;}
+
+			var estado=$(celdas[16]).text();
 			
 
-			resultado += id_agendado +  "-" + fechaagendado + "-" + horaagendado + "-" + id_bodega + "-" + nombrebodega + "-" + id_consumision + "-" + nombreconsumo + "-" +id_cliente + "-" + emailcliente + "-" + monto + "-" + cantidad + "-" + observaciones + "-" + id_contactobodega + "-" + nombrecontacto + "-" + id_estadoagendado + "-" + estado + "\n";
+			resultado += id_agendado +  "-" + fechaagendado + "-" + horaagendado + "-" + id_bodega + "-" + nombrebodega + "-" + id_consumision + "-" + nombreconsumo + "-" + "-" + id_servicio + "-" + nombreservicio + "-" + id_cliente + "-" + emailcliente + "-" + monto + "-" + cantidad + "-" + observaciones + "-" + id_contactobodega + "-" + nombrecontacto + "-" + id_estadoagendado + "-" + estado + "\n";
 			
 		}
 
-//alert(resultado);
+			//alert(resultado);
 
 
         $.ajax({
 
             url:"controladores/agendar.php",
 
-            data: {id_agendado:id_agendado,fechaagendado:fechaagendado,horaagendado:horaagendado,id_bodega:id_bodega,tipo:"alta",id_consumision:id_consumision,id_contactobodega:id_contactobodega,id_estadoagendado:id_estadoagendado,id_cliente:id_cliente,emailcliente:emailcliente,monto:monto,cantidad:cantidad,observaciones:observaciones},
+            data: {id_agendado:id_agendado,fechaagendado:fechaagendado,horaagendado:horaagendado,id_bodega:id_bodega,tipo:"alta",id_consumision:id_consumision,id_servicio,id_contactobodega:id_contactobodega,id_estadoagendado:id_estadoagendado,id_cliente:id_cliente,emailcliente:emailcliente,monto:monto,cantidad:cantidad,observaciones:observaciones},
 
             type: "post",
 
@@ -282,74 +318,108 @@ function guardaragenda()
  		document.getElementById("labelid").style.display = "none";
 		$("#id_agendado").val("");
 
+		if($("#idbodegaelegida").val() == "" && $("#idconsumisionelegida").val() == "" && $("#idservicioelegido").val() == "")
+		{
+			$("#mensaje").html("").hide();
+			$("#mensaje").html("Agende al menos una bodega, consumisión o servicio").show();
+			$("#mensaje").html("Agende al menos una bodega, consumisión o servicio").fadeOut(6000);
+			return false;
+		}
+			
+		if($("#chkBodegas").prop('checked'))
+		{
+
+			$("#mensaje").html("").hide();
+			if($("#idbodegaelegida").val() == ""){
+
+				$("#mensaje").html("Elija una bodega").show();
+
+				$("#mensaje").html("Elija una bodega").fadeOut(3000);
+
+				return false;
+			}
+		}
+		
+		if($("#chkConsumisiones").prop('checked'))
+		{
+			$("#mensaje").html("").hide();
+
+			if($("#idconsumisionelegida").val() == ""){
+
+				$("#mensaje").html("Elija un consumo").show();
+
+				$("#mensaje").html("Elija un consumo").fadeOut(3000);
+
+				return false;
+			}
+		}
+		
+
+		if($("#chkServicios").prop('checked'))
+		{
+			$("#mensaje").html("").hide();
+
+			if($("#idservicioelegido").val() == ""){
+
+				$("#mensaje").html("Elija un servicio").show();
+
+				$("#mensaje").html("Elija un servicio").fadeOut(3000);
+
+				return false;
+			}
+		}
 
 		if($("#fechaactual").val() == "" || $("#horaseleccionada").val() == ""){
 
-			$("#mensaje").html("Indique una fecha y hora en el calendario").show();
+			$("#mensaje").html("Elija una fecha y hora en el calendario").show();
 
-			$("#mensaje").html("Indique una fecha y hora en el calendario").fadeOut(3000);
+			$("#mensaje").html("Elija una fecha y hora en el calendario").fadeOut(3000);
 
 		}else{
 
 			$("#mensaje").html("").hide();
 
-			if($("#idbodegaelegida").val() == ""){
+			var id_agendado = "";
 
-				$("#mensaje").html("Indique una bodega").show();
+			var fechaelegida = $("#fechaactual").val();
 
-				$("#mensaje").html("Indique una bodega").fadeOut(3000);
+			var horaelegida = $("#horaseleccionada").val();
 
-			}else{
+			var idbodegae = $("#idbodegaelegida").val();
 
-				$("#mensaje").html("").hide();
+			var nombrebodegae = $("#nombrebodegaelegida").val();
 
-				if($("#idconsumisionelegida").val() == ""){
+			var idconsumisione = $("#idconsumisionelegida").val();
 
-					$("#mensaje").html("Indique un consumo").show();
+			var nombreconsumisione = $("#nombreconsumisionelegida").val();
 
-					$("#mensaje").html("Indique un consumo").fadeOut(3000);
-				}else{
+			var idservicioe = $("#idservicioelegido").val();
 
-					$("#mensaje").html("").hide();
+			var nombreservicioe = $("#nombreservicioelegido").val();
 
-					var id_agendado = "";
+			var idcliente = $("#idclienteelegido").val();
 
-					var fechaelegida = $("#fechaactual").val();
+			var emailcliente = $("#emailclienteelegido").val();
 
-					var horaelegida = $("#horaseleccionada").val();
+			var montocliente = $("#montocliente").val();
 
-					var idbodegae = $("#idbodegaelegida").val();
+			var cantidad = $("#cantidadpersonas").val();
 
-					var nombrebodegae = $("#nombrebodegaelegida").val();
+			var observaciones = $("#observaciones").val();
 
-					var idconsumisione = $("#idconsumisionelegida").val();
+			var idcontactobodegae = $("#idcontactobodegaelegido").val();
 
-					var nombreconsumisione = $("#nombreconsumisionelegida").val();
+			var contactobodegae = $("#contactobodegaelegido").val();
 
-					var idcliente = $("#idclienteelegido").val();
+			var idestado = 1;
 
-					var emailcliente = $("#emailclienteelegido").val();
+			var estado = "Pendiente";
 
-					var montocliente = $("#montocliente").val();
+	
+			var fila = "<tr><td></td><td>"+id_agendado+"</td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idservicioe+"</td><td>"+nombreservicioe+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td>"+cantidad+"</td><td>"+observaciones+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td><td></td></tr>";
 
-					var cantidad = $("#cantidadpersonas").val();
-
-					var observaciones = $("#observaciones").val();
-
-					var idcontactobodegae = $("#idcontactobodegaelegido").val();
-
-					var contactobodegae = $("#contactobodegaelegido").val();
-
-					var idestado = 1;
-
-					var estado = "Pendiente";
-
+			$("#tabla_agenda").append(fila);
 			
-					var fila = "<tr><td></td><td>"+id_agendado+"</td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td>"+cantidad+"</td><td>"+observaciones+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td><td></td></tr>";
-
-					$("#tabla_agenda").append(fila);
-				}
-			}
 		}
 	}
 
