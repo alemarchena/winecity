@@ -54,11 +54,47 @@
 						<input type="text" id="cantidadpersonas" value="" placeholder="Cantidad Personas" class="form-control" >
 					</div>
 					<br>
+
+					<small><p class="mensajeservidor">Observaciones</p></small>
+				    <div class="form-group green-border-focus">
+					  <textarea class="form-control" placeholder="Observaciones" id="observaciones" rows="3" maxlength="150"></textarea>
+					</div>
+
+					
+					<small><p class="mensajeservidor">Verificador al Agregar item</p></small>
+					
+					<div class="row">
+						<div class="col" align="left">
+				
+							 <div class="form-check">
+							    <input type="checkbox" class="form-check-input" id="chkHoteles" checked>
+							    <label class="form-check-label" for="chkHoteles">Hoteles</label>
+							  </div>
+				
+							 <div class="form-check">
+							    <input type="checkbox" class="form-check-input" id="chkBodegas" checked>
+							    <label class="form-check-label" for="chkBodegas">Bodegas</label>
+							  </div>
+						</div>
+						<div class="col" align="left">
+				
+							  <div class="form-check">
+							    <input type="checkbox" class="form-check-input" id="chkConsumisiones" checked>
+							    <label class="form-check-label" for="chkConsumisiones">Consumisiones</label>
+							  </div>
+				
+							  <div class="form-check">
+							    <input type="checkbox" class="form-check-input" id="chkServicios" checked>
+							    <label class="form-check-label" for="chkServicios">Servicios</label>
+							  </div>
+						
+						</div>
+					</div>
 		</div>
 
 		<!-- ------------------------------------------------ SERVICIOS -------------------------------------------------------------- -->
 
-		<div class="col-lg-5">
+		<div class="col-lg-3">
 
 					<div class="accordion" id="accordionExample3">
 						<div class="card">
@@ -164,6 +200,9 @@
 				      	</div>
 					</div>
 					
+		</div>
+
+		<div class="col-lg-3">
 					<!-- -----------------------------------------------LISTA DE BODEGAS --------------------------------------- -->
 
 					<div class="accordion" id="accordionExample2"> <!--Acordeon -->
@@ -274,7 +313,7 @@
 		<!-- ------------------------------------------------- CONTACTOS DE CLIENTES -------------------------------------------------- -->
 		
 
-		<div class="col-lg-5">
+		<div class="col-lg-4">
 			
 					<div class="accordion" id="idacorclientes"> <!--Acordeon -->
 				        <div class="card">
@@ -402,66 +441,34 @@
 					    </div><!--fin de la tarjeta -->
 				    </div><!-- fin del acordeon -->
 
-				    <!-- -------------------------------------------------- LISTA DE CONSUMISIONES ----------------------------------- -->
-				    <small><p class="mensajeservidor">Observaciones</p></small>
-				    <div class="form-group green-border-focus">
-					  <textarea class="form-control" placeholder="Observaciones" id="observaciones" rows="3" maxlength="150"></textarea>
-					</div>
-
-					
-					<small><p class="mensajeservidor">Verificador al Agregar item</p></small>
-					
-					<div class="row">
-						<div class="col" align="left">
-				
-							 <div class="form-check">
-							    <input type="checkbox" class="form-check-input" id="chkHoteles" checked>
-							    <label class="form-check-label" for="chkHoteles">Hoteles</label>
-							  </div>
-				
-							 <div class="form-check">
-							    <input type="checkbox" class="form-check-input" id="chkBodegas" checked>
-							    <label class="form-check-label" for="chkBodegas">Bodegas</label>
-							  </div>
-						</div>
-						<div class="col" align="left">
-				
-							  <div class="form-check">
-							    <input type="checkbox" class="form-check-input" id="chkConsumisiones" checked>
-							    <label class="form-check-label" for="chkConsumisiones">Consumisiones</label>
-							  </div>
-				
-							  <div class="form-check">
-							    <input type="checkbox" class="form-check-input" id="chkServicios" checked>
-							    <label class="form-check-label" for="chkServicios">Servicios</label>
-							  </div>
-						
-						</div>
-					</div>
+				  
+				    
 	</div>
 
-	<div class="row justify-content-center">
-		<div class="col">
-			<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
-			<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
-		</div>
-		<div class="col">
+	
+	</div> <!--fin row dentro del jumbotron -->
+</div>
 
-			<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
+<div class="row justify-content-center">
+	<div class="col">
+		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
+		<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
+	</div>
+	<div class="col">
 
-		</div>
-		<div class="col">
-			<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit"><small>Guardar Reserva</small></button>
-		</div>
-		<div class="col">
-			<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
-		</div>
+		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
+
+	</div>
+	<div class="col">
+		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit"><small>Guardar Reserva</small></button>
+	</div>
+	<div class="col">
+		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
 	</div>
 </div>
-	
 <br>
 
-
+<div class="border border-success">
 <small><h4 class="mensajeservidor">Agenda</h4></small>
 <!-- <input type="Text" id="id_agendado" style="display:none"> -->
 <div class="row justify-content-center">
@@ -563,7 +570,7 @@
     </table>
 </div>
 
-
+</div>
 
 
 <script>

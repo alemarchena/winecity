@@ -14,7 +14,9 @@
 	<div class="col-sm-12">
 		<a class="btn btn-outline-info btn-block" id="servicios" ref="#">Servicios</a>
 	</div>
-
+	<div class="col-sm-12">
+		<a class="btn btn-outline-info btn-block" id="parametros" ref="#">Parámetros email</a>
+	</div>
 	<div class="col-sm-12">
 		<div id="subcontenedor" class="jumbotron" align="center">
 
@@ -47,6 +49,10 @@
 	    $("#servicios").click(function(){
 
 	        $("#subcontenedor").load("servicios.php");
+	    });
+	    $("#parametros").click(function(){
+
+	        $("#subcontenedor").load("parametrosemail.php");
 	    });
 	});
 </script>
