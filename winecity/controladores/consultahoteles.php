@@ -26,13 +26,13 @@
 
         {
 
-            $sql = "Select * from servicios  order by nombreservicio";
+            $sql = "Select * from hoteles  order by nombrehotel";
 
         }else
 
         {
 
-            $sql = "Select * from servicios where id_servicio=" . $id;
+            $sql = "Select * from hoteles where id_hotel=" . $id;
 
         }
 
@@ -74,7 +74,7 @@
 
     {
 
-        $sql = "Select * from servicios where id_servicio=" . $id;
+        $sql = "Select * from hoteles where id_hotel=" . $id;
 
         $resultado  = $cnx->query($sql);
 
@@ -86,21 +86,21 @@
 
         {
 
-            $sql = "update servicios set nombreservicio ='$nombre' where id_servicio= $id";
+            $sql = "update hoteles set nombrehotel ='$nombre' where id_hotel= $id";
 
             $resultado  = $cnx->query($sql);
 
-            echo "Servicio $nombre actualizado !!!";
+            echo "Hotel $nombre actualizado !!!";
 
             
 
         }else{
 
-            $sql = "insert into servicios(nombreservicio) values('$nombre')";
+            $sql = "insert into hoteles(nombrehotel) values('$nombre')";
 
             $resultado  = $cnx->query($sql);
 
-            echo "Servicio $nombre creado !!!";
+            echo "Hotel $nombre creado !!!";
 
         }
 
@@ -108,13 +108,13 @@
 
     {
 
-        $sql = "delete from servicios where id_servicio = '$id'";
+        $sql = "delete from hoteles where id_hotel = '$id'";
 
 
 
         $resultado  = $cnx->query($sql);
 
-        echo "Servicio $nombre Eliminado !!!";
+        echo "Hotel $nombre Eliminado !!!";
 
     }
 

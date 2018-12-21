@@ -17,6 +17,8 @@
 
 
     $horaagendado = $_POST['horaagendado'];
+
+    $id_hotel = $_POST['id_hotel'];
     $id_bodega = $_POST['id_bodega'];
 
     $id_cliente = $_POST['id_cliente'];
@@ -39,7 +41,8 @@
             //$sql = "Select * from agendados  order by fechaagendado";
 
 
-                $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,servicios.id_servicio,servicios.nombreservicio,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado from ( ( ( ( ( (agendados 
+                $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,hoteles.id_hotel,hoteles.nombrehotel,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,servicios.id_servicio,servicios.nombreservicio,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado from ( ( ( ( ( ( (agendados 
+                LEFT JOIN hoteles ON agendados.id_hotel = hoteles.id_hotel) 
                 LEFT JOIN bodegas ON agendados.id_bodega = bodegas.id_bodega) 
                 LEFT JOIN consumisiones ON agendados.id_consumision = consumisiones.id_consumision) 
                 LEFT JOIN servicios ON agendados.id_servicio = servicios.id_servicio) 
@@ -83,7 +86,7 @@
             echo "Agenda actualizada !!!";
             
         }else{
-            $sql = "insert into agendados(fechahoraoperativa,fechaagendado,horaagendado,id_bodega,id_consumision,id_servicio,id_contactobodega,id_cliente,id_estadoagendado,monto,cantidad,observaciones) values('$fechahoraoperativa','$fechaagendado','$horaagendado','$id_bodega','$id_consumision','$id_servicio','$id_contactobodega','$id_cliente','$id_estadoagendado',$monto,$cantidad,'$observaciones')";
+            $sql = "insert into agendados(fechahoraoperativa,fechaagendado,horaagendado,id_hotel,id_bodega,id_consumision,id_servicio,id_contactobodega,id_cliente,id_estadoagendado,monto,cantidad,observaciones) values('$fechahoraoperativa','$fechaagendado','$horaagendado','$id_hotel','$id_bodega','$id_consumision','$id_servicio','$id_contactobodega','$id_cliente','$id_estadoagendado',$monto,$cantidad,'$observaciones')";
            //echo "console.log($sql)";
             $resultado  = $cnx->query($sql);
             echo "Registros creados en la agenda !!!";

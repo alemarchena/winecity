@@ -51,11 +51,13 @@ function nuevaagenda()
 
 }
 
- function editaritem(iditem,id_estadoagendadoactual)
+ function editaritem(iditem,id_estadoagendadoactual,estadoagendado,vercliente)
 {
 
     $("#id_agendado").val(iditem);
     $("#id_estadoagendado").val(id_estadoagendadoactual);
+    $("#emailclienteenviar").val(vercliente);
+    $("#estadoenviar").val(estadoagendado);
 
  	habilitadeshabilitaagendado("si");
 }
@@ -111,30 +113,46 @@ function habilitadeshabilitaagendado(habilita){
 	 		document.getElementById("confirmado").style.display = "block";
 	 		document.getElementById("disponible").style.display = "block";
 	 		document.getElementById("cancelado").style.display = "block";
+	 		document.getElementById("email").style.display = "none";
+	 		document.getElementById("emailclienteenviar").style.display = "none";
+	 		document.getElementById("estadoenviar").style.display = "none";
 			document.getElementById("confirmado").disabled = false;
 			document.getElementById("disponible").disabled = false;
 			document.getElementById("cancelado").disabled = false;
+			document.getElementById("email").disabled = true;
 		}else if ($("#id_estadoagendado").val() == 2){
 			document.getElementById("confirmado").style.display = "none";
 	 		document.getElementById("disponible").style.display = "block";
 	 		document.getElementById("cancelado").style.display = "block";
+	 		document.getElementById("email").style.display = "block";
+	 		document.getElementById("emailclienteenviar").style.display = "none";
+	 		document.getElementById("estadoenviar").style.display = "none";
 			document.getElementById("confirmado").disabled = true;
 			document.getElementById("disponible").disabled = false;
 			document.getElementById("cancelado").disabled = false;
+			document.getElementById("email").disabled = false;
 		}else if ($("#id_estadoagendado").val() == 3){
 			document.getElementById("confirmado").style.display = "none";
 	 		document.getElementById("disponible").style.display = "none";
 	 		document.getElementById("cancelado").style.display = "block";
+	 		document.getElementById("email").style.display = "block";
+	 		document.getElementById("emailclienteenviar").style.display = "none";
+	 		document.getElementById("estadoenviar").style.display = "none";
 			document.getElementById("confirmado").disabled = true;
 			document.getElementById("disponible").disabled = true;
 			document.getElementById("cancelado").disabled = false;
+			document.getElementById("email").disabled = false;
 		}else if ($("#id_estadoagendado").val() == 4){
 			document.getElementById("confirmado").style.display = "block";
 	 		document.getElementById("disponible").style.display = "block";
 	 		document.getElementById("cancelado").style.display = "block";
+	 		document.getElementById("email").style.display = "block";
+	 		document.getElementById("emailclienteenviar").style.display = "none";
+	 		document.getElementById("estadoenviar").style.display = "none";
 			document.getElementById("confirmado").disabled = true;
 			document.getElementById("disponible").disabled = true;
 			document.getElementById("cancelado").disabled = true;
+			document.getElementById("email").disabled = false;
 		}
 	}else{
 	 	document.getElementById("id_agendado").style.display = "none";
@@ -142,10 +160,48 @@ function habilitadeshabilitaagendado(habilita){
 	 	document.getElementById("confirmado").style.display = "none";
 	 	document.getElementById("disponible").style.display = "none";
 	 	document.getElementById("cancelado").style.display = "none";
+	 	document.getElementById("email").style.display = "none";
+	 	document.getElementById("emailclienteenviar").style.display = "none";
+	 	document.getElementById("estadoenviar").style.display = "none";
 		document.getElementById("confirmado").disabled = true;
 		document.getElementById("disponible").disabled = true;
 		document.getElementById("cancelado").disabled = true;
+		document.getElementById("email").disabled = true;
+		document.getElementById("emailclienteenviar").disabled = true;
+		document.getElementById("estadoenviar").disabled = true;
 	}
+}
+
+function emailacliente(emailcliente,titulo,subtitulo,cuerpo)
+{
+	var opcion = confirm("Desea enviar el email ?");
+	
+
+    if (opcion == true) {
+	
+		$.ajax({
+
+			url:"controladores/emailacliente.php",
+			data:{emailcliente:emailcliente,titulo:titulo,subtitulo:subtitulo,cuerpo:cuerpo},
+			type:"post",
+			success:function(data){
+	 				if(data!="consultavacia")
+	                {
+	                    alert(data);
+					}else{
+						console.log("Data devolvio:" + data);
+					}
+			},
+			error:function(e){
+				alert("Error en la consulta");
+			}
+		});
+	}
+}
+
+function emailabodega(emailbodega,titulo,subtitulo,cuerpo)
+{
+	mail(emailbodega, titulo + ':' + subtitulo , cuerpo);
 }
 
 function consultaagenda()
@@ -178,6 +234,9 @@ function consultaagenda()
                     {
                     	//datade[key].nombreestado
 
+						verhotel = datade[key].nombrehotel;
+                		if(verhotel==null) {verhotel="";}
+
                 		verbodega = datade[key].nombre_bodega;
                 		if(verbodega==null) {verbodega="";}
 
@@ -193,7 +252,7 @@ function consultaagenda()
                 		vercliente = datade[key].emailcliente;
                 		if(vercliente==null) {vercliente="";}
 
-					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+")'/></td></tr>";
+					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\",\"" +vercliente+ "\")'/></td></tr>";
 
 						$("#tabla_agenda").append(fila);
 
@@ -224,44 +283,49 @@ function guardaragenda()
 			var fechaagendado = $(celdas[2]).text();
 			var horaagendado= $(celdas[3]).text();
 
-			var id_bodega= $(celdas[4]).text();
+			var id_hotel= $(celdas[4]).text();
+			if(id_hotel==""){id_hotel=-1;}//si el id_bodega = "" coloca -1
+
+			var nombrehotel= $(celdas[5]).text();
+
+			var id_bodega= $(celdas[6]).text();
 			if(id_bodega==""){id_bodega=-1;}//si el id_bodega = "" coloca -1
 
-			var nombrebodega= $(celdas[5]).text();
+			var nombrebodega= $(celdas[7]).text();
 
-			var id_consumision = $(celdas[6]).text();
+			var id_consumision = $(celdas[8]).text();
 			if(id_consumision==""){id_consumision=-1;}
-			var nombreconsumo= $(celdas[7]).text();
+			var nombreconsumo= $(celdas[9]).text();
 
-			var id_servicio = $(celdas[8]).text();
+			var id_servicio = $(celdas[10]).text();
 			if(id_servicio==""){id_servicio=-1;}
-			var nombreservicio= $(celdas[9]).text();
+			var nombreservicio= $(celdas[11]).text();
 
-			var id_cliente= $(celdas[10]).text();
+			var id_cliente= $(celdas[12]).text();
 			if(id_cliente==""){id_cliente=-1;}
 
-			var emailcliente= $(celdas[11]).text();
+			var emailcliente= $(celdas[13]).text();
 
-			var monto= $(celdas[12]).text();
+			var monto= $(celdas[14]).text();
 			if(monto==""){monto=0;}
 
-			var cantidad=$(celdas[13]).text();
+			var cantidad=$(celdas[15]).text();
 			if(cantidad==""){cantidad=0;}
 
-			var observaciones=$(celdas[14]).text();
+			var observaciones=$(celdas[16]).text();
 
-			var id_contactobodega=$(celdas[15]).text();
+			var id_contactobodega=$(celdas[17]).text();
 			if(id_contactobodega==""){id_contactobodega=-1;}
 
-			var nombrecontacto=$(celdas[16]).text();
+			var nombrecontacto=$(celdas[18]).text();
 
-			var id_estadoagendado=$(celdas[17]).text();
+			var id_estadoagendado=$(celdas[19]).text();
 			if(id_estadoagendado==""){id_estadoagendado=-1;}
 
-			var estado=$(celdas[16]).text();
+			var estado=$(celdas[20]).text();
 			
 
-			resultado += id_agendado +  "-" + fechaagendado + "-" + horaagendado + "-" + id_bodega + "-" + nombrebodega + "-" + id_consumision + "-" + nombreconsumo + "-" + "-" + id_servicio + "-" + nombreservicio + "-" + id_cliente + "-" + emailcliente + "-" + monto + "-" + cantidad + "-" + observaciones + "-" + id_contactobodega + "-" + nombrecontacto + "-" + id_estadoagendado + "-" + estado + "\n";
+			resultado += id_agendado +  "-" + fechaagendado + "-" + horaagendado + "-" + id_hotel + "-" + id_bodega + "-" + nombrebodega + "-" + id_consumision + "-" + nombreconsumo + "-" + "-" + id_servicio + "-" + nombreservicio + "-" + id_cliente + "-" + emailcliente + "-" + monto + "-" + cantidad + "-" + observaciones + "-" + id_contactobodega + "-" + nombrecontacto + "-" + id_estadoagendado + "-" + estado + "\n";
 			
 		}
 
@@ -272,7 +336,7 @@ function guardaragenda()
 
             url:"controladores/agendar.php",
 
-            data: {id_agendado:id_agendado,fechaagendado:fechaagendado,horaagendado:horaagendado,id_bodega:id_bodega,tipo:"alta",id_consumision:id_consumision,id_servicio,id_contactobodega:id_contactobodega,id_estadoagendado:id_estadoagendado,id_cliente:id_cliente,emailcliente:emailcliente,monto:monto,cantidad:cantidad,observaciones:observaciones},
+            data: {id_agendado:id_agendado,fechaagendado:fechaagendado,horaagendado:horaagendado,id_hotel:id_hotel,id_bodega:id_bodega,tipo:"alta",id_consumision:id_consumision,id_servicio,id_contactobodega:id_contactobodega,id_estadoagendado:id_estadoagendado,id_cliente:id_cliente,emailcliente:emailcliente,monto:monto,cantidad:cantidad,observaciones:observaciones},
 
             type: "post",
 
@@ -318,14 +382,28 @@ function guardaragenda()
  		document.getElementById("labelid").style.display = "none";
 		$("#id_agendado").val("");
 
-		if($("#idbodegaelegida").val() == "" && $("#idconsumisionelegida").val() == "" && $("#idservicioelegido").val() == "")
+		if($("#idhotelelegido").val() == "" && $("#idbodegaelegida").val() == "" && $("#idconsumisionelegida").val() == "" && $("#idservicioelegido").val() == "")
 		{
 			$("#mensaje").html("").hide();
-			$("#mensaje").html("Agende al menos una bodega, consumisión o servicio").show();
-			$("#mensaje").html("Agende al menos una bodega, consumisión o servicio").fadeOut(6000);
+			$("#mensaje").html("Agendar al menos hotel, bodega, consumisión o servicio").show();
+			$("#mensaje").html("Agendar al menos hotel, bodega, consumisión o servicio").fadeOut(6000);
 			return false;
 		}
 			
+		if($("#chkHoteles").prop('checked'))
+		{
+
+			$("#mensaje").html("").hide();
+			if($("#idhotelelegido").val() == ""){
+
+				$("#mensaje").html("Elija un hotel").show();
+
+				$("#mensaje").html("Elija un hotel").fadeOut(3000);
+
+				return false;
+			}
+		}
+
 		if($("#chkBodegas").prop('checked'))
 		{
 
@@ -385,6 +463,10 @@ function guardaragenda()
 
 			var horaelegida = $("#horaseleccionada").val();
 
+			var idhotele = $("#idhotelelegido").val();
+
+			var nombrehotele = $("#nombrehotelelegido").val();
+
 			var idbodegae = $("#idbodegaelegida").val();
 
 			var nombrebodegae = $("#nombrebodegaelegida").val();
@@ -416,7 +498,7 @@ function guardaragenda()
 			var estado = "Pendiente";
 
 	
-			var fila = "<tr><td></td><td>"+id_agendado+"</td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idservicioe+"</td><td>"+nombreservicioe+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td>"+cantidad+"</td><td>"+observaciones+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td><td></td></tr>";
+			var fila = "<tr><td></td><td>"+id_agendado+"</td><td>"+fechaelegida+"</td><td>"+horaelegida+"</td><td style='display:none;'>"+idhotele+"</td><td>"+nombrehotele+"</td><td style='display:none;'>"+idbodegae+"</td><td>"+nombrebodegae+"</td><td style='display:none;'>"+idconsumisione+"</td><td>"+nombreconsumisione+"</td><td style='display:none;'>"+idservicioe+"</td><td>"+nombreservicioe+"</td><td style='display:none;'>"+idcliente+"</td><td>"+emailcliente+"</td><td>"+montocliente+"</td><td>"+cantidad+"</td><td>"+observaciones+"</td><td style='display:none;'>"+idcontactobodegae+"</td><td>"+contactobodegae+"</td><td style='display:none;'>"+idestado+"</td><td>"+estado+"</td><td></td></tr>";
 
 			$("#tabla_agenda").append(fila);
 			
@@ -431,32 +513,50 @@ function guardaragenda()
 	    donetext: 'Seleccionar'
 	});
 
-$("#confirmado").click(function(event){
-    cambiarestado($("#id_agendado").val(),2);
+	$("#confirmado").click(function(event){
+	    cambiarestado($("#id_agendado").val(),2);
+	});
 
-});
+	$("#disponible").click(function(event){
+	    
+	    cambiarestado($("#id_agendado").val(),3);
+	});
 
-$("#disponible").click(function(event){
-    
-    cambiarestado($("#id_agendado").val(),3);
-    
-});
-
-$("#cancelado").click(function(event){
-    cambiarestado($("#id_agendado").val(),4);
-    
-    
-});
+	$("#cancelado").click(function(event){
+	    cambiarestado($("#id_agendado").val(),4);
+	});
+		
+	$("#email").click(function(event){
+		
+	    //alert("Va a mandar email");
+	    //email, titulo, subtitulo , cuerpo
+	    emailacliente($("#emailclienteenviar").val(),"Reserva.","Confirmación. ","Su reserva está en estado " +$("#estadoenviar").val());
+	});
 	
-
 	$("#nuevasreservas").click(function()
 	{
 		$('#tabla_agenda tr').not(':first').remove(); 
 	 	$("#id_agendado").val("");
+
+			$("#idhotelelegido").val("");
+			$("#nombrehotelelegido").val("");
+			$("#idbodegaelegida").val("");
+			$("#nombrebodegaelegida").val("");
+			$("#idconsumisionelegida").val("");
+			$("#nombreconsumisionelegida").val("");
+			$("#idservicioelegido").val("");
+			$("#nombreservicioelegido").val("");
+			$("#idclienteelegido").val("");
+			$("#emailclienteelegido").val("");
+			$("#montocliente").val("");
+			$("#cantidadpersonas").val("");
+			$("#observaciones").val("");
+			$("#idcontactobodegaelegido").val("");
+			$("#contactobodegaelegido").val("");
+
 		document.getElementById("agregarreserva").disabled = false;
 		document.getElementById("agendar").disabled = false;
 		document.getElementById("nuevasreservas").disabled = true;
-	
 
 		habilitadeshabilitaagendado("no");
 	});

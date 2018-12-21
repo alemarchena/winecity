@@ -1,5 +1,9 @@
 <br>
 	<div class="col-sm-12">
+		<a class="btn btn-outline-info btn-block" id="hoteles" ref="#">Hoteles</a>
+	</div>
+
+	<div class="col-sm-12">
 		<a class="btn btn-outline-info btn-block" id="bodegas" ref="#">Bodegas</a>
 	</div>
 
@@ -10,6 +14,7 @@
 	<div class="col-sm-12">
 		<a class="btn btn-outline-info btn-block" id="servicios" ref="#">Servicios</a>
 	</div>
+
 	<div class="col-sm-12">
 		<div id="subcontenedor" class="jumbotron" align="center">
 
@@ -24,6 +29,11 @@
 	$(document).ready(function()
 
 	{
+		$("#hoteles").click(function(){
+
+	        $("#subcontenedor").load("hoteles.php");
+	    });
+
 	    $("#bodegas").click(function(){
 
 	        $("#subcontenedor").load("bodegas.php");

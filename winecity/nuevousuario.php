@@ -1,46 +1,8 @@
 <?php
-	$emailAvisoNuevoUsuario='alemarchena@gmail.com';
-	$ruta = '/home2/winecity/public_html/plataforma/';
-	include($ruta . 'controladores/coneccion.php');
 
-	$respuesta = "";
+	include("controladores/consultanuevousuario.php");
 
-	if(isset($_POST['guardar']))
-	{
-		$nombre = $_POST['nombrenuevo'];
-		$email = $_POST['emailnuevo'];
-		$clave = $_POST['clavenueva'];
 
-		$resultado = $cnx->query("select * from usuarios where email_usuario = '$email'");
-		$fila = $cnx->affected_rows;
-
-		if($fila > 0)
-		{
-			$respuesta = "El usuario ya existe";		
-		}else
-		{
-			$respuesta = "";
-			$resultado = $cnx->query("insert into usuarios (nombre_usuario, email_usuario, clave_usuario) VALUES ('$nombre','$email','$clave')");
-			$fila = $cnx->affected_rows;
-			if($fila > 0)
-			{
-				$_SESSION['active'] =0;
-				mail($emailAvisoNuevoUsuario, 'Nuevo usuario:' . $nombre . ' - ', $nombre . ' se agrego a la plataforma,' . 'con el usuario:' . $email);
-			    header("Location: bienvenido.php");
-				exit();
-			}else
-			{
-				$respuesta = "Algo no funcionó con la creación";
-			}
-			exit();	
-		}
-	}
-
-	if(isset($_POST['login']))
-	{
-		header("Location: login.php");
-		exit();
-	}
 ?>
 <head>
 		<meta charset="utf-8">
@@ -86,10 +48,10 @@
 			<input type="email"  name="emailnuevo" id="inputEmail" class="form-control" placeholder="dirección de email" value="<?php  if(isset($email)) echo $email ?>" required autofocus>
 			<br>
 			<label for="inputPassword" class="sr-only">clave</label>
-			<input type="password" id="inputPassword"  name="clavenueva" class="form-control" placeholder="clave de 8 caracteres"  size="8" value="<?php  if(isset($clavenueva)) echo $clavenueva ?>"required>
+			<input type="password" id="inputPassword"  name="clavenueva" class="form-control" placeholder="clave de 8 caracteres" maxlength="8" value="<?php  if(isset($clavenueva)) echo $clavenueva ?>"required>
 			<br>
 			<label for="inputPassword" class="sr-only">repita la clave</label>
-			<input type="password" id="inputPassword1"  name="clave1" class="form-control" placeholder="clave"  size="8" value="<?php  if(isset($clave1)) echo $clave1 ?>"required>
+			<input type="password" id="inputPassword1"  name="clave1" class="form-control" placeholder="clave"  maxlength="8" value="<?php  if(isset($clave1)) echo $clave1 ?>"required>
 
 			
 			<button class="btn btn-lg btn-primary btn-block" id="guardar" name="guardar" action="" type="submit"><small>Guardar</small></button>
