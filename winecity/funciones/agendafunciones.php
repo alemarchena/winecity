@@ -51,15 +51,42 @@ function nuevaagenda()
 
 }
 
- function editaritem(iditem,id_estadoagendadoactual,estadoagendado,vercliente)
+ function editaritem(iditem,id_estadoagendadoactual,estadoagendado,vercliente,bodega,hotel,idreserva,fechareserva,horareserva)
 {
 
     $("#id_agendado").val(iditem);
     $("#id_estadoagendado").val(id_estadoagendadoactual);
     $("#emailclienteenviar").val(vercliente);
     $("#estadoenviar").val(estadoagendado);
+    $("#bodegareserva").val(bodega);
+    $("#hotelreserva").val(hotel);
+    $("#idreserva").val(idreserva);
+    $("#fechareserva").val(fechareserva);
+    $("#horareserva").val(horareserva);
 
- 	habilitadeshabilitaagendado("si");
+
+    if(vercliente!="") //si no tiene email no permite enviar correo
+    {
+	    if(bodega!="" || hotel!=""){
+	 		habilitadeshabilitaagendado("si","SI","SI"); 
+	 		//el primer parametro es para ver si habilita todos los botones de confirmado, el segundo 	parametro es para indicar si tiene o no hotel o bodega, el tercer parametro es si tiene email
+		}else{
+			habilitadeshabilitaagendado("si","NO","SI");
+		}
+	}else{
+			habilitadeshabilitaagendado("si","","NO");
+	}
+
+	if($("#radioingles").prop('checked')){
+    	consultaparametros("ingles");
+    }else if($("#radioportugues").prop('checked')){
+    	consultaparametros("portugues");
+    }else if($("#radioespaniol").prop('checked')){
+        consultaparametros("espaniol");
+    }else{
+        consultaparametros("espaniol");
+    }
+ 	
 }
 
 function cambiarestado(id_agendado,id_estadoagendado)
@@ -101,58 +128,82 @@ function cambiarestado(id_agendado,id_estadoagendado)
     }
 }
 
-function habilitadeshabilitaagendado(habilita){
+function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
+
+	document.getElementById("infoemail").style.display = "none";
+
+	document.getElementById("confirmado").style.display = "block";
+	document.getElementById("disponible").style.display = "block";
+	document.getElementById("cancelado").style.display = "block";
+	document.getElementById("emailcliente").style.display = "block";
 
 	if(habilita=="si"){
 	 	document.getElementById("id_agendado").style.display = "block";
 	 	document.getElementById("labelid").style.display = "block";
- 		
-		
 
 	 	if ($("#id_estadoagendado").val() == 1){
-	 		document.getElementById("confirmado").style.display = "block";
-	 		document.getElementById("disponible").style.display = "block";
-	 		document.getElementById("cancelado").style.display = "block";
-	 		document.getElementById("email").style.display = "none";
-	 		document.getElementById("emailclienteenviar").style.display = "none";
-	 		document.getElementById("estadoenviar").style.display = "none";
+	 		
+	 		document.getElementById("botones").style.display = "none";
+
 			document.getElementById("confirmado").disabled = false;
 			document.getElementById("disponible").disabled = false;
 			document.getElementById("cancelado").disabled = false;
-			document.getElementById("email").disabled = true;
+			document.getElementById("emailcliente").disabled = true;
+			
 		}else if ($("#id_estadoagendado").val() == 2){
-			document.getElementById("confirmado").style.display = "none";
-	 		document.getElementById("disponible").style.display = "block";
-	 		document.getElementById("cancelado").style.display = "block";
-	 		document.getElementById("email").style.display = "block";
-	 		document.getElementById("emailclienteenviar").style.display = "none";
-	 		document.getElementById("estadoenviar").style.display = "none";
+		
+	 		document.getElementById("botones").style.display = "block";
+
 			document.getElementById("confirmado").disabled = true;
 			document.getElementById("disponible").disabled = false;
 			document.getElementById("cancelado").disabled = false;
-			document.getElementById("email").disabled = false;
+			if(tieneemail=="SI"){
+				if(tienehotelobodega=="SI"){
+					document.getElementById("emailcliente").disabled = false;
+				}else{
+					document.getElementById("emailcliente").disabled = true;
+					$("#infoemail").html("La reserva no tiene hotel o bodega");
+		 			document.getElementById("infoemail").style.display = "block";	
+				}
+			}else
+			{
+				document.getElementById("emailcliente").disabled = true;
+				$("#infoemail").html("La reserva no tiene una dirección de email");
+		 		document.getElementById("infoemail").style.display = "block";	
+			}
 		}else if ($("#id_estadoagendado").val() == 3){
-			document.getElementById("confirmado").style.display = "none";
-	 		document.getElementById("disponible").style.display = "none";
-	 		document.getElementById("cancelado").style.display = "block";
-	 		document.getElementById("email").style.display = "block";
-	 		document.getElementById("emailclienteenviar").style.display = "none";
-	 		document.getElementById("estadoenviar").style.display = "none";
+
+			document.getElementById("botones").style.display = "none";
+
 			document.getElementById("confirmado").disabled = true;
 			document.getElementById("disponible").disabled = true;
 			document.getElementById("cancelado").disabled = false;
-			document.getElementById("email").disabled = false;
+			document.getElementById("emailcliente").disabled = true;
+			$("#infoemail").html("El estado de la reserva es DISPONIBLE por lo tanto no permite el envío de email a clientes");
+		 	document.getElementById("infoemail").style.display = "block";	
+
 		}else if ($("#id_estadoagendado").val() == 4){
-			document.getElementById("confirmado").style.display = "block";
-	 		document.getElementById("disponible").style.display = "block";
-	 		document.getElementById("cancelado").style.display = "block";
-	 		document.getElementById("email").style.display = "block";
-	 		document.getElementById("emailclienteenviar").style.display = "none";
-	 		document.getElementById("estadoenviar").style.display = "none";
+
+			document.getElementById("botones").style.display = "block";
+
 			document.getElementById("confirmado").disabled = true;
 			document.getElementById("disponible").disabled = true;
 			document.getElementById("cancelado").disabled = true;
-			document.getElementById("email").disabled = false;
+			if(tieneemail=="SI"){
+				if(tienehotelobodega=="SI"){
+					document.getElementById("emailcliente").disabled = false;
+				}else{
+					document.getElementById("emailcliente").disabled = true;
+					$("#infoemail").html("La reserva no tiene hotel o bodega");
+		 			document.getElementById("infoemail").style.display = "block";	
+				}
+			}else
+			{
+				document.getElementById("emailcliente").disabled = true;
+				$("#infoemail").html("La reserva no tiene una dirección de email");
+		 		document.getElementById("infoemail").style.display = "block";	
+			}
+			
 		}
 	}else{
 	 	document.getElementById("id_agendado").style.display = "none";
@@ -160,13 +211,16 @@ function habilitadeshabilitaagendado(habilita){
 	 	document.getElementById("confirmado").style.display = "none";
 	 	document.getElementById("disponible").style.display = "none";
 	 	document.getElementById("cancelado").style.display = "none";
-	 	document.getElementById("email").style.display = "none";
+	 	document.getElementById("emailcliente").style.display = "none";
 	 	document.getElementById("emailclienteenviar").style.display = "none";
 	 	document.getElementById("estadoenviar").style.display = "none";
+		
+		document.getElementById("botones").style.display = "none";
+
 		document.getElementById("confirmado").disabled = true;
 		document.getElementById("disponible").disabled = true;
 		document.getElementById("cancelado").disabled = true;
-		document.getElementById("email").disabled = true;
+		document.getElementById("emailcliente").disabled = true;
 		document.getElementById("emailclienteenviar").disabled = true;
 		document.getElementById("estadoenviar").disabled = true;
 	}
@@ -175,14 +229,14 @@ function habilitadeshabilitaagendado(habilita){
 function emailacliente(emailcliente,titulo,subtitulo,cuerpo)
 {
 	var opcion = confirm("Desea enviar el email ?");
+	var idreserva = $("#idreserva").val();
 	
-
     if (opcion == true) {
 	
 		$.ajax({
 
 			url:"controladores/emailacliente.php",
-			data:{emailcliente:emailcliente,titulo:titulo,subtitulo:subtitulo,cuerpo:cuerpo},
+			data:{idreserva:idreserva,emailcliente:emailcliente,titulo:titulo,subtitulo:subtitulo,cuerpo:cuerpo},
 			type:"post",
 			success:function(data){
 	 				if(data!="consultavacia")
@@ -201,7 +255,7 @@ function emailacliente(emailcliente,titulo,subtitulo,cuerpo)
 
 function emailabodega(emailbodega,titulo,subtitulo,cuerpo)
 {
-	mail(emailbodega, titulo + ':' + subtitulo , cuerpo);
+	
 }
 
 function consultaagenda()
@@ -210,7 +264,7 @@ function consultaagenda()
 	$('#tabla_agenda tr').not(':first').remove(); 
  	$("#id_agendado").val("");
 
-	habilitadeshabilitaagendado(false);
+	habilitadeshabilitaagendado("no");
 	
 	document.getElementById("agregarreserva").disabled = true;
 	document.getElementById("agendar").disabled = true;
@@ -252,7 +306,7 @@ function consultaagenda()
                 		vercliente = datade[key].emailcliente;
                 		if(vercliente==null) {vercliente="";}
 
-					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\",\"" +vercliente+ "\")'/></td></tr>";
+					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\",\"" +vercliente+"\",\""+verbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\")'/></td></tr>";
 
 						$("#tabla_agenda").append(fila);
 
@@ -525,12 +579,128 @@ function guardaragenda()
 	$("#cancelado").click(function(event){
 	    cambiarestado($("#id_agendado").val(),4);
 	});
+	
+	function armamensaje(){
+
+		var mensaje;
+		var reserva;
+		var hora;
+		var estado;
+		var valorestado;
+		var bodega;
+		var hotel;
+
+		if($("#radioingles").prop('checked')){
+	    	reserva = " Reservation ";
+	    	hora = " Hour ";
+	    	estado = " Status ";
+	    	if($("#estadoenviar").val() === "Confirmado")
+	    	{
+	    		valorestado = " Confirmed ";
+	    	}
+	    	if($("#estadoenviar").val() === "Cancelado")
+	    	{
+	    		valorestado = " Cancelled ";
+	    	}
+	    	if($("#bodegareserva").val() != "")
+	    	{
+	    		bodega = " Wine Cellar : " + $("#bodegareserva").val();
+	    	}else{
+	    		bodega = "";
+	    	}
+
+
+	    	if($("#hotelreserva").val() != "")
+	    	{
+	    		hotel = " Hotel : " + $("#hotelreserva").val();
+	    	}else{
+	    		hotel="";
+	    	}
+	    }else if($("#radioportugues").prop('checked')){
+	    	reserva = " Reservar ";
+	    	hora = " Hora ";
+	    	estado = " Estado ";
+			if($("#estadoenviar").val() === "Confirmado")
+	    	{
+	    		valorestado = " Confirmou ";
+	    	}
+	    	if($("#estadoenviar").val() === "Cancelado")
+	    	{
+	    		valorestado = " Cancelado ";
+	    	}
+	    	if($("#bodegareserva").val() != "")
+	    	{
+	    		bodega = " Wine Cellar : " + $("#bodegareserva").val();
+	    	}else{
+	    		bodega = "";
+	    	}
+	    	if($("#hotelreserva").val() != "")
+	    	{
+	    		hotel = " Adega : " + $("#hotelreserva").val();
+	    	}else{
+	    		hotel="";
+	    	}
+	    }else if($("#radioespaniol").prop('checked')){
+	     	reserva = " Reserva ";   
+	    	hora = " Hora ";
+	    	estado = " Estado ";
+	    	if($("#estadoenviar").val() === "Confirmado")
+	    	{
+	    		valorestado = " Confirmado ";
+	    	}
+	    	if($("#estadoenviar").val() === "Cancelado")
+	    	{
+	    		valorestado = " Cancelado ";
+	    	}
+	    	if($("#bodegareserva").val() != "")
+	    	{
+	    		bodega = " Bodega : " + $("#bodegareserva").val();
+	    	}else{
+	    		bodega = "";
+	    	}
+	    	if($("#hotelreserva").val() != "")
+	    	{
+	    		hotel = " Hotel : " + $("#hotelreserva").val();
+	    	}else{
+	    		hotel="";
+	    	}
+	    }else{
+	    	reserva = " Reserva ";
+	    	hora = " Hora ";
+	    	estado = " Estado ";
+	    	if($("#estadoenviar").val() === "Confirmado")
+	    	{
+	    		valorestado = " Confirmado ";
+	    	}
+	    	if($("#estadoenviar").val() === "Cancelado")
+	    	{
+	    		valorestado = " Cancelado ";
+	    	}
+	    	if($("#bodegareserva").val() != "")
+	    	{
+	    		bodega = " Bodega : " + $("#bodegareserva").val();
+	    	}else{
+	    		bodega = "";
+	    	}
+	    	if($("#hotelreserva").val() != "")
+	    	{
+	    		hotel = " Hotel : " + $("#hotelreserva").val();
+	    	}else{
+	    		hotel="";
+	    	}
+	    }
+
+	    
+	    mensaje = " * " + reserva + " : " + $("#fechareserva").val() + " , " + hora + " : " + $("#horareserva").val() + " - " + estado + " : " + valorestado + "." + bodega + " - " + hotel + " * ";
 		
-	$("#email").click(function(event){
+		return mensaje;
+	}
+
+	$("#emailcliente").click(function(event){
 		
-	    //alert("Va a mandar email");
-	    //email, titulo, subtitulo , cuerpo
-	    emailacliente($("#emailclienteenviar").val(),"Reserva.","Confirmación. ","Su reserva está en estado " +$("#estadoenviar").val());
+	    var mensaje = armamensaje();
+
+	    emailacliente($("#emailclienteenviar").val(),$("#titemailc").val(),$("#subtitemailc").val(),$("#cuerpoemailc").val() + mensaje);
 	});
 	
 	$("#nuevasreservas").click(function()
@@ -576,4 +746,39 @@ function guardaragenda()
 		//console.log("Fecha:" + fecha + ",fechaEjemplo:" + fechaEjemplo);
 		return fechaEjemplo;
 	}
+	$("input[name=radioingles]").click(function () {    
+        setsoloingles();
+        consultaparametros("ingles");
+    });
+    $("input[name=radioportugues]").click(function () {
+       setsoloportugues();
+       consultaparametros("portugues");
+    });
+
+    $("input[name=radioespaniol]").click(function () {    
+       setsoloespaniol();
+       consultaparametros("espaniol");
+    });
+
+    function setsoloingles (){
+        
+        $("#radioespaniol").prop("checked", false);
+        $("#radioportugues").prop("checked", false);
+    }
+
+    function setsoloportugues (){
+        
+        $("#radioespaniol").prop("checked", false);
+        $("#radioingles").prop("checked", false);
+    }
+
+    function setsoloespaniol (){
+        
+        $("#radioingles").prop("checked", false);
+        $("#radioportugues").prop("checked", false);
+    }
 </script>
+
+<?php
+	include("funciones/emailfunciones.php");
+?>

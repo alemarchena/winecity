@@ -7,6 +7,7 @@
 	include($ruta . 'controladores/coneccion.php');
 
 
+	$id  = $_POST['idreserva'];
 
 	$emailcliente = $_POST['emailcliente'];
 
@@ -23,8 +24,11 @@
  	date_default_timezone_set('America/Argentina/Mendoza');
     
     $fho = new DateTime();
-    $fechahoraoperativa= $fho->format('d-m-Y H:i:sP');
-	$mensaje = "Correo Enviado el " . $fechahoraoperativa;
-	
+    $fechahoraoperativa= $fho->format('d-m-Y H:i');
+	$mensaje = "Correo Enviado a: " . $emailcliente . ",el " . $fechahoraoperativa . " Mensaje:" .  $titulo . "-" .  $subtitulo . "." . $cuerpo;
+	//guarda en la base de datos cuando se mando el ultimo email.
+	$sql = "update agendados set agendados.infoultimoemail='$fechahoraoperativa' where agendados.id_agendado= $id";
+	$resultado  = $cnx->query($sql);
+
 	echo "$mensaje";
 ?>

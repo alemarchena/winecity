@@ -478,98 +478,178 @@
 		<input type="Text" align="center" id="id_agendado" style="display: none" disabled>
 		<input type="Text" id="id_estadoagendado" style="display: none" disabled>
 	</div>
+	<div class="col-xs-8">
+		<div class="row" id="botones" style="display: none">
+			<div class="col-xs-1">
+		         <div class="input-group">
+		          <div class="input-group-prepend">
+		            <div class="input-group-text">
+		            <input type="radio" aria-label="Radio button for following text input" id="radioespaniol" name="radioespaniol" checked>
+		            </div>
+		          </div>
+		          <input type="text" class="form-control" aria-label="Text input with radio button" value="Español" disabled>
+		        </div>
+		    </div>
+		    <div class="col-xs-1">
+		        <div class="input-group">
+		          <div class="input-group-prepend">
+		            <div class="input-group-text">
+		            <input type="radio" aria-label="Radio button for following text input" id="radioingles" name="radioingles">
+		            </div>
+		          </div>
+		          <input type="text" class="form-control" aria-label="Text input with radio button" value="Inglés" disabled>
+		        </div>
+		    </div>
+
+		    <div class="col-xs-1">
+		        <div class="input-group">
+		          <div class="input-group-prepend">
+		            <div class="input-group-text">
+		            <input type="radio" aria-label="Radio button for following text input" id="radioportugues" name="radioportugues">
+		            </div>
+		          </div>
+		          <input type="text" class="form-control" aria-label="Text input with radio button" value="Portugues" disabled>
+		        </div>
+		    </div>
+		</div>
+	</div>
 </div>
 <br>
 
-<div class="row justify-content-center">
-	<div class="col-xs-1">
-		<button class="btn btn-success" id="confirmado"  style="display: none" disabled>Confirmado</button>
+<div >
+	<div class="col">
+		<input type="Text" id="idreserva" style="display: none" disabled>
+		<div class="row justify-content-center">
+			<div class="col-xs-1">
+				<button class="btn btn-success" id="confirmado"  style="display: none" disabled>Confirmado</button>
+			</div>
+			<div class="col-xs-1">
+				<button class="btn btn-secondary" id="disponible"  style="display: none" disabled>Disponible</button>
+			</div>
+			<div class="col-xs-1">
+				<button class="btn btn-danger" id="cancelado"  style="display: none" disabled>Cancelado</button>
+			</div>
+			<div class="col-xs-1">
+				<button class="btn btn-info" id="emailcliente"  style="display: none" disabled>Enviar email a cliente</button>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col">
+				<input type="Text" id="emailclienteenviar" style="display: none" disabled>
+				<!--<input type="Text" id="emailclienteenviar" style="display: none" disabled>-->
+			</div>
+			<div class="col">
+				<input type="Text" id="estadoenviar" style="display: none" disabled>
+			</div>
+			<!-- ------------------------- texto para el email ------------------------- -->
+			<div class="col">
+				<input type="Text" id="titemailc" style="display: none;" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="subtitemailc" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="cuerpoemailc" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="titemailb" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="subtitemailb" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="cuerpoemailb" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="bodegareserva" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="hotelreserva" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="fechareserva" style="display: none" disabled>
+			</div>
+			<div class="col">
+				<input type="Text" id="horareserva" style="display: none" disabled>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-xs-12" align="center">
+				<label class="mensajeservidor" id="infoemail" style="display: none" disabled></label>
+			</div>
+		</div>
+		<!-- ------------------------------------------------------------------------- -->
+		
+
+		<br>
+		<div class="table-responsive-sm">
+
+		    <table id="tabla_agenda" class="table w-auto table-bordered table-striped">
+
+		        <thead>
+
+		            <tr class="btn-secondary">
+
+		                <th scope="col"></th>
+
+		                <th scope="col">Id</th>
+
+		                <th scope="col">fecha</th>
+
+		                <th scope="col">hora</th>
+
+		                <th scope="col" style="display:none;">id Hot</th>
+
+		                <th scope="col">Hotel</th>
+
+		                <th scope="col" style="display:none;">id Bod</th>
+
+		                <th scope="col">Bodega</th>
+
+		                <th scope="col" style="display:none;">id Consumo</th>
+
+		                <th scope="col">Consumo</th>
+
+		                <th scope="col" style="display:none;">id servicio</th>
+
+		                <th scope="col">Servicio</th>
+
+		                <th scope="col" style="display:none;">id cliente</th>
+
+		                <th scope="col">Cliente</th>
+
+		                <th scope="col">Monto</th>
+
+		                <th scope="col">Cantidad</th>
+		                
+		                <th scope="col">Observaciones</th>
+
+		                <th scope="col" style="display:none;">id Contacto</th>
+
+		                <th scope="col">Contacto</th>
+
+		                <th scope="col" style="display:none;">id Estado</th>
+
+		                <th scope="col">Estado</th>
+
+		                <th scope="col style="display:none;"">Fecha carga</th>
+
+		                <th scope="col"></th>
+		                
+		            </tr>
+
+		        </thead>
+
+		        <tbody id = "body_agenda"> 
+
+
+
+		        </tbody>
+
+		    </table>
+		</div>
 	</div>
-	<div class="col-xs-1">
-		<button class="btn btn-secondary" id="disponible"  style="display: none" disabled>Disponible</button>
-	</div>
-	<div class="col-xs-1">
-		<button class="btn btn-danger" id="cancelado"  style="display: none" disabled>Cancelado</button>
-	</div>
-	<div class="col-xs-1">
-		<button class="btn btn-info" id="email"  style="display: none" disabled>Enviar email a cliente</button>
-	</div>
-	<div class="col-xs-1">
-		<input type="Text" id="emailclienteenviar" style="display: none" disabled>
-		<!--<input type="Text" id="emailclienteenviar" style="display: none" disabled>-->
-	</div>
-	<div class="col-xs-1">
-		<input type="Text" id="estadoenviar" style="display: none" disabled>
-	</div>
-</div>
-<br>
-<div class="table-responsive-sm">
-
-    <table id="tabla_agenda" class="table w-auto table-bordered table-striped">
-
-        <thead>
-
-            <tr class="btn-secondary">
-
-                <th scope="col"></th>
-
-                <th scope="col">Id</th>
-
-                <th scope="col">fecha</th>
-
-                <th scope="col">hora</th>
-
-                <th scope="col" style="display:none;">id Hot</th>
-
-                <th scope="col">Hotel</th>
-
-                <th scope="col" style="display:none;">id Bod</th>
-
-                <th scope="col">Bodega</th>
-
-                <th scope="col" style="display:none;">id Consumo</th>
-
-                <th scope="col">Consumo</th>
-
-                <th scope="col" style="display:none;">id servicio</th>
-
-                <th scope="col">Servicio</th>
-
-                <th scope="col" style="display:none;">id cliente</th>
-
-                <th scope="col">Cliente</th>
-
-                <th scope="col">Monto</th>
-
-                <th scope="col">Cantidad</th>
-                
-                <th scope="col">Observaciones</th>
-
-                <th scope="col" style="display:none;">id Contacto</th>
-
-                <th scope="col">Contacto</th>
-
-                <th scope="col" style="display:none;">id Estado</th>
-
-                <th scope="col">Estado</th>
-
-                <th scope="col style="display:none;"">Fecha carga</th>
-
-                <th scope="col"></th>
-                
-            </tr>
-
-        </thead>
-
-        <tbody id = "body_agenda"> 
-
-
-
-        </tbody>
-
-    </table>
-</div>
-
 </div>
 
 
@@ -606,6 +686,8 @@
 
 
 <?php
+
+	include("funciones/emailfunciones.php");
 
 	include("funciones/clientesfunciones.php");
 
