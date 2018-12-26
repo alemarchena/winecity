@@ -43,6 +43,8 @@ function consultaparametros(idioma)
 	$('#subtitemailb').val("");
 	$('#cuerpoemailb').val("");
 
+    $('#emailcopia').val("");
+
 	$.ajax({
 
 		url:"controladores/consultaemail.php",
@@ -61,7 +63,9 @@ function consultaparametros(idioma)
 
 						$('#titemailb').val(datade[key].titulobodega);
 						$('#subtitemailb').val(datade[key].subtitulobodega);
-						$('#cuerpoemailb').val(datade[key].cuerpobodega);
+                        $('#cuerpoemailb').val(datade[key].cuerpobodega);
+                        
+						$('#emailcopia').val(datade[key].emailcopia);
 						vistaprevia();
 					});
 				}else{
@@ -83,7 +87,9 @@ function guardarparametros(idioma)
 
 		var titulobodega	= $('#titemailb').val();
 		var subtitulobodega	= $('#subtitemailb').val();
-		var cuerpobodega	 =$('#cuerpoemailb').val();
+        var cuerpobodega     =$('#cuerpoemailb').val();
+
+		var emailcopia	 =$('#emailcopia').val();
 		
 		var idioma=idioma;
 
@@ -91,7 +97,7 @@ function guardarparametros(idioma)
 
             url:"controladores/consultaemail.php",
 
-            data: {titulocliente:titulocliente,subtitulocliente:subtitulocliente,cuerpocliente:cuerpocliente,titulobodega:titulobodega,subtitulobodega:subtitulobodega,cuerpobodega:cuerpobodega,idioma:idioma,tipo:"alta"},
+            data: {emailcopia:emailcopia,titulocliente:titulocliente,subtitulocliente:subtitulocliente,cuerpocliente:cuerpocliente,titulobodega:titulobodega,subtitulobodega:subtitulobodega,cuerpobodega:cuerpobodega,idioma:idioma,tipo:"alta"},
 
             type: "post",
 

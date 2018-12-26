@@ -31,6 +31,8 @@
                 <div class="col-sm-6">
                     <br>
                     <p class="mensajeservidor">Email a la bodega</p>
+                    <input type="text" id="emailcopia" name="emailcopia" placeholder="email con copia" class="form-control" maxlength="100" value="<?php  if(isset($emailcopia)) echo $emailcopia ?>" >
+
                     <input type="text" id="titemailb" name="titemailb" placeholder="Titulo email" class="form-control" maxlength="100" value="<?php  if(isset($titemailb)) echo $titemailb ?>" >
 
                     <input type="text" id="subtitemailb" name="subtitemailb" placeholder="Sub Titulo email" class="form-control" maxlength="100" value="<?php  if(isset($subtitemailb)) echo $subtitemailb ?>" >

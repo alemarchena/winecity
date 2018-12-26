@@ -41,7 +41,7 @@
             //$sql = "Select * from agendados  order by fechaagendado";
 
 
-                $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,hoteles.id_hotel,hoteles.nombrehotel,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,servicios.id_servicio,servicios.nombreservicio,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado from ( ( ( ( ( ( (agendados 
+                $sql = "Select agendados.id_agendado,agendados.fechahoraoperativa, agendados.fechaagendado,agendados.horaagendado,agendados.cantidad,hoteles.id_hotel,hoteles.nombrehotel,bodegas.id_bodega,bodegas.nombre_bodega, bodegas.email_bodega,consumisiones.id_consumision, consumisiones.nombreconsumision,servicios.id_servicio,servicios.nombreservicio,clientes.id_cliente,clientes.nombrecliente,clientes.emailcliente,agendados.monto,agendados.cantidad,agendados.observaciones,bodegascontactos.id_contactobodega,bodegascontactos.nombrecontactobodega,estadosagendados.id_estadoagendado,estadosagendados.nombreestado from ( ( ( ( ( ( (agendados 
                 LEFT JOIN hoteles ON agendados.id_hotel = hoteles.id_hotel) 
                 LEFT JOIN bodegas ON agendados.id_bodega = bodegas.id_bodega) 
                 LEFT JOIN consumisiones ON agendados.id_consumision = consumisiones.id_consumision) 

@@ -530,56 +530,40 @@
 				<button class="btn btn-danger" id="cancelado"  style="display: none" disabled>Cancelado</button>
 			</div>
 			<div class="col-xs-1">
-				<button class="btn btn-info" id="emailcliente"  style="display: none" disabled>Enviar email a cliente</button>
+				<button class="btn btn-info" id="emailcliente"  style="display: none" disabled>Enviar mail a Cliente</button>
+			</div>
+			<div class="col-xs-1">
+				<button class="btn btn-info" id="emailbodega"  style="display: none" disabled>Enviar mail a Bodega</button>
 			</div>
 		</div>
-		
+
+		<!-- ------------------------------------------- CAMPOS INVISIBLES ----------------------------------------- -->
+
 		<div class="row">
-			<div class="col">
-				<input type="Text" id="emailclienteenviar" style="display: none" disabled>
-				<!--<input type="Text" id="emailclienteenviar" style="display: none" disabled>-->
-			</div>
-			<div class="col">
-				<input type="Text" id="estadoenviar" style="display: none" disabled>
-			</div>
+			<input type="Text" id="emailclienteenviar" style="display: none" disabled>
+			<input type="Text" id="emailbodegaenviar" style="display: none" disabled>
+			<input type="Text" id="estadoenviar" style="display: none" disabled>
 			<!-- ------------------------- texto para el email ------------------------- -->
-			<div class="col">
-				<input type="Text" id="titemailc" style="display: none;" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="subtitemailc" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="cuerpoemailc" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="titemailb" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="subtitemailb" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="cuerpoemailb" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="bodegareserva" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="hotelreserva" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="fechareserva" style="display: none" disabled>
-			</div>
-			<div class="col">
-				<input type="Text" id="horareserva" style="display: none" disabled>
-			</div>
+			<input type="Text" id="titemailc" style="display: none;" disabled>
+			<input type="Text" id="subtitemailc" style="display: none" disabled>
+			<input type="Text" id="cuerpoemailc" style="display: none" disabled>
+			<input type="Text" id="titemailb" style="display: none" disabled>
+			<input type="Text" id="subtitemailb" style="display: none" disabled>
+			<input type="Text" id="cuerpoemailb" style="display: none" disabled>
+			<input type="Text" id="bodegareserva" style="display: none" disabled>
+			<input type="Text" id="hotelreserva" style="display: none" disabled>
+			<input type="Text" id="fechareserva" style="display: none" disabled>
+			<input type="Text" id="horareserva" style="display: none" disabled>
+			<input type="Text" id="cantidadpersonasreserva" style="display: none" disabled>
+			<input type="Text" id="emailcopia" style="display: none" disabled>
 		</div>
+		<!-- -------------------------------- FIN CAMPOS INVISIBLES --------------------------------- -->
+
 		<div class="row justify-content-center">
 			<div class="col-xs-12" align="center">
 				<label class="mensajeservidor" id="infoemail" style="display: none" disabled></label>
 			</div>
 		</div>
-		<!-- ------------------------------------------------------------------------- -->
 		
 
 		<br>
