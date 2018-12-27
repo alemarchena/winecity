@@ -66,6 +66,9 @@ function nuevaagenda()
     $("#emailbodegaenviar").val(emailbodega);
     $("#cantidadpersonasreserva").val(cantidad);
 
+	document.getElementById("botoneliminar").style.display = "block";
+
+
     if(id_estadoagendadoactual===1) // si el estado es pendiente, osea el estado inicial de una reserva la cual debe ser pedida a la bodega
     {
     	consultaparametros("espaniol");
@@ -275,6 +278,8 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 			
 		}
 	}else{
+		document.getElementById("botoneliminar").style.display = "none";
+
 	 	document.getElementById("id_agendado").style.display = "none";
 	 	document.getElementById("labelid").style.display = "none";
 	 	document.getElementById("confirmado").style.display = "none";
@@ -401,14 +406,16 @@ function consultaagenda()
                 		if(vercliente==null) {vercliente="";}
 
                 		fecha = conviertefecha(datade[key].fechaagendado);
+                		fechaop= conviertefecha(datade[key].fechahoraoperativa);
 
-                		
+					var fila = "<tr><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\")'/></td><td>"+datade[key].id_agendado+"</td><td>"+fecha+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+fechaop+"</td></tr>";
 
-					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+fecha+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\")'/></td></tr>";
-
+						
 						$("#tabla_agenda").append(fila);
 
 					});
+					
+
 				}else{
 					console.log("Data devolvio:" + data);
 				}

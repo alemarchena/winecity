@@ -22,7 +22,7 @@
 
 			<!--Aqui se insertan las pantallas -->
 			
-			<img src="img/logo-web.jpg" class="img-fluid img-thumbnail" alt="Panel Wine City">
+			<img src="img/wc.png" class="img-fluid img-thumbnail" alt="Panel Wine City">
 		</div>	
 	</div>	
 
