@@ -8,7 +8,7 @@ $("#calendario").load("calendariosimple.php");
 
 function eliminarregistroagenda(id_agendado)
 {
-	var opcion = confirm("ATENCIÓN seguro desea eliminar?");
+	var opcion = confirm("ATENCIÓN seguro desea eliminar? Registro " + id_agendado);
 
 	if(opcion==true){
 		
@@ -73,9 +73,9 @@ function nuevaagenda()
     {
     	consultaparametros("espaniol");
 
-    	document.getElementById("id_agendado").style.display = "none";
-	 	document.getElementById("labelid").style.display = "none";
-		
+		document.getElementById("id_agendado").style.display = "block";
+	 	document.getElementById("labelid").style.display = "block";
+
 		document.getElementById("confirmado").style.display = "block";
 		document.getElementById("confirmado").disabled = false;
 
@@ -509,6 +509,8 @@ function guardaragenda()
 					nuevaagenda();
 					consultaagenda();             
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
+                    document.getElementById("horaseleccionada").disabled = true;
+                    document.getElementById("agregarreserva").disabled = true;
 
                 }else{
 

@@ -6,7 +6,7 @@
 		<div class="card-header" id="headingGeneralDatos">
 			<h5 class="mb-0">
 	            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseGeneralDatos" aria-expanded="true" aria-controls="collapseGeneralDatos">
-	                <small><p class="btn btn-info btn-block mensajeservidor text-dark">DATOS AGENDA</small>
+	                <small><p class="btn btn-warning btn-block mensajeservidor text-dark">DATOS AGENDA</small>
 	            </button>
           </h5>
 		</div>
@@ -20,7 +20,7 @@
 							<div class="col-lg-2" align="center">
 
 										<div class="row">
-											<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control" >
+											<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control">
 											
 											<div id="calendario">
 
@@ -30,7 +30,7 @@
 
 											<div class="input-group clockpicker">
 
-											    <input id="horaseleccionada" type="text" placeholder="hora" class="form-control" value="" >
+											    <input id="horaseleccionada" type="text" placeholder="hora" class="form-control" value="" disabled>
 
 											    <span class="input-group-addon">
 
@@ -450,19 +450,17 @@
 
 
 <div class="row justify-content-center">
-	<div class="col">
-		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit"><small>Agregar Item</small></button>
+	<div class="col-sm-4">
+		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit" disabled><small>Agregar Item</small></button>
 		<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
 	</div>
-	<div class="col">
-
+	<div class="col-sm-4">
 		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
-
 	</div>
-	<div class="col">
-		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit"><small>Guardar Reserva</small></button>
+	<div class="col-sm-4">
+		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit" disabled><small>Guardar Reserva</small></button>
 	</div>
-	<div class="col">
+	<div class="col-sm-4">
 		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
 	</div>
 </div>
@@ -475,7 +473,7 @@
 		<div class="card-header" id="headingGeneralReserva">
 			<h5 class="mb-0">
 	            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseGeneralReserva" aria-expanded="true" aria-controls="collapseGeneralReserva">
-	                <small><p class="btn btn-info btn-block mensajeservidor text-dark">DATOS RESERVA</small>
+	                <small><p class="btn btn-warning btn-block mensajeservidor text-dark">DATOS RESERVA</small>
 	            </button>
           </h5>
 		</div>
@@ -486,6 +484,9 @@
 				<small><h5 class="mensajeservidor">RESERVAS</h5></small>
 				
 				<div class="row justify-content-center">
+					<div class="col-xs-1">
+						<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'  />
+					</div>
 					<div class="col-xs-2">
 						<small><span id="labelid"  style="display: none" disabled class="mensajeservidor">Id Seleccionado </span></small>
 						<br>
@@ -495,9 +496,7 @@
 					</div>
 					<input type="Text" id="id_estadoagendado" style="display: none" disabled>
 					
-					<div class="col-xs-1">
-						<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda("idreserva")' />
-					</div>
+					
 					<div class="col-xs-8">
 						<div class="row" id="botones" style="display: none">
 							<div class="col-xs-1">
@@ -674,9 +673,20 @@
 
 		$('#fechaactual').val(diadehoy());
 
+		function leeidagendado()
+		{
+			eliminarregistroagenda( $("#id_agendado").val());
+		}
+
+		$("#botoneliminar").click(function(){
+			leeidagendado();
+		});
 
 		$("#nuevasreservas").click(function()
     	{
+			document.getElementById("horaseleccionada").disabled = false;
+            document.getElementById("agregarreserva").disabled = false;
+
 			$("#collapseGeneralReserva").collapse("hide");
     		$("#collapseGeneralDatos").collapse("show");
 
@@ -685,6 +695,10 @@
 		$("#veragenda").click(function()
     	{
     		consultaagenda();
+			document.getElementById("horaseleccionada").disabled = true;
+            document.getElementById("agregarreserva").disabled = true;
+            document.getElementById("agendar").disabled = true;
+
     		$("#collapseGeneralReserva").collapse("show");
     		$("#collapseGeneralDatos").collapse("hide");
 
@@ -693,10 +707,12 @@
     	$("#agregarreserva").click(function()
     	{
     		AgregaBotonEvento();
+            document.getElementById("agendar").disabled = false;
     		$("#collapseGeneralReserva").collapse("show");
     	});
 		
 		$("#agendar").click(function(){
+
 			guardaragenda();
 		});
 
