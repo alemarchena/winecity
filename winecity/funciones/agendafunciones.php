@@ -2,7 +2,7 @@
 
 
 
-	$("#calendario").load("calendariosimple.php");
+$("#calendario").load("calendariosimple.php");
 
 
 
@@ -69,7 +69,7 @@ function nuevaagenda()
     if(id_estadoagendadoactual===1) // si el estado es pendiente, osea el estado inicial de una reserva la cual debe ser pedida a la bodega
     {
     	consultaparametros("espaniol");
-    	
+
     	document.getElementById("id_agendado").style.display = "none";
 	 	document.getElementById("labelid").style.display = "none";
 		
@@ -400,7 +400,11 @@ function consultaagenda()
                 		vercliente = datade[key].emailcliente;
                 		if(vercliente==null) {vercliente="";}
 
-					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+datade[key].fechaagendado+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\")'/></td></tr>";
+                		fecha = conviertefecha(datade[key].fechaagendado);
+
+                		
+
+					var fila = "<tr><td><input type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger' onclick='eliminarregistroagenda(\"" +datade[key].id_agendado+ "\")' /></td><td>"+datade[key].id_agendado+"</td><td>"+fecha+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+datade[key].fechahoraoperativa+"</td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\")'/></td></tr>";
 
 						$("#tabla_agenda").append(fila);
 
@@ -784,11 +788,18 @@ function guardaragenda()
 	    	}
 	    }
 
+
+	    var fecha = conviertefecha($("#fechareserva").val());
+
+	    //var fecha = $("#fechareserva").val();
 	    
-	    mensaje = " * " + reserva + " : " + $("#fechareserva").val() + " , " + hora + " : " + $("#horareserva").val() + " - " + estado + " : " + valorestado + "." + bodega + " - " + hotel + " * ";
+	    mensaje = " * " + reserva + " : " + fecha + " , " + hora + " : " + $("#horareserva").val() + " - " + estado + " : " + valorestado + "." + bodega + " - " + hotel + " * ";
 		
 		return mensaje;
 	}
+
+
+	
 
 	function armamensajebodega(){
 
@@ -796,8 +807,10 @@ function guardaragenda()
 			var reserva;
 			var hora;
 			var cantidadpersonas;
-			
-	    	reservafecha = " Reserva para el " + $("#fechareserva").val() ;
+
+ 			var fecha = conviertefecha($("#fechareserva").val());
+
+	    	reservafecha = " Reserva para el " + fecha;
 	    	hora = " a las " + $("#horareserva").val() + " hs. " ;
 	    	cantidadpersonas = "para una cantidad de " + $("#cantidadpersonasreserva").val() + " persona/s";
 
@@ -915,5 +928,7 @@ function guardaragenda()
 </script>
 
 <?php
-	include("funciones/emailfunciones.php");
+	include("funciones/emailfunciones.php");	
+	include("funciones/convertidorfecha.php");	
+	
 ?>

@@ -1,24 +1,4 @@
-<header>
-<!-- librerias para el calendario-->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
-<link rel="stylesheet" href="css/clockpicker.css">
-
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script src="js/jquery-clockpicker.js"></script>
-
-<script src="js/bootstrap-clockpicker.js"></script>
-
-<script src="js/highlight.min.js"></script>
-
-<script src="js/html5shiv.js"></script>
-
-<script src="js/respond.min.js"></script>
-
-<script src="js/moment.js"></script>
-
-</header>
 <small><h4 class="mensajeservidor" align="center">Agencia de Turismo Wine City</h4>
 <div class="jumbotron jumbotron-fluid">
 

@@ -52,9 +52,30 @@
 	    }
     </style>
 </head>
-
-
 <body>
+<header>
+<!-- librerias para el calendario-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+<link rel="stylesheet" href="css/clockpicker.css">
+
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="js/jquery-clockpicker.js"></script>
+
+<script src="js/bootstrap-clockpicker.js"></script>
+
+<script src="js/highlight.min.js"></script>
+
+<script src="js/html5shiv.js"></script>
+
+<script src="js/respond.min.js"></script>
+
+<script src="js/moment.js"></script>
+
+</header>
+
+
 	<div>
 		<nav class="navbar navbar-expand-lg navbar-light bg-primary">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
