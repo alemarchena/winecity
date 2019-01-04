@@ -1,0 +1,12 @@
+tr[class='Pendiente']{
+	background-color : #80E893; /*verde*/
+}
+tr[class='Confirmado']{
+	background-color : #BE9A80; /*marron*/
+}
+tr[class='Disponible']{
+	background-color : #638AF6; /*azul*/
+}
+tr[class='Cancelado']{
+	background-color : #FD4B4B; /*rojo*/
+}

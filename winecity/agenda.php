@@ -1,4 +1,8 @@
 
+<head>
+	<link rel="stylesheet" type="text/css" href="css/agenda.css">
+
+</head>
 <small><h4 class="mensajeservidor" align="center">Agencia de Turismo Wine City</h4>
 
 <div class="accordion" id="accordiondatos">
@@ -20,7 +24,7 @@
 							<div class="col-lg-2" align="center">
 
 										<div class="row">
-											<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control">
+											<input type="text" id="fechaactual" value="" placeholder="fecha" class="form-control" disabled>
 											
 											<div id="calendario">
 
@@ -85,7 +89,7 @@
 										</div>
 							</div>
 
-							<!-- ------------------------------------------------ SERVICIOS -------------------------------------------------------------- -->
+				<!-- ------------------------------------ SERVICIOS -------------------------------------------------------------- -->
 
 							<div class="col-lg-3">
 
@@ -303,7 +307,7 @@
 							</div>
 
 							
-							<!-- ------------------------------------------------- CONTACTOS DE CLIENTES -------------------------------------------------- -->
+		<!-- ------------------------------------------------- CONTACTOS DE CLIENTES -------------------------------------------------- -->
 							
 
 							<div class="col-lg-4">
@@ -373,7 +377,7 @@
 
 
 
-									    <!--  -------------------------------------------- LISTAS DE CONTACTOS -------------------------------------------->
+				<!--  -------------------------------------------- LISTAS DE CONTACTOS -------------------------------------------->
 										
 										<div class="accordion" id="idacorcontacto"> <!--Acordeon -->
 									        <div class="card">
@@ -451,95 +455,89 @@
 
 <div class="row justify-content-center">
 	<div class="col-sm-4">
+		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
+	</div>
+	<div class="col-sm-4">
 		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit" disabled><small>Agregar Item</small></button>
 		<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
 	</div>
 	<div class="col-sm-4">
-		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
-	</div>
-	<div class="col-sm-4">
 		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit" disabled><small>Guardar Reserva</small></button>
-	</div>
-	<div class="col-sm-4">
-		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
 	</div>
 </div>
 <br>
+<!-- --------------------------------------------- FECHAS DE CONSULTA Y BOTON VER---------------------------------- -->
+<div class="row justify-content-center">
+	<div class="col-sm-2">
+		<input type="text" id="fechaactualver1" value="" placeholder="fecha" class="form-control">
+		<div id="calendariover1">
 
+		</div>
+	</div>
+	<div class="col-sm-2">
+		<input type="text" id="fechaactualver2" value="" placeholder="fecha" class="form-control">
+		<div id="calendariover2">
 
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
+	</div>
+</div>
 
 <div class="accordion" id="accordionreserva">
 	<div class="card">
 		<div class="card-header" id="headingGeneralReserva">
 			<h5 class="mb-0">
-	            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseGeneralReserva" aria-expanded="true" aria-controls="collapseGeneralReserva">
-	                <small><p class="btn btn-warning btn-block mensajeservidor text-dark">DATOS RESERVA</small>
-	            </button>
+				<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseGeneralReserva" aria-expanded="true" aria-controls="collapseGeneralReserva">
+                	<small><p class="btn btn-warning btn-block mensajeservidor text-dark">DATOS RESERVA</small>
+            	</button>
           </h5>
 		</div>
+		
 		<div id="collapseGeneralReserva" class="collapse" aria-labelledby="headingGeneralReserva" data-parent="#accordionreserva">
             <div class="card-body">
             	<!-- MANSA RESERVA -->
 				<div class="border border-success">
-				<small><h5 class="mensajeservidor">RESERVAS</h5></small>
-				
-				<div class="row justify-content-center">
-					<div class="col-xs-1">
-						<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'  />
-					</div>
-					<div class="col-xs-2">
-						<small><span id="labelid"  style="display: none" disabled class="mensajeservidor">Id Seleccionado </span></small>
-						<br>
-					</div>
-					<div class="col-xs-1">
-						<input type="Text" align="center" id="id_agendado" style="display: none" disabled>
-					</div>
-					<input type="Text" id="id_estadoagendado" style="display: none" disabled>
-					
-					
-					<div class="col-xs-8">
-						<div class="row" id="botones" style="display: none">
+					<small><h5 class="mensajeservidor">RESERVAS</h5></small>
+					<div  id="datosadicionales">
+						<div class="row justify-content-center">
+						
 							<div class="col-xs-1">
-						         <div class="input-group">
-						          <div class="input-group-prepend">
-						            <div class="input-group-text">
-						            <input type="radio" aria-label="Radio button for following text input" id="radioespaniol" name="radioespaniol" checked>
-						            </div>
-						          </div>
-						          <input type="text" class="form-control" aria-label="Text input with radio button" value="Español" disabled>
-						        </div>
-						    </div>
-						    <div class="col-xs-1">
-						        <div class="input-group">
-						          <div class="input-group-prepend">
-						            <div class="input-group-text">
-						            <input type="radio" aria-label="Radio button for following text input" id="radioingles" name="radioingles">
-						            </div>
-						          </div>
-						          <input type="text" class="form-control" aria-label="Text input with radio button" value="Inglés" disabled>
-						        </div>
-						    </div>
-
-						    <div class="col-xs-1">
-						        <div class="input-group">
-						          <div class="input-group-prepend">
-						            <div class="input-group-text">
-						            <input type="radio" aria-label="Radio button for following text input" id="radioportugues" name="radioportugues">
-						            </div>
-						          </div>
-						          <input type="text" class="form-control" aria-label="Text input with radio button" value="Portugues" disabled>
-						        </div>
-						    </div>
+								<input type="text" id="contactoeditado"  style="display: none" align="center" disabled>Contacto
+							</div>
+							<div class="col-xs-1">
+								<input type="text" id="fechaeditada"  style="display: none" align="center" disabled>Fecha carga
+							</div>
+							<div class="col-xs-1">
+								<input type="text" id="estadoeditado"  style="display: none" align="center" disabled>Estado
+							</div>
+							<div class="col-xs-1">
+								<input type="Text" id="emailclienteenviar" style="display: none" disabled>Email cliente
+							</div>
+							<div class="col-xs-1" id="botonclienteseditado"  style="display: none" >
+								<input id="botoncliente" type="button" value = '&#x1F935;' class = 'btn btn-sm btn-info'>Clientes
+							</div>
+							<div class="col-xs-1" id="botonactualizaclienteeditado" style="display: none">
+								<input id="actualizaremail" type='button' value = '&#128190;' class = 'btn btn-sm btn-info'>Actualiza email
+							</div>						
+							<div class="col-xs-1">
+								<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'>Eliminar registro
+							</div>
+							
+							<div class="col-xs-1">
+								<input type="Text" align="center" id="id_agendado" style="display: none" align="center" disabled>Id Seleccionado 
+							</div>
+							<input type="Text" id="id_estadoagendado" style="display: none" align="center" disabled>
 						</div>
 					</div>
 				</div>
-			
-				<div >
+				<br>
+				<div  class="border border-success">
 					<div class="col">
 						<input type="Text" id="idreserva" style="display: none" disabled>
 
 						<div class="row justify-content-center">
-							
 							<div class="col-xs-1">
 								<button class="btn btn-success" id="confirmado"  style="display: none" disabled>Confirmado</button>
 							</div>
@@ -555,12 +553,44 @@
 							<div class="col-xs-1">
 								<button class="btn btn-info" id="emailbodega"  style="display: none" disabled>Enviar mail a Bodega</button>
 							</div>
+							<div id="botones" style="display: none">
+								<div class="col-xs-1">
+									<div class="input-group">
+							          <div class="input-group-prepend">
+							            <div class="input-group-text">
+							            <input type="radio" aria-label="Radio button for following text input" id="radioespaniol" name="radioespaniol" checked>
+							            </div>
+							          </div>
+							          <input type="text" class="form-control" aria-label="Text input with radio button" value="Español" disabled>
+							        </div>
+						        </div>
+								<div class="col-xs-1">
+									<div class="input-group">
+							          <div class="input-group-prepend">
+							            <div class="input-group-text">
+							            <input type="radio" aria-label="Radio button for following text input" id="radioingles" name="radioingles">
+							            </div>
+							          </div>
+							          <input type="text" class="form-control" aria-label="Text input with radio button" value="Inglés" disabled>
+							        </div>
+								</div>
+								<div class="col-xs-1">
+									<div class="input-group">
+							          <div class="input-group-prepend">
+							            <div class="input-group-text">
+							            <input type="radio" aria-label="Radio button for following text input" id="radioportugues" name="radioportugues">
+							            </div>
+							          </div>
+							          <input type="text" class="form-control" aria-label="Text input with radio button" value="Portugues" disabled>
+							        </div>
+								</div>
+							</div>
 						</div>
 
 						<!-- ------------------------------------------- CAMPOS INVISIBLES ----------------------------------------- -->
 
 						<div class="row">
-							<input type="Text" id="emailclienteenviar" style="display: none" disabled>
+							
 							<input type="Text" id="emailbodegaenviar" style="display: none" disabled>
 							<input type="Text" id="estadoenviar" style="display: none" disabled>
 							<!-- ------------------------- texto para el email ------------------------- -->
@@ -589,7 +619,7 @@
 						<br>
 						<div class="table-responsive-md">
 
-						    <table id="tabla_agenda" class="table w-auto table-bordered table-striped">
+						    <table id="tabla_agenda" class="table w-auto table-bordered">
 
 						        <thead>
 
@@ -631,13 +661,13 @@
 
 						                <th scope="col" style="display:none;">id Contacto</th>
 
-						                <th scope="col">Contacto</th>
+						                <th scope="col" style="display:none;">Contacto</th>
 
 						                <th scope="col" style="display:none;">id Estado</th>
 
-						                <th scope="col">Estado</th>
+						                <th scope="col" style="display:none;">Estado</th>
 
-						                <th scope="col style="display:none;"">Fecha carga</th>
+						                <th scope="col" style="display:none;">Fecha carga</th>
 
 						                
 						            </tr>
@@ -662,16 +692,28 @@
     </div>
 </div>
 
-
-
-
 <script>
 
 	$(document).ready(function()
-
 	{
 
+		
+
+		function cardclientes(){			
+			$("#collapseGeneralDatos").collapse("show");
+			$("#colapsoclientes ").collapse("show");
+
+		}
+		
+		
+		$("#botoncliente").click(function(){
+
+			cardclientes();
+		});
+
 		$('#fechaactual').val(diadehoy());
+		$('#fechaactualver1').val(diadehoy());
+		$('#fechaactualver2').val(diadehoy());
 
 		function leeidagendado()
 		{
@@ -685,6 +727,7 @@
 		$("#nuevasreservas").click(function()
     	{
 			document.getElementById("horaseleccionada").disabled = false;
+			document.getElementById("fechaactual").disabled = false;
             document.getElementById("agregarreserva").disabled = false;
 
 			$("#collapseGeneralReserva").collapse("hide");
@@ -696,6 +739,7 @@
     	{
     		consultaagenda();
 			document.getElementById("horaseleccionada").disabled = true;
+			document.getElementById("fechaactual").disabled = true;
             document.getElementById("agregarreserva").disabled = true;
             document.getElementById("agendar").disabled = true;
 
@@ -719,6 +763,16 @@
     	$('#fechaactual').change(function(){
 
 			$('#fechaactual').val( formatearfecha( $('#fechaactual').val() )   );
+    	});
+
+    	$('#fechaactualver1').change(function(){
+
+			$('#fechaactualver1').val( formatearfecha( $('#fechaactualver1').val() )   );
+    	});
+
+    	$('#fechaactualver2').change(function(){
+
+			$('#fechaactualver2').val( formatearfecha( $('#fechaactualver2').val() )   );
     	});
 	});
 

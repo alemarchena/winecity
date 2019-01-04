@@ -51,8 +51,11 @@ function nuevaagenda()
 
 }
 
- function editaritem(iditem,id_estadoagendadoactual,estadoagendado,cantidad,vercliente,bodega,emailbodega,hotel,idreserva,fechareserva,horareserva)
+ function editaritem(iditem,id_estadoagendadoactual,estadoagendado,cantidad,vercliente,bodega,emailbodega,hotel,idreserva,fechareserva,horareserva,fechaeditada,contactoeditado)
 {
+
+	var posicionscroll = $("#collapseGeneralReserva").offset().top
+	$("html, body").animate({scrollTop:posicionscroll }, 800);
 
     $("#id_agendado").val(iditem);
     $("#id_estadoagendado").val(id_estadoagendadoactual);
@@ -66,25 +69,39 @@ function nuevaagenda()
     $("#emailbodegaenviar").val(emailbodega);
     $("#cantidadpersonasreserva").val(cantidad);
 
+    $("#contactoeditado").val(contactoeditado);
+    $("#fechaeditada").val(fechaeditada);
+    $("#estadoeditado").val(estadoagendado);
+
+	
 	document.getElementById("botoneliminar").style.display = "block";
 
+	document.getElementById("datosadicionales").style.display = "block";
+ 	document.getElementById("emailclienteenviar").style.display = "block";
+
+	document.getElementById("contactoeditado").style.display = "block";
+	document.getElementById("fechaeditada").style.display = "block";
+	document.getElementById("estadoeditado").style.display = "block";
+
+	document.getElementById("botonclienteseditado").style.display = "block";
+	document.getElementById("botonactualizaclienteeditado").style.display = "block";
+	
 
     if(id_estadoagendadoactual===1) // si el estado es pendiente, osea el estado inicial de una reserva la cual debe ser pedida a la bodega
     {
     	consultaparametros("espaniol");
 
 		document.getElementById("id_agendado").style.display = "block";
-	 	document.getElementById("labelid").style.display = "block";
 
 		document.getElementById("confirmado").style.display = "block";
 		document.getElementById("confirmado").disabled = false;
 
+		
 
 	 	document.getElementById("disponible").style.display = "none";
 	 	document.getElementById("cancelado").style.display = "none";
 
 	 	document.getElementById("emailcliente").style.display = "none";
-	 	document.getElementById("emailclienteenviar").style.display = "none";
 	 	document.getElementById("estadoenviar").style.display = "none";
 		
 		document.getElementById("botones").style.display = "none";
@@ -180,11 +197,14 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 	document.getElementById("emailcliente").style.display = "block";
 	document.getElementById("emailbodega").style.display = "none";
 
-	
+	document.getElementById("datosadicionales").style.display = "block";
+
+	document.getElementById("emailclienteenviar").style.display = "block";
+	document.getElementById("botonactualizaclienteeditado").style.display = "block";
+
 
 	if(habilita=="si"){
 	 	document.getElementById("id_agendado").style.display = "block";
-	 	document.getElementById("labelid").style.display = "block";
 
 	 	if ($("#id_estadoagendado").val() == 1){ //estado pendiente, no se puede mandar email al cliente
 	 		
@@ -209,6 +229,7 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 			if(tieneemail=="SI"){
 				if(tienehotelobodega=="SI"){
 					document.getElementById("emailcliente").disabled = false;
+	 	
 				}else{
 					document.getElementById("emailcliente").disabled = true;
 					document.getElementById("botones").style.display = "none";
@@ -281,14 +302,23 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 		document.getElementById("botoneliminar").style.display = "none";
 
 	 	document.getElementById("id_agendado").style.display = "none";
-	 	document.getElementById("labelid").style.display = "none";
 	 	document.getElementById("confirmado").style.display = "none";
 	 	document.getElementById("disponible").style.display = "none";
 	 	document.getElementById("cancelado").style.display = "none";
 	 	document.getElementById("emailcliente").style.display = "none";
 	 	document.getElementById("emailclienteenviar").style.display = "none";
+		document.getElementById("botonactualizaclienteeditado").style.display = "none";
+
 	 	document.getElementById("estadoenviar").style.display = "none";
+		document.getElementById("botonclienteseditado").style.display = "none";
 		
+		
+		document.getElementById("datosadicionales").style.display = "none";
+		
+		document.getElementById("contactoeditado").style.display = "none";
+		document.getElementById("fechaeditada").style.display = "none";
+		document.getElementById("estadoeditado").style.display = "none";
+
 		document.getElementById("botones").style.display = "none";
 
 		document.getElementById("confirmado").disabled = true;
@@ -368,12 +398,15 @@ function consultaagenda()
 
 	id_agendado=$("#id_agendado").val();
 	fechaagendado = $("#fechaactual").val();
+	fechaagendado1 = $("#fechaactualver1").val();
+	fechaagendado2 = $("#fechaactualver2").val();
+
 
 	//alert(fechaagendado);
 	$.ajax({
 
 		url:"controladores/agendar.php",
-		data:{id_agendado:id_agendado,tipo:"consulta",fechaagendado:fechaagendado},
+		data:{id_agendado:id_agendado,tipo:"consulta",fechaagendado:fechaagendado,fechaagendado1:fechaagendado1,fechaagendado2:fechaagendado2},
 		type:"post",
 		success:function(data){
  				if(data!="consultavacia")
@@ -383,7 +416,8 @@ function consultaagenda()
                     $.each(datade,function(key,value)
                     {
                     	//datade[key].nombreestado
-
+						var fechaage = conviertefecha(datade[key].fechaagendado);
+						
 						verhotel = datade[key].nombrehotel;
                 		if(verhotel==null) {verhotel="";}
 
@@ -405,10 +439,11 @@ function consultaagenda()
                 		vercliente = datade[key].emailcliente;
                 		if(vercliente==null) {vercliente="";}
 
-                		fecha = conviertefecha(datade[key].fechaagendado);
-                		fechaop= conviertefecha(datade[key].fechahoraoperativa);
+                		var clase=datade[key].nombreestado;
 
-					var fila = "<tr><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\")'/></td><td>"+datade[key].id_agendado+"</td><td>"+fecha+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td>"+datade[key].nombreestado+"</td><td>"+fechaop+"</td></tr>";
+                		var fechaop= conviertefecha(datade[key].fechahoraoperativa);
+
+					var fila = "<tr class='"+ clase +"'><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\",\""+datade[key].fechahoraoperativa+"\",\""+vercontacto+"\")'/></td><td>"+datade[key].id_agendado+"</td><td>"+fechaage+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td style='display:none;'>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td style='display:none;'>"+datade[key].nombreestado+"</td><td style='display:none;'>"+fechaop+"</td></tr>";
 
 						
 						$("#tabla_agenda").append(fila);
@@ -510,6 +545,7 @@ function guardaragenda()
 					consultaagenda();             
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
                     document.getElementById("horaseleccionada").disabled = true;
+                    document.getElementById("fechaactual").disabled = true;
                     document.getElementById("agregarreserva").disabled = true;
 
                 }else{
@@ -540,7 +576,7 @@ function guardaragenda()
 	{
 		//blanqueo el id de agendado
  		document.getElementById("id_agendado").style.display = "none";
- 		document.getElementById("labelid").style.display = "none";
+
 		$("#id_agendado").val("");
 
 		if($("#idhotelelegido").val() == "" && $("#idbodegaelegida").val() == "" && $("#idconsumisionelegida").val() == "" && $("#idservicioelegido").val() == "")

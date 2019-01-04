@@ -102,7 +102,9 @@
 
         $("#idclienteelegido").val(id);
 
-        $("#emailclienteelegido").val(email);
+        $("#emailclienteelegido").val(email);//campo email en los datos de agenda
+        $("#emailclienteenviar").val(email); //campo email en la agenda.
+
 
         $("#emailclienteelegido").prop("disabled", true);
         $("#colapsoclientes").collapse("hide");
