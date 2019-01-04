@@ -5,6 +5,37 @@
 $("#calendario").load("calendariosimple.php");
 
 
+function actualizaremailclienteagenda(id_agendado,id_cliente){
+	var opcion = confirm("desea actualizar el email cliente, agendado en el registro " + id_agendado + " ?");
+
+	if(opcion==true){
+
+		$.ajax({
+
+            url:"controladores/agendar.php",
+
+            data: {id_agendado:id_agendado,tipo:"modificar",id_cliente:id_cliente},
+
+            type: "post",                     
+
+            success:function(data)
+            {
+            	if(data!="consultavacia")
+                {
+                	alert(data);
+            		nuevaagenda();
+            		consultaagenda();
+            	}
+            }
+        })
+
+        .fail(function() {
+
+            alert('Error al procesar la solicitud.');
+
+        });
+	}
+}
 
 function eliminarregistroagenda(id_agendado)
 {
@@ -12,11 +43,6 @@ function eliminarregistroagenda(id_agendado)
 
 	if(opcion==true){
 		
-		/*$(document).on('click', '.quitar', function (event) 
-		{
-		    event.preventDefault();
-		    $(this).closest('tr').remove();
-		});*/
 		$.ajax({
 
             url:"controladores/agendar.php",
@@ -51,7 +77,7 @@ function nuevaagenda()
 
 }
 
- function editaritem(iditem,id_estadoagendadoactual,estadoagendado,cantidad,vercliente,bodega,emailbodega,hotel,idreserva,fechareserva,horareserva,fechaeditada,contactoeditado)
+ function editaritem(iditem,id_estadoagendadoactual,estadoagendado,cantidad,id_cliente,vercliente,bodega,emailbodega,hotel,idreserva,fechareserva,horareserva,fechaeditada,contactoeditado)
 {
 
 	var posicionscroll = $("#collapseGeneralReserva").offset().top
@@ -60,6 +86,8 @@ function nuevaagenda()
     $("#id_agendado").val(iditem);
     $("#id_estadoagendado").val(id_estadoagendadoactual);
     $("#emailclienteenviar").val(vercliente);
+    $("#id_clientemodificado").val(id_cliente);
+
     $("#estadoenviar").val(estadoagendado);
     $("#bodegareserva").val(bodega);
     $("#hotelreserva").val(hotel);
@@ -78,6 +106,7 @@ function nuevaagenda()
 
 	document.getElementById("datosadicionales").style.display = "block";
  	document.getElementById("emailclienteenviar").style.display = "block";
+ 	document.getElementById("id_clientemodificado").style.display = "block";
 
 	document.getElementById("contactoeditado").style.display = "block";
 	document.getElementById("fechaeditada").style.display = "block";
@@ -200,6 +229,8 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 	document.getElementById("datosadicionales").style.display = "block";
 
 	document.getElementById("emailclienteenviar").style.display = "block";
+ 	document.getElementById("id_clientemodificado").style.display = "block";
+
 	document.getElementById("botonactualizaclienteeditado").style.display = "block";
 
 
@@ -307,6 +338,8 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 	 	document.getElementById("cancelado").style.display = "none";
 	 	document.getElementById("emailcliente").style.display = "none";
 	 	document.getElementById("emailclienteenviar").style.display = "none";
+ 		document.getElementById("id_clientemodificado").style.display = "none";
+
 		document.getElementById("botonactualizaclienteeditado").style.display = "none";
 
 	 	document.getElementById("estadoenviar").style.display = "none";
@@ -443,7 +476,7 @@ function consultaagenda()
 
                 		var fechaop= conviertefecha(datade[key].fechahoraoperativa);
 
-					var fila = "<tr class='"+ clase +"'><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+",\"" +vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\",\""+datade[key].fechahoraoperativa+"\",\""+vercontacto+"\")'/></td><td>"+datade[key].id_agendado+"</td><td>"+fechaage+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td style='display:none;'>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td style='display:none;'>"+datade[key].nombreestado+"</td><td style='display:none;'>"+fechaop+"</td></tr>";
+					var fila = "<tr class='"+ clase +"'><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editaritem(\"" +datade[key].id_agendado+ "\","+datade[key].id_estadoagendado+",\"" +datade[key].nombreestado+ "\","+datade[key].cantidad+","+datade[key].id_cliente+",\""+vercliente+"\",\""+verbodega+"\",\""+veremailbodega+"\",\""+verhotel+"\",\""+ datade[key].id_agendado +"\",\""+ datade[key].fechaagendado +"\",\""+ datade[key].horaagendado +"\",\""+datade[key].fechahoraoperativa+"\",\""+vercontacto+"\")'/></td><td>"+datade[key].id_agendado+"</td><td>"+fechaage+"</td><td>"+datade[key].horaagendado+"</td><td style='display:none;'>"+datade[key].id_hotel+"</td><td>"+verhotel+"</td><td style='display:none;'>"+datade[key].id_bodega+"</td><td>"+verbodega+"</td><td style='display:none;'>"+datade[key].id_consumision+"</td><td>"+verconsumision+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vercliente+"</td><td>"+datade[key].monto+"</td><td>"+datade[key].cantidad+"</td><td>"+datade[key].observaciones+"</td><td style='display:none;'>"+datade[key].id_contactobodega+"</td><td style='display:none;'>"+vercontacto+"</td><td style='display:none;'>"+datade[key].id_estadoagendado+"</td><td style='display:none;'>"+datade[key].nombreestado+"</td><td style='display:none;'>"+fechaop+"</td></tr>";
 
 						
 						$("#tabla_agenda").append(fila);

@@ -105,5 +105,20 @@
 
         $resultado  = $cnx->query($sql);
         echo "Registo de agenda Eliminado !!!";
+    }else if($tipo == "modificar")
+    {
+
+        $sql = "Select * from agendados where id_agendado=" . $id;
+        $resultado  = $cnx->query($sql);
+        
+        
+        if( $resultado->num_rows > 0)
+        {
+            $sql = "update agendados set agendados.id_cliente='$id_cliente' where agendados.id_agendado= $id";
+            $resultado  = $cnx->query($sql);
+             //echo "console.log($sql)";
+            echo "Email actualizado !!!";
+            
+        }
     }
 ?>

@@ -100,7 +100,9 @@
     function seleccionarcliente(id,email)
     {
 
-        $("#idclienteelegido").val(id);
+        $("#idclienteelegido").val(id);//id elegido de la lista ver
+        $("#id_clientemodificado").val(id); //id elegido para modificar en la reserva
+
 
         $("#emailclienteelegido").val(email);//campo email en los datos de agenda
         $("#emailclienteenviar").val(email); //campo email en la agenda.

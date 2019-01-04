@@ -144,7 +144,7 @@
 									      	</div>
 										</div>
 
-										<!-- -------------------------------------------------- LISTA DE HOTELES ---------------------------------------- -->
+										<!-- ---------------------------------- LISTA DE HOTELES ---------------------------------------- -->
 
 								   		<div class="accordion" id="accordionExample4">
 											<div class="card">
@@ -200,7 +200,7 @@
 							</div>
 
 							<div class="col-lg-3">
-										<!-- -----------------------------------------------LISTA DE BODEGAS --------------------------------------- -->
+										<!-- ------------------------------LISTA DE BODEGAS --------------------------------------- -->
 
 										<div class="accordion" id="accordionExample2"> <!--Acordeon -->
 									        <div class="card">
@@ -210,7 +210,7 @@
 										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Bodegas</p></small>
 										            </button>
 										            <br>
-										            <input type="Text" id="idbodegaelegida"  width="50" style="display:none">
+										            <input type="Text" id="idbodegaelegida"  width="80" style="display:none">
 							  						<small><input type="Text" id="nombrebodegaelegida" class="form-control" placeholder="bodega elegida" disabled></small>
 										          </h5>
 										        </div>
@@ -495,6 +495,9 @@
           </h5>
 		</div>
 		
+		<!-- ------------------------------------------- CAMPOS INFO RESERVA  ----------------------------------------- -->
+
+
 		<div id="collapseGeneralReserva" class="collapse" aria-labelledby="headingGeneralReserva" data-parent="#accordionreserva">
             <div class="card-body">
             	<!-- MANSA RESERVA -->
@@ -504,29 +507,33 @@
 						<div class="row justify-content-center">
 						
 							<div class="col-xs-1">
-								<input type="text" id="contactoeditado"  style="display: none" align="center" disabled>Contacto
+								<input type="text" id="contactoeditado"  style="display: none" align="middle" disabled> Contacto 
 							</div>
 							<div class="col-xs-1">
-								<input type="text" id="fechaeditada"  style="display: none" align="center" disabled>Fecha carga
+								<input type="text" id="fechaeditada"  style="display: none" align="middle" disabled> Fecha carga 
 							</div>
 							<div class="col-xs-1">
-								<input type="text" id="estadoeditado"  style="display: none" align="center" disabled>Estado
+								<input type="text" id="estadoeditado"  style="display: none" align="middle" disabled> Estado 
 							</div>
 							<div class="col-xs-1">
-								<input type="Text" id="emailclienteenviar" style="display: none" disabled>Email cliente
+								<input type="Text" id="emailclienteenviar" style="display: none" align="middle" disabled> Email cliente 
 							</div>
+							<div class="col-xs-1">
+								<input type="Text" id="id_clientemodificado" style="display: none" align="middle" disabled> id cliente
+							</div>
+							
 							<div class="col-xs-1" id="botonclienteseditado"  style="display: none" >
-								<input id="botoncliente" type="button" value = '&#x1F935;' class = 'btn btn-sm btn-info'>Clientes
+								<input id="botoncliente" value = '&#x1F935;' type='button' class = 'btn btn-sm btn-info'> Clientes .
 							</div>
 							<div class="col-xs-1" id="botonactualizaclienteeditado" style="display: none">
-								<input id="actualizaremail" type='button' value = '&#128190;' class = 'btn btn-sm btn-info'>Actualiza email
+								<input id="actualizaremail" type='button' value = '&#128190;' class = 'btn btn-sm btn-info'> Actualiza email .
 							</div>						
 							<div class="col-xs-1">
-								<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'>Eliminar registro
+								<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'> Eliminar registro 
 							</div>
 							
 							<div class="col-xs-1">
-								<input type="Text" align="center" id="id_agendado" style="display: none" align="center" disabled>Id Seleccionado 
+								<input type="Text" align="center" id="id_agendado" style="display: none" align="middle" disabled>Id Seleccionado 
 							</div>
 							<input type="Text" id="id_estadoagendado" style="display: none" align="center" disabled>
 						</div>
@@ -698,17 +705,22 @@
 	{
 
 		
+		$("#accordionExample2").click(function(){
+			
+		});
 
-		function cardclientes(){			
+		$("#actualizaremail").click(function(){
+			actualizaremailclienteagenda( $("#id_agendado").val(), $("#id_clientemodificado").val() );
+		});
+
+		function elegirclientes(){			
 			$("#collapseGeneralDatos").collapse("show");
 			$("#colapsoclientes ").collapse("show");
-
 		}
-		
 		
 		$("#botoncliente").click(function(){
 
-			cardclientes();
+			elegirclientes();
 		});
 
 		$('#fechaactual').val(diadehoy());
