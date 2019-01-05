@@ -101,8 +101,15 @@
 										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Servicios</p></small>
 										            </button>
 										            <br>
-										            <input type="Text" id="idservicioelegido" style="display:none">
-							  						<small><input type="Text" id="nombreservicioelegido" class="form-control" placeholder="servicio elegido" disabled></small>
+										            <div class="row">
+											            <div class="col-sm-8">
+												            <input type="Text" id="idservicioelegido" style="display:none;">
+									  						<small><input type="Text" id="nombreservicioelegido" class="form-control" placeholder="servicio elegido" disabled></small>
+								  						</div>
+											            <div class="col-sm-2 offset-sm-2">
+								  							<input id="vaciarservicio" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+								  						</div>
+							  						</div>
 										          </h5>
 										        </div>
 
@@ -110,7 +117,7 @@
 										        <div id="collapseTres" class="collapse" aria-labelledby="headingTres" data-parent="#accordionExample3">
 										            <div class="card-body">
 										                <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
-										                <div class="row">
+										                <div class="row" style="display: none;">
 										                    <div class="offset-md-3 col-md-2">
 										                        <input type="text" id="idservicio" name="idservicio" placeholder="Id" class="form-control"  value="<?php  if(isset($idservicio)) echo $idservicio ?>" >
 										                    </div>
@@ -154,8 +161,15 @@
 										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Hoteles</p></small>
 										            </button>
 										            <br>
-										            <input type="Text" id="idhotelelegido" style="display:none">
-							  						<small><input type="Text" id="nombrehotelelegido" class="form-control" placeholder="hotel elegido" disabled></small>
+										            <div class="row">
+											            <div class="col-sm-8">
+												            <input type="Text" id="idhotelelegido" style="display:none">
+									  						<small><input type="Text" id="nombrehotelelegido" class="form-control" placeholder="hotel elegido" disabled></small>
+														</div>
+								  						<div class="col-sm-2 offset-sm-2">
+								  							<input id="vaciarhotel" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+								  						</div>
+							  						</div>
 										          </h5>
 										        </div>
 
@@ -163,7 +177,7 @@
 										        <div id="collapseCuatro" class="collapse" aria-labelledby="headingCuatro" data-parent="#accordionExample4">
 										            <div class="card-body">
 										                <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
-										                <div class="row">
+										                <div class="row"  style="display:none">
 										                    <div class="offset-md-3 col-md-2">
 										                        <input type="text" id="idhotel" name="idhotel" placeholder="Id" class="form-control"  value="<?php  if(isset($idhotel)) echo $idhotel ?>" >
 										                    </div>
@@ -210,8 +224,15 @@
 										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Bodegas</p></small>
 										            </button>
 										            <br>
-										            <input type="Text" id="idbodegaelegida"  width="80" style="display:none">
-							  						<small><input type="Text" id="nombrebodegaelegida" class="form-control" placeholder="bodega elegida" disabled></small>
+										            <div class="row">
+								  						<div class="col-sm-8">
+												            <input type="Text" id="idbodegaelegida"  width="80" style="display:none">
+									  						<small><input type="Text" id="nombrebodegaelegida" class="form-control" placeholder="bodega elegida" disabled></small>
+									  					</div>
+								  						<div class="col-sm-2 offset-sm-2">
+								  							<input id="vaciarbodega" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+								  						</div>
+							  						</div>
 										          </h5>
 										        </div>
 
@@ -219,15 +240,17 @@
 										            <div class="card-body">
 										                <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
 
-										                <div class="row">
+										                <div class="row" style="display:none"> 
 										                    <div class="offset-md-2 col-md-2">
 										                        <input type="text" id="idbodega" name="idbodega" placeholder="Id" class="form-control"  value="<?php  if(isset($idbodega)) echo $idbodega ?>" >
 										                    </div>
+										                    
 										                    <div class="col-md-4">
 										                        <form class="form-signin" action="">
 										                            <button type="button"  class="btn btn-md btn-info btn-block" id="consultabodegas_seleccionable"><small>Ver</small></button>
 										                        </form>
 										                    </div>
+
 										                </div>
 										                <!--<div class="table-responsive-md">-->
 														<div class="table-responsive-sm">
@@ -252,7 +275,7 @@
 									      	</div>	<!--fin de card -->
 										</div><!--fin de acordeon -->
 
-										<!-- ----------------------------------------------- LISTA DE CONSUMISIONES ---------------------------------- -->
+										<!-- ------------------------------- LISTA DE CONSUMISIONES ---------------------------------- -->
 
 										<div class="accordion" id="accordionExample1">
 											<div class="card">
@@ -262,8 +285,15 @@
 										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Consumos</p></small>
 										            </button>
 										            <br>
-										            <input type="Text" id="idconsumisionelegida" style="display:none">
-							  						<small><input type="Text" id="nombreconsumisionelegida" class="form-control" placeholder="consumo elegido" disabled></small>
+										            <div class="row">
+								  						<div class="col-sm-8">
+												            <input type="Text" id="idconsumisionelegida" style="display:none">
+									  						<small><input type="Text" id="nombreconsumisionelegida" class="form-control" placeholder="consumo elegido" disabled></small>
+									  					</div>
+								  						<div class="col-sm-2 offset-sm-2">
+								  							<input id="vaciarconsumisiones" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+								  						</div>
+							  						</div>
 										          </h5>
 										        </div>
 
@@ -271,7 +301,7 @@
 										        <div id="collapseDos" class="collapse" aria-labelledby="headingUno" data-parent="#accordionExample1">
 										            <div class="card-body">
 										                <!-- LO QUE SE VA A MOSTRAR EN LA TARJETA-->
-										                <div class="row">
+										                <div class="row" style="display: none;">
 										                    <div class="offset-md-3 col-md-2">
 										                        <input type="text" id="idconsumo" name="idconsumo" placeholder="Id" class="form-control"  value="<?php  if(isset($idconsumo)) echo $idconsumo ?>" >
 										                    </div>
@@ -330,18 +360,23 @@
 														    <small><p class="btn btn-info btn-block mensajeservidor text-dark" >Clientes</p></small>
 														</button>
 										    		</h5>
+										    		<div class="row">
+														<div class="col-sm-8">
+												            <input type="Text" id="idclienteelegido"  width="50" style="display:none">
 
-										            <input type="Text" id="idclienteelegido"  width="50" style="display:none">
-
-													<input type="email" id="emailclienteelegido" class="form-control" placeholder="email cliente" disabled  value="<?php  if(isset($emailclienteelegido)) echo $emailclienteelegido ?>" ><span id="faltaemail" style="display:none">Ingrese un email</span>
-
+															<input type="email" id="emailclienteelegido" class="form-control" placeholder="email cliente" disabled  value="<?php  if(isset($emailclienteelegido)) echo $emailclienteelegido ?>" ><span id="faltaemail" style="display:none">Ingrese un email</span>
+														</div>
+														<div class="col-sm-2 offset-sm-2">
+								  							<input id="vaciarcliente" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+								  						</div>
+													</div>
 										        </div>
 
 
 												<div id="colapsoclientes" class="collapse" aria-labelledby="cabeceraClientes" data-parent="#idacorclientes">
 								            		<div class="card-body">
 										            	<div class="row">
-										            		<div class="offset-md-3 col-md-2">
+										            		<div class="offset-md-1 col-md-4">
 										                        <input type="text" id="idcontactocliente" name="idcontactocliente" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactocliente)) echo $idcontactocliente ?>" >
 										                    </div>
 										                    <div class="col-md-4">
@@ -396,17 +431,22 @@
 														    <small><p class="btn btn-info btn-block mensajeservidor text-dark">Contactos</p></small>
 														</button>
 										    		</h5>
+										    		<div class="row">
+											    		<div class="col-sm-8">
+												            <input type="Text" id="idcontactobodegaelegido"  width="50" style="display:none">
 
-										            <input type="Text" id="idcontactobodegaelegido"  width="50" style="display:none">
-
-							  						<input type="Text" id="contactobodegaelegido" class="form-control" placeholder="contacto elegido"  disabled><span id="faltanombre" style="display:none"><small>	Ingrese un Nombre</small></span>
+									  						<input type="Text" id="contactobodegaelegido" class="form-control" placeholder="contacto elegido"  disabled><span id="faltanombre" style="display:none"><small>	Ingrese un Nombre</small></span>
+									  					</div>
+								  						<div class="col-sm-2 offset-sm-2">
+								  							<input id="vaciarcontacto" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+								  						</div>
+											        </div>
 										        </div>
-
 												
 												<div id="colapsocontacto" class="collapse" aria-labelledby="cabeceraContactos" data-parent="#idacorcontacto">
 								            		<div class="card-body">
 										            	<div class="row">
-										            		<div class="offset-md-3 col-md-2">
+										            		<div class="offset-md-1 col-md-4">
 										                        <input type="text" id="idcontactobodega" name="idcontactobodega" placeholder="Id" class="form-control"  value="<?php  if(isset($idcontactobodega)) echo $idcontactobodega ?>" >
 										                    </div>
 										                    <div class="col-md-4">
@@ -704,10 +744,54 @@
 	$(document).ready(function()
 	{
 
-		
-		$("#accordionExample2").click(function(){
-			
+
+		$("#vaciarcontacto").click(function(){ //acordeon de hoteles
+			$("#idcontactobodegaelegido").val("");
+			$("#contactobodegaelegido").val("");
 		});
+
+		$("#vaciarcliente").click(function(){ //acordeon de hoteles
+			$("#idclienteelegido").val("");
+			$("#emailclienteelegido").val("");
+		});
+
+		$("#vaciarhotel").click(function(){ //acordeon de hoteles
+			$("#idhotelelegido").val("");
+			$("#nombrehotelelegido").val("");
+		});
+
+		$("#vaciarconsumisiones").click(function(){ //acordeon de hoteles
+			$("#idconsumisionelegida").val("");
+			$("#nombreconsumisionelegida").val("");
+		});
+
+		$("#vaciarbodega").click(function(){ //acordeon de hoteles
+			$("#idbodegaelegida").val("");
+			$("#nombrebodegaelegida").val("");
+		});
+
+		$("#vaciarservicio").click(function(){ //acordeon de hoteles
+			$("#idservicioelegido").val("");
+			$("#nombreservicioelegido").val("");
+		});
+
+		$("#accordionExample4").click(function(){ //acordeon de hoteles
+			consulta_hoteles("seleccionable");
+		});
+		
+
+		$("#accordionExample3").click(function(){ //acordeon de servicios
+			consulta_servicios("seleccionable");
+		});
+
+		$("#accordionExample2").click(function(){ //acordeon de bodegas
+			consulta("seleccionable");
+		});
+
+		$("#accordionExample1").click(function(){ //acordeon de consumisiones
+			consulta_consumisiones("seleccionable");
+		});
+		
 
 		$("#actualizaremail").click(function(){
 			actualizaremailclienteagenda( $("#id_agendado").val(), $("#id_clientemodificado").val() );
