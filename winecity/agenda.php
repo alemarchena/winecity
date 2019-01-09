@@ -32,17 +32,13 @@
 										</div>
 										<div class="row">
 
-											<div class="input-group clockpicker">
-
+											<div id="relojagenda" class="input-group clockpicker">
 											    <input id="horaseleccionada" type="text" placeholder="hora" class="form-control" value="" disabled>
-
 											    <span class="input-group-addon">
-
 											        <span class="glyphicon glyphicon-time"></span>
-
 											    </span>
-
 											</div>
+
 										</div>
 										<div class="row">
 											<input type="text" id="montocliente" value="" placeholder="Monto" class="form-control" >
@@ -494,34 +490,34 @@
 
 
 <div class="row justify-content-center">
-	<div class="col-sm-4">
+	<div class="col-sm-8">
 		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
 	</div>
 	<div class="col-sm-4">
 		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit" disabled><small>Agregar Item</small></button>
 		<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
 	</div>
-	<div class="col-sm-4">
-		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit" disabled><small>Guardar Reserva</small></button>
-	</div>
 </div>
 <br>
 <!-- --------------------------------------------- FECHAS DE CONSULTA Y BOTON VER---------------------------------- -->
 <div class="row justify-content-center">
-	<div class="col-sm-2">
+	<div class="col-sm-1">
 		<input type="text" id="fechaactualver1" value="" placeholder="fecha" class="form-control">
 		<div id="calendariover1">
 
 		</div>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-sm-1">
 		<input type="text" id="fechaactualver2" value="" placeholder="fecha" class="form-control">
 		<div id="calendariover2">
 
 		</div>
 	</div>
-	<div class="col-sm-8">
+	<div class="col-sm-6">
 		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
+	</div>
+	<div class="col-sm-4">
+		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit" disabled><small>Guardar Reserva</small></button>
 	</div>
 </div>
 
@@ -544,44 +540,62 @@
 				<div class="border border-success">
 					<small><h5 class="mensajeservidor">RESERVAS</h5></small>
 					<div  id="datosadicionales">
-						<div class="row justify-content-center">
 						
-							<div class="col-xs-1">
-								<input type="text" id="contactoeditado"  style="display: none" align="middle" disabled> Contacto 
+						<!-- fila de datos 1 -->
+						
+						<div class="row justify-content-center">
+							<div class="col">
+								<div class="row justify-content-center">
+									<div class="col-xs-1"></div>
+
+									<div class="col-xs-1">
+										<input type="text" id="contactoeditado"  style="display: none" align="middle" disabled> Contacto 
+									</div>
+									<div class="col-xs-1">
+										<input type="text" id="fechaeditada"  style="display: none" align="middle" disabled> Fecha carga 
+									</div>
+									<div class="col-xs-1">
+										<input type="text" id="estadoeditado"  style="display: none" align="middle" disabled> Estado 
+									</div>
+									<div class="col-xs-1">
+										<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'> Eliminar registro 
+									</div>
+									<div class="col-xs-1"></div>
+
+								</div>
 							</div>
-							<div class="col-xs-1">
-								<input type="text" id="fechaeditada"  style="display: none" align="middle" disabled> Fecha carga 
+							<div class="col">
+								<div class="row justify-content-center">
+									<div class="col-xs-1">
+										<input type="Text" align="center" id="id_agendado" style="display: none" align="middle" disabled>Id Seleccionado 
+									</div>
+									<input type="Text" id="id_estadoagendado" style="display: none" align="center" disabled>
+								
+									<div class="col-xs-1">
+										<input type="Text" id="emailclienteenviar" style="display: none;color:blue;" align="middle" disabled> Email cliente 
+									</div>
+									<div class="col-xs-1">
+										<input type="Text" id="id_clientemodificado" style="display: none" align="middle" disabled> id cliente
+									</div>
+									
+									<div class="col-xs-1" id="botonclienteseditado"  style="display: none;color:blue;" >
+										<input id="botoncliente" value = '&#x1F935;' type='button' class = 'btn btn-sm btn-info'> Cliente .
+									</div>
+									
+
+									<div class="col-xs-1" id="botonactualizaclienteeditado" style="display: none;color:blue;">
+										<input id="actualizaremail" type='button' value = '&#128190;' class = 'btn btn-sm btn-info'> Guardar .
+									</div>						
+								</div>						
 							</div>
-							<div class="col-xs-1">
-								<input type="text" id="estadoeditado"  style="display: none" align="middle" disabled> Estado 
-							</div>
-							<div class="col-xs-1">
-								<input type="Text" id="emailclienteenviar" style="display: none" align="middle" disabled> Email cliente 
-							</div>
-							<div class="col-xs-1">
-								<input type="Text" id="id_clientemodificado" style="display: none" align="middle" disabled> id cliente
-							</div>
-							
-							<div class="col-xs-1" id="botonclienteseditado"  style="display: none" >
-								<input id="botoncliente" value = '&#x1F935;' type='button' class = 'btn btn-sm btn-info'> Clientes .
-							</div>
-							<div class="col-xs-1" id="botonactualizaclienteeditado" style="display: none">
-								<input id="actualizaremail" type='button' value = '&#128190;' class = 'btn btn-sm btn-info'> Actualiza email .
-							</div>						
-							<div class="col-xs-1">
-								<input id="botoneliminar" style="display: none" type='button' value = '&#10008;' class = 'quitar btn btn-sm btn-danger'> Eliminar registro 
-							</div>
-							
-							<div class="col-xs-1">
-								<input type="Text" align="center" id="id_agendado" style="display: none" align="middle" disabled>Id Seleccionado 
-							</div>
-							<input type="Text" id="id_estadoagendado" style="display: none" align="center" disabled>
 						</div>
 					</div>
 				</div>
 				<br>
 				<div  class="border border-success">
 					<div class="col">
+						<div  class="border border-success" style="margin: 0.5em;">
+
 						<input type="Text" id="idreserva" style="display: none" disabled>
 
 						<div class="row justify-content-center">
@@ -598,42 +612,64 @@
 								<button class="btn btn-info" id="emailcliente"  style="display: none" disabled>Enviar mail a Cliente</button>
 							</div>
 							<div class="col-xs-1">
-								<button class="btn btn-info" id="emailbodega"  style="display: none" disabled>Enviar mail a Bodega</button>
+								<input type="text" id="fechaactualdesde" style="display: none" value="" placeholder="desde fecha" class="form-control">
+								<div id="calendariodesde">
+
+								</div>
 							</div>
-							<div id="botones" style="display: none">
-								<div class="col-xs-1">
-									<div class="input-group">
-							          <div class="input-group-prepend">
-							            <div class="input-group-text">
-							            <input type="radio" aria-label="Radio button for following text input" id="radioespaniol" name="radioespaniol" checked>
-							            </div>
-							          </div>
-							          <input type="text" class="form-control" aria-label="Text input with radio button" value="Español" disabled>
-							        </div>
-						        </div>
-								<div class="col-xs-1">
-									<div class="input-group">
-							          <div class="input-group-prepend">
-							            <div class="input-group-text">
-							            <input type="radio" aria-label="Radio button for following text input" id="radioingles" name="radioingles">
-							            </div>
-							          </div>
-							          <input type="text" class="form-control" aria-label="Text input with radio button" value="Inglés" disabled>
-							        </div>
+							<div class="col-xs-1">
+								<input type="text" id="fechaactualhasta" style="display: none" value="" placeholder="hasta fecha" class="form-control">
+								<div id="calendariohasta">
+
 								</div>
-								<div class="col-xs-1">
-									<div class="input-group">
-							          <div class="input-group-prepend">
-							            <div class="input-group-text">
-							            <input type="radio" aria-label="Radio button for following text input" id="radioportugues" name="radioportugues">
-							            </div>
-							          </div>
-							          <input type="text" class="form-control" aria-label="Text input with radio button" value="Portugues" disabled>
-							        </div>
+							</div>
+							<div class="col-xs-1">
+								<div id="relojemail" class="input-group clockpicker">
+								    <input id="horaemail" type="text" placeholder="hora" class="form-control" value="">
+								    <span class="input-group-addon">
+								        <span class="glyphicon glyphicon-time"></span>
+								    </span>
 								</div>
+							</div>
+							<div class="col-xs-1">
+								<button class="btn btn-info" id="emailbodega" style="display: none" disabled>Enviar mail a Bodega</button>
 							</div>
 						</div>
 
+						<div id="botones" style="display: none">
+							<div class="col-xs-1">
+								<div class="input-group">
+						          <div class="input-group-prepend">
+						            <div class="input-group-text">
+						            <input type="radio" aria-label="Radio button for following text input" id="radioespaniol" name="radioespaniol" checked>
+						            </div>
+						          </div>
+						          <input type="text" class="form-control" aria-label="Text input with radio button" value="Español" disabled>
+						        </div>
+					        </div>
+							<div class="col-xs-1">
+								<div class="input-group">
+						          <div class="input-group-prepend">
+						            <div class="input-group-text">
+						            <input type="radio" aria-label="Radio button for following text input" id="radioingles" name="radioingles">
+						            </div>
+						          </div>
+						          <input type="text" class="form-control" aria-label="Text input with radio button" value="Inglés" disabled>
+						        </div>
+							</div>
+							<div class="col-xs-1">
+								<div class="input-group">
+						          <div class="input-group-prepend">
+						            <div class="input-group-text">
+						            <input type="radio" aria-label="Radio button for following text input" id="radioportugues" name="radioportugues">
+						            </div>
+						          </div>
+						          <input type="text" class="form-control" aria-label="Text input with radio button" value="Portugues" disabled>
+						        </div>
+							</div>
+						</div>
+						
+						</div>
 						<!-- ------------------------------------------- CAMPOS INVISIBLES ----------------------------------------- -->
 
 						<div class="row">
@@ -731,6 +767,7 @@
 						</div>
 					</div>
 				</div>
+
 				</div>
 
 	        	<!-- FIN MANSA RESERVA -->
@@ -810,6 +847,8 @@
 		$('#fechaactual').val(diadehoy());
 		$('#fechaactualver1').val(diadehoy());
 		$('#fechaactualver2').val(diadehoy());
+		$('#fechaactualdesde').val(diadehoy());
+		$('#fechaactualhasta').val(diahasta(15));
 
 		function leeidagendado()
 		{
@@ -856,6 +895,7 @@
 			guardaragenda();
 		});
 
+		// -------------------- Formateo de fechas ---------------------------------
     	$('#fechaactual').change(function(){
 
 			$('#fechaactual').val( formatearfecha( $('#fechaactual').val() )   );
@@ -869,6 +909,20 @@
     	$('#fechaactualver2').change(function(){
 
 			$('#fechaactualver2').val( formatearfecha( $('#fechaactualver2').val() )   );
+    	});
+
+		$('#fechaactualdesde').val( formatearfecha( $('#fechaactualdesde').val() )   );
+    	$('#fechaactualdesde').change(function(){
+
+			$('#fechaactualdesde').val( formatearfecha( $('#fechaactualdesde').val() )   );
+    	});
+
+		$('#fechaactualhasta').val( formatearfecha( $('#fechaactualhasta').val() )   );
+		
+    	$('#fechaactualhasta').change(function(){
+
+			$('#fechaactualhasta').val( formatearfecha( $('#fechaactualhasta').val() )   );
+			
     	});
 	});
 

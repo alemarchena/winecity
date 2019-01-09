@@ -135,6 +135,11 @@ function nuevaagenda()
 		
 		document.getElementById("botones").style.display = "none";
 		
+
+		document.getElementById("fechaactualdesde").style.display = "block";
+		document.getElementById("fechaactualhasta").style.display = "block";
+		document.getElementById("horaemail").style.display = "block";
+
 		document.getElementById("emailbodega").style.display = "block";
 
 		if(emailbodega=="")
@@ -224,6 +229,11 @@ function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
 	document.getElementById("cancelado").style.display = "block";
 
 	document.getElementById("emailcliente").style.display = "block";
+
+	document.getElementById("fechaactualdesde").style.display = "none";
+	document.getElementById("fechaactualhasta").style.display = "none";
+	document.getElementById("horaemail").style.display = "none";
+
 	document.getElementById("emailbodega").style.display = "none";
 
 	document.getElementById("datosadicionales").style.display = "block";
@@ -392,7 +402,7 @@ function emailacliente(emailcliente,titulo,subtitulo,cuerpo)
 
 function emailabodega(emailcopia,emailbodega,titulo,subtitulo,cuerpo)
 {
-	var opcion = confirm("Desea enviar el email ?");
+	var opcion = confirm("El mensaje a enviar dice : " + cuerpo + " - DESEA ENVIAR ?");
 	var idreserva = $("#idreserva").val();
 	
     if (opcion == true) {
@@ -737,12 +747,18 @@ function guardaragenda()
 
 
 	//Script que controla el reloj
-	$('.clockpicker').clockpicker({
+	$('#relojagenda').clockpicker({
 	    placement: 'bottom',
 	    align: 'center',
 	    donetext: 'Seleccionar'
 	});
 
+	$('#relojemail').clockpicker({
+	    placement: 'top',
+	    align: 'right',
+	    donetext: 'Seleccionar'
+	});
+	
 	$("#confirmado").click(function(event){
 	    cambiarestado($("#id_agendado").val(),2);
 	});
@@ -886,11 +902,15 @@ function guardaragenda()
 			var hora;
 			var cantidadpersonas;
 
- 			var fecha = conviertefecha($("#fechareserva").val());
+			fechadesde = $('#fechaactualdesde').val()
+			fechahasta = $('#fechaactualhasta').val();
+			horaemail = $('#horaemail').val();
+ 			
 
-	    	reservafecha = " Reserva para el " + fecha;
-	    	hora = " a las " + $("#horareserva").val() + " hs. " ;
-	    	cantidadpersonas = "para una cantidad de " + $("#cantidadpersonasreserva").val() + " persona/s";
+
+	    	reservafecha = " Reserva entre fechas " + fechadesde + " a " + fechahasta;
+	    	hora = " a las " + horaemail + " hs. " ;
+	    	cantidadpersonas = "para una cantidad de " + $("#cantidadpersonasreserva").val() + " persona/s. Muchas gracias.";
 
 		    mensaje = " * " + reservafecha + hora + cantidadpersonas + " * ";
 			
@@ -907,8 +927,9 @@ function guardaragenda()
 	$("#emailbodega").click(function(event){
 		
 	    var mensaje = armamensajebodega();
-
+		
 	    emailabodega($("#emailcopia").val(),$("#emailbodegaenviar").val(),$("#titemailb").val(),$("#subtitemailb").val(),$("#cuerpoemailb").val() + mensaje);
+
 	});
 	
 	$("#nuevasreservas").click(function()
@@ -966,10 +987,20 @@ function guardaragenda()
 		return today;
 	}
 
+	function diahasta(dias)
+	{
+		var now = new Date();
+		var day = ("0" + now.getDate() + 15).slice(-2);
+		var dia = parseInt(day) + dias;
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+		var today = now.getFullYear()+"/"+(month)+"/"+(dia);
+		return today;
+	}
+
 	function formatearfecha(fecha)
 	{
 		var fechaEjemplo  = moment(fecha).format('DD/MM/YYYY');
-		//console.log("Fecha:" + fecha + ",fechaEjemplo:" + fechaEjemplo);
+		
 		return fechaEjemplo;
 	}
 	$("input[name=radioingles]").click(function () {    

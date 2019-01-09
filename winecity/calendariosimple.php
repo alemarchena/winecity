@@ -13,9 +13,13 @@ $( "#fechaactualver2").datepicker({
 
 });
 
+$( "#fechaactualdesde").datepicker({
 
+});
 
+$( "#fechaactualhasta").datepicker({
 
+});
 
 </script>
 

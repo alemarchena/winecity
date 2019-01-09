@@ -10,3 +10,5 @@ tr[class='Disponible']{
 tr[class='Cancelado']{
 	background-color : #FD4B4B; /*rojo*/
 }
+
+/*Estados posibles de las reservas, el color se usa en agenda*/

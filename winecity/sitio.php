@@ -22,6 +22,7 @@
 	<meta charset="utf-8">
 	<title>Plataforma Wine City</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="img/png" href="/plataforma/img/logowinecity.png" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <!--LIBRERIA de BOOSTRAP -->
 
