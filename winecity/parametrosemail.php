@@ -38,6 +38,8 @@
                     <input type="text" id="subtitemailb" name="subtitemailb" placeholder="Sub Titulo email" class="form-control" maxlength="100" value="<?php  if(isset($subtitemailb)) echo $subtitemailb ?>" >
 
                     <input type="text" id="cuerpoemailb" name="cuerpoemailb" placeholder="Cuerpo del mensaje para bodega" class="form-control" maxlength="255" value="<?php  if(isset($cuerpoemailb)) echo $cuerpoemailb ?>" >
+
+                    <input type="text" id="saludoemailb" name="saludoemailb" placeholder="Saludo del mensaje para bodega" class="form-control" maxlength="255" value="<?php  if(isset($saludoemailb)) echo $saludoemailb ?>" >
                 </div>
                 <div class="col-sm-6">
                     <p class="mensajeservidor">Vista previa de Email a la bodega</p>
@@ -154,6 +156,9 @@
         vistaprevia();
     });
     $("#cuerpoemailb").keyup(function(){
+        vistaprevia();
+    });
+    $("#saludoemailb").keyup(function(){
         vistaprevia();
     });
 

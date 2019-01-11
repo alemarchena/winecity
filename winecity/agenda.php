@@ -683,6 +683,7 @@
 							<input type="Text" id="titemailb" style="display: none" disabled>
 							<input type="Text" id="subtitemailb" style="display: none" disabled>
 							<input type="Text" id="cuerpoemailb" style="display: none" disabled>
+							<input type="Text" id="saludoemailb" style="display: none" disabled>
 							<input type="Text" id="bodegareserva" style="display: none" disabled>
 							<input type="Text" id="hotelreserva" style="display: none" disabled>
 							<input type="Text" id="fechareserva" style="display: none" disabled>

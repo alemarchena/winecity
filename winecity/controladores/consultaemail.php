@@ -9,6 +9,7 @@
     $titulobodega=$_POST['titulobodega'];
     $subtitulobodega=$_POST['subtitulobodega'];
     $cuerpobodega=$_POST['cuerpobodega'];
+    $saludoabodega=$_POST['saludoabodega'];
 
     $emailcopia=$_POST['emailcopia'];
 
@@ -46,12 +47,12 @@
 
         if( $resultado->num_rows > 0)
         {
-            $sql = "update parametrosemail set emailcopia = '$emailcopia',titulocliente ='$titulocliente', subtitulocliente = '$subtitulocliente',cuerpocliente = '$cuerpocliente',titulobodega = '$titulobodega', subtitulobodega = '$subtitulobodega',cuerpobodega='$cuerpobodega' where idioma= '$idioma'";
+            $sql = "update parametrosemail set emailcopia = '$emailcopia',titulocliente ='$titulocliente', subtitulocliente = '$subtitulocliente',cuerpocliente = '$cuerpocliente',titulobodega = '$titulobodega', subtitulobodega = '$subtitulobodega',cuerpobodega='$cuerpobodega',saludoabodega='$saludoabodega' where idioma= '$idioma'";
             $resultado  = $cnx->query($sql);
             echo "Parametros de email del idioma $idioma actualizados !!!";
             
         }else{
-            $sql = "insert into parametrosemail(emailcopia,titulocliente,subtitulocliente,cuerpocliente,titulobodega,subtitulobodega,cuerpobodega,idioma) values('$emailcopia','$titulocliente','$subtitulocliente','$cuerpocliente','$titulobodega','$subtitulobodega','$cuerpobodega','$idioma')";
+            $sql = "insert into parametrosemail(emailcopia,titulocliente,subtitulocliente,cuerpocliente,titulobodega,subtitulobodega,cuerpobodega,idioma,saludoabodega) values('$emailcopia','$titulocliente','$subtitulocliente','$cuerpocliente','$titulobodega','$subtitulobodega','$cuerpobodega','$idioma','$saludoabodega')";
             $resultado  = $cnx->query($sql);
             echo "Parámetros del idioma $idioma creados !!!";
         }

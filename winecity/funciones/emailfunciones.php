@@ -19,6 +19,7 @@ function nuevoemail(){
 
     $("#vistapreviabodega").val("");
     $("#cuerpoemailb").val("");
+    $("#saludoemailb").val("");
 }
 
 function vistaprevia()
@@ -29,7 +30,12 @@ function vistaprevia()
 
     $("#titulovistapreviabodega").val($("#titemailb").val());
     $("#subtitulovistapreviabodega").val($("#subtitemailb").val());
-    $("#vistapreviabodega").val($("#cuerpoemailb").val());
+    $("#saludoemailb").val($("#saludoemailb").val());
+    var mensajeentrefechas = " Reserva entre fechas ../../.... a ../../.... a las ..:.. hs. para una cantidad de .. persona/s. ";
+
+    $("#vistapreviabodega").val( $("#cuerpoemailb").val() + mensajeentrefechas + $("#saludoemailb").val() );
+    
+    
 }
 
 function consultaparametros(idioma)
@@ -41,7 +47,8 @@ function consultaparametros(idioma)
 
 	$('#titemailb').val("");
 	$('#subtitemailb').val("");
-	$('#cuerpoemailb').val("");
+    $('#cuerpoemailb').val("");
+	$('#saludoemailb').val("");
 
     $('#emailcopia').val("");
 
@@ -64,7 +71,9 @@ function consultaparametros(idioma)
 						$('#titemailb').val(datade[key].titulobodega);
 						$('#subtitemailb').val(datade[key].subtitulobodega);
                         $('#cuerpoemailb').val(datade[key].cuerpobodega);
+                        $('#saludoemailb').val(datade[key].saludoabodega);
                         
+
 						$('#emailcopia').val(datade[key].emailcopia);
 						vistaprevia();
 					});
@@ -88,6 +97,7 @@ function guardarparametros(idioma)
 		var titulobodega	= $('#titemailb').val();
 		var subtitulobodega	= $('#subtitemailb').val();
         var cuerpobodega     =$('#cuerpoemailb').val();
+        var saludoabodega     =$('#saludoemailb').val();
 
 		var emailcopia	 =$('#emailcopia').val();
 		
@@ -97,7 +107,7 @@ function guardarparametros(idioma)
 
             url:"controladores/consultaemail.php",
 
-            data: {emailcopia:emailcopia,titulocliente:titulocliente,subtitulocliente:subtitulocliente,cuerpocliente:cuerpocliente,titulobodega:titulobodega,subtitulobodega:subtitulobodega,cuerpobodega:cuerpobodega,idioma:idioma,tipo:"alta"},
+            data: {emailcopia:emailcopia,titulocliente:titulocliente,subtitulocliente:subtitulocliente,cuerpocliente:cuerpocliente,titulobodega:titulobodega,subtitulobodega:subtitulobodega,cuerpobodega:cuerpobodega,idioma:idioma,saludoabodega:saludoabodega,tipo:"alta"},
 
             type: "post",
 

@@ -897,24 +897,23 @@ function guardaragenda()
 
 	function armamensajebodega(){
 
-			var mensaje;
-			var reserva;
-			var hora;
-			var cantidadpersonas;
+		var mensaje;
+		var reserva;
+		var hora;
+		var cantidadpersonas;
 
-			fechadesde = $('#fechaactualdesde').val()
-			fechahasta = $('#fechaactualhasta').val();
-			horaemail = $('#horaemail').val();
- 			
+		fechadesde = $('#fechaactualdesde').val()
+		fechahasta = $('#fechaactualhasta').val();
+		horaemail = $('#horaemail').val();
+		saludoabodega = $('#saludoemailb').val();
 
+	    reservafecha = " Reserva entre fechas " + fechadesde + " a " + fechahasta;
+	    hora = " a las " + horaemail + " hs. " ;
+	    cantidadpersonas = "para una cantidad de " + $("#cantidadpersonasreserva").val() + " persona/s. " + saludoabodega;
 
-	    	reservafecha = " Reserva entre fechas " + fechadesde + " a " + fechahasta;
-	    	hora = " a las " + horaemail + " hs. " ;
-	    	cantidadpersonas = "para una cantidad de " + $("#cantidadpersonasreserva").val() + " persona/s. Muchas gracias.";
-
-		    mensaje = " * " + reservafecha + hora + cantidadpersonas + " * ";
-			
-			return mensaje;
+	    mensaje = " * " + reservafecha + hora + cantidadpersonas + " * ";
+		
+		return mensaje;
 		}
 
 	$("#emailcliente").click(function(event){
