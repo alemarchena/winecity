@@ -6,7 +6,11 @@
 
         $("#idclienteelegido").val("");
 
+        $("#nombreclienteelegido").val("");
+
         $("#emailclienteelegido").val("");
+
+        $("#nombreclienteelegido").prop("disabled", false);
 
         $("#emailclienteelegido").prop("disabled", false);
 
@@ -17,53 +21,63 @@
     function guardarcliente()
     {
         if($( "#emailclienteelegido" ).val().length<=0) 
-
         {
 
             $("#faltaemail").css("display","inline").fadeOut(2000);
 
             alert("Escriba un email");
 
-        }else{
-
-            var id = $("#idclienteelegido").val();
-
-            var email = $("#emailclienteelegido").val();
-
-            $.ajax({
-
-                url:"controladores/consultaclientes.php",
-
-                data: {id:id,tipo:"alta",email:email},
-
-                type: "post",
-
-            success:function(data){
-
-                //console.log("Data devolvio:" + data);
-
-                if(data!="consultavacia")
-                {
-                    consultaclientes("cabm");
-
-                    nuevocliente();
-
-                    alert(data); //muestra un mensaje con el texto devuelto por el controlador
-
-                }else{
-
-                    alert("Error al crear el registro");
-                }
-            },
-
-            error: function(e)
+        }else
+        {
+            if($( "#nombreclienteelegido" ).val().length<=0)
             {
-                alert("Error en el alta.");
-            }
+                $("#faltanombrecliente").css("display","inline").fadeOut(2000);
 
-            });
+                alert("Escriba nombre cliente");
+            }else
+            {
+
+                var id = $("#idclienteelegido").val();
+
+                var nombre = $("#nombreclienteelegido").val();
+
+                var email = $("#emailclienteelegido").val();
+
+                $.ajax({
+
+                    url:"controladores/consultaclientes.php",
+
+                    data: {id:id,tipo:"alta",email:email,nombre:nombre},
+
+                    type: "post",
+
+                success:function(data){
+
+                    //console.log("Data devolvio:" + data);
+
+                    if(data!="consultavacia")
+                    {
+                        consultaclientes("cabm");
+
+                        nuevocliente();
+
+                        alert(data); //muestra un mensaje con el texto devuelto por el controlador
+
+                    }else{
+
+                        alert("Error al crear el registro");
+                    }
+                },
+
+                error: function(e)
+                {
+                    alert("Error en el alta.");
+                }
+
+                });
 
             //$("#collapseTwo").collapse("show");
+            }
         }
     }
 
@@ -97,17 +111,19 @@
         }
     }
 
-    function seleccionarcliente(id,email)
+    function seleccionarcliente(id,email,nombre)
     {
 
         $("#idclienteelegido").val(id);//id elegido de la lista ver
         $("#id_clientemodificado").val(id); //id elegido para modificar en la reserva
 
 
+        $("#nombreclienteelegido").val(nombre);//campo nombre en los datos de agenda
         $("#emailclienteelegido").val(email);//campo email en los datos de agenda
         $("#emailclienteenviar").val(email); //campo email en la agenda.
 
 
+        $("#nombreclienteelegido").prop("disabled", true);
         $("#emailclienteelegido").prop("disabled", true);
         $("#colapsoclientes").collapse("hide");
     }
@@ -122,13 +138,17 @@
 
 
 
-    function editarcliente(id,email)
+    function editarcliente(id,email,nombre)
 
     {
 
         $("#idclienteelegido").val(id);
 
+        $("#nombreclienteelegido").val(nombre);
+
         $("#emailclienteelegido").val(email);
+
+        $("#nombreclienteelegido").prop("disabled", false);
 
         $("#emailclienteelegido").prop("disabled", false);
 
@@ -140,6 +160,8 @@
 
     function consultaclientes(tipo)
     {
+        $("#nombreclienteelegido").prop("disabled", true);
+
         $("#emailclienteelegido").prop("disabled", true);
 
         $('#tabla_clientes tr').not(':first').remove(); //elimina todas las filas menos la primera
@@ -150,7 +172,7 @@
 
             url:"controladores/consultaclientes.php",
 
-            data: {id:id,tipo:"consulta",email:""},
+            data: {id:id,tipo:"consulta",email:"",nombre:""},
 
             type: "post",
 
@@ -169,7 +191,7 @@
                         if(tipo==="seleccionable")
                         {//agrego botones SI 
                         
-                         var fila = "<tr><td></i><input type='button' value = '&#10004;' class = 'btn btn-sm btn-info' onclick='seleccionarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\")'/></td><td>"+datadecodificado[key].id_cliente+"</td><td>"+datadecodificado[key].emailcliente+"</td></tr>";
+                         var fila = "<tr><td></i><input type='button' value = '&#10004;' class = 'btn btn-sm btn-info' onclick='seleccionarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\",\"" +datadecodificado[key].nombrecliente+ "\")'/></td><td>"+datadecodificado[key].id_cliente+"</td><td>"+datadecodificado[key].emailcliente+"</td><td>"+datadecodificado[key].nombrecliente+"</td></tr>";
                        
                         }else 
 
@@ -177,14 +199,14 @@
 
                         { //agrego botones BORRAR y EDITAR
 
-                            var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\"><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\")'/></td> <td>"+datadecodificado[key].id_cliente+"</td><td>"+datadecodificado[key].emailcliente+"</td></tr>";
+                            var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\"><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\",\"" +datadecodificado[key].nombrecliente+ "\")'/></td> <td>"+datadecodificado[key].id_cliente+"</td><td>"+datadecodificado[key].emailcliente+"</td><td>"+datadecodificado[key].nombrecliente+"</td></tr>";
                         }else 
                         if(tipo==="cabm")
 
                         { //agrego botones CONSULTAR, EDITAR Y BORRAR
 
 
-                            var fila = "<tr><td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-success' onclick='seleccionarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\")'/></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\")'/></td> <td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\")'></td> <td>"+datadecodificado[key].id_cliente+"</td><td>"+datadecodificado[key].emailcliente+"</td></tr>";
+                            var fila = "<tr><td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-success' onclick='seleccionarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\",\"" +datadecodificado[key].nombrecliente+ "\")'/></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\",\"" +datadecodificado[key].nombrecliente+ "\")'/></td> <td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarcliente(\"" +datadecodificado[key].id_cliente+ "\",\"" +datadecodificado[key].emailcliente+ "\")'></td> <td>"+datadecodificado[key].id_cliente+"</td><td>"+datadecodificado[key].emailcliente+"</td><td>"+datadecodificado[key].nombrecliente+"</td></tr>";
                  
                         }
                         $("#tabla_clientes").append(fila);

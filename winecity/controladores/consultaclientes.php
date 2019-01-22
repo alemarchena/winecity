@@ -7,6 +7,7 @@
     $id = $_POST['id'];
     $tipo = $_POST['tipo'];
     $email = $_POST['email'];
+    $nombre = $_POST['nombre'];
 
 
     //Consulta
@@ -53,7 +54,7 @@
 
         {
 
-            $sql = "update clientes set emailcliente ='$email' where id_cliente= $id";
+            $sql = "update clientes set emailcliente ='$email',nombrecliente = '$nombre' where id_cliente= $id";
 
             $resultado  = $cnx->query($sql);
 
@@ -63,7 +64,7 @@
 
         }else{
 
-            $sql = "insert into clientes(emailcliente) values('$email')";
+            $sql = "insert into clientes(emailcliente,nombrecliente) values('$email','$nombre')";
 
             $resultado  = $cnx->query($sql);
 

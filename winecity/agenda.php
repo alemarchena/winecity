@@ -1,9 +1,72 @@
-
-<head>
-	<link rel="stylesheet" type="text/css" href="css/agenda.css">
-
-</head>
 <small><h4 class="mensajeservidor" align="center">Agencia de Turismo Wine City</h4>
+<!-- ------------------------------------------------------ EMAIL A BODEGAS -------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------------------- -->
+
+    <div class="accordion" id="accordionemailbodega">
+		<div class="card">
+			<div class="card-header" id="headingenvioemail">
+				<h5 class="mb-0">
+					<button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseenvioemail" aria-expanded="true" aria-controls="collapseenvioemail">
+	                	<small><p class="btn btn-warning btn-block mensajeservidor text-dark">ENVIO EMAIL A BODEGA</small>
+	            	</button>
+	          </h5>
+			</div>
+
+			<div id="collapseenvioemail" class="collapse" aria-labelledby="headingenvioemail" data-parent="#accordionreserva">
+	            <div class="card-body">
+	            	<!-- MANSA RESERVA -->
+					<div class="border border-success">
+					    <div class="row">
+							<input type="Text" id="emailbodegaenviar" >
+							<input type="Text" id="estadoenviar" >
+							<!-- ------------------------- texto para el email ------------------------- -->
+							
+							<input type="Text" id="titemailb" >
+							<input type="Text" id="subtitemailb" >
+							<input type="Text" id="cuerpoemailb" >
+
+
+
+							<input type="Text" id="saludoemailb" >
+
+							<input type="Text" id="bodegamen">
+							<input type="Text" id="hotelmen" >
+							
+							
+							<input type="Text" id="cantidadpersonasreserva" >
+							<input type="Text" id="emailcopia">
+						</div>
+					    <div class="row">
+					    	<div class="col-xs-1">
+								<input type="text" id="fechaactualdesde" value="" placeholder="desde fecha" class="form-control">
+								<div id="calendariodesde">
+
+								</div>
+							</div>
+							<div class="col-xs-1">
+								<input type="text" id="fechaactualhasta" value="" placeholder="hasta fecha" class="form-control">
+								<div id="calendariohasta">
+
+								</div>
+							</div>
+							<div class="col-xs-1">
+								<div id="relojemail" class="input-group clockpicker">
+								    <input id="horaemail" type="text" placeholder="hora" class="form-control" value="">
+								    <span class="input-group-addon">
+								        <span class="glyphicon glyphicon-time"></span>
+								    </span>
+								</div>
+							</div>
+							<div class="col-xs-1">
+								<button class="btn btn-info" id="emailbodega">Enviar mail a Bodega</button>
+							</div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
 
 <div class="accordion" id="accordiondatos">
 	<div class="card">
@@ -85,7 +148,7 @@
 										</div>
 							</div>
 
-				<!-- ------------------------------------ SERVICIOS -------------------------------------------------------------- -->
+				<!-- ----------------------- SERVICIOS -------------------------------------------------------------- -->
 
 							<div class="col-lg-3">
 
@@ -94,7 +157,7 @@
 										        <div class="card-header" id="headingTres">
 										          <h5 class="mb-0">
 										            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseTres" aria-expanded="true" aria-controls="collapseTres">
-										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Servicios</p></small>
+										                <p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Servicios</p>
 										            </button>
 										            <br>
 										            <div class="row">
@@ -147,14 +210,14 @@
 									      	</div>
 										</div>
 
-										<!-- ---------------------------------- LISTA DE HOTELES ---------------------------------------- -->
+										<!-- ------------------ LISTA DE HOTELES ---------------------------------------- -->
 
 								   		<div class="accordion" id="accordionExample4">
 											<div class="card">
 										        <div class="card-header" id="headingCuatro">
 										          <h5 class="mb-0">
 										            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseCuatro" aria-expanded="true" aria-controls="collapseCuatro">
-										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Hoteles</p></small>
+										                <p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Hoteles</p>
 										            </button>
 										            <br>
 										            <div class="row">
@@ -210,14 +273,14 @@
 							</div>
 
 							<div class="col-lg-3">
-										<!-- ------------------------------LISTA DE BODEGAS --------------------------------------- -->
+										<!-- -----------------------LISTA DE BODEGAS --------------------------------------- -->
 
 										<div class="accordion" id="accordionExample2"> <!--Acordeon -->
 									        <div class="card">
 										        <div class="card-header" id="headingTwo">
 										          <h5 class="mb-0">
 										            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#colapsobodega" aria-expanded="true" aria-controls="colapsobodega">
-										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Bodegas</p></small>
+										                <p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Bodegas</p>
 										            </button>
 										            <br>
 										            <div class="row">
@@ -271,14 +334,14 @@
 									      	</div>	<!--fin de card -->
 										</div><!--fin de acordeon -->
 
-										<!-- ------------------------------- LISTA DE CONSUMISIONES ---------------------------------- -->
+										<!-- ------------------ LISTA DE CONSUMISIONES ---------------------------------- -->
 
 										<div class="accordion" id="accordionExample1">
 											<div class="card">
 										        <div class="card-header" id="headingUno">
 										          <h5 class="mb-0">
 										            <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#collapseDos" aria-expanded="true" aria-controls="collapseDos">
-										                <small><p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Consumos</p></small>
+										                <p class="btn btn-info btn-block mensajeservidor text-dark">Lista de Consumos</p>
 										            </button>
 										            <br>
 										            <div class="row">
@@ -333,7 +396,7 @@
 							</div>
 
 							
-		<!-- ------------------------------------------------- CONTACTOS DE CLIENTES -------------------------------------------------- -->
+		<!-- --------------------------------------- CONTACTOS DE CLIENTES ----------------------------------------- -->
 							
 
 							<div class="col-lg-4">
@@ -360,6 +423,8 @@
 														<div class="col-sm-8">
 												            <input type="Text" id="idclienteelegido"  width="50" style="display:none">
 
+															<input type="text" id="nombreclienteelegido" class="form-control" placeholder="nombre cliente" disabled  value="<?php  if(isset($nombreclienteelegido)) echo $nombreclienteelegido ?>" ><span id="faltanombrecliente" style="display:none">Ingrese un nombre</span>
+															
 															<input type="email" id="emailclienteelegido" class="form-control" placeholder="email cliente" disabled  value="<?php  if(isset($emailclienteelegido)) echo $emailclienteelegido ?>" ><span id="faltaemail" style="display:none">Ingrese un email</span>
 														</div>
 														<div class="col-sm-2 offset-sm-2">
@@ -391,6 +456,7 @@
 							                                			<th scope="col"></th>
 										                                <th scope="col">#</th>
 										                                <th scope="col">email</th>
+										                                <th scope="col">nombre</th>
 										                                                             
 										                            </tr>
 										                        </thead>
@@ -404,11 +470,8 @@
 										    </div><!--fin de la tarjeta -->
 									    </div><!-- fin del acordeon -->
 
-										
 
-
-
-				<!--  -------------------------------------------- LISTAS DE CONTACTOS -------------------------------------------->
+				<!--  ------------------------------------- LISTAS DE CONTACTOS ------------------------------------->
 										
 										<div class="accordion" id="idacorcontacto"> <!--Acordeon -->
 									        <div class="card">
@@ -488,12 +551,13 @@
 </div>
 
 
-
 <div class="row justify-content-center">
-	<div class="col-sm-8">
+	<div class="col-sm-12">
 		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
 	</div>
-	<div class="col-sm-4">
+</div>
+<div class="row justify-content-center">
+	<div class="col-sm-12">
 		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit" disabled><small>Agregar Item</small></button>
 		<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
 	</div>
@@ -501,19 +565,19 @@
 <br>
 <!-- --------------------------------------------- FECHAS DE CONSULTA Y BOTON VER---------------------------------- -->
 <div class="row justify-content-center">
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 		<input type="text" id="fechaactualver1" value="" placeholder="fecha" class="form-control">
 		<div id="calendariover1">
 
 		</div>
 	</div>
-	<div class="col-sm-1">
+	<div class="col-sm-2">
 		<input type="text" id="fechaactualver2" value="" placeholder="fecha" class="form-control">
 		<div id="calendariover2">
 
 		</div>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-4">
 		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
 	</div>
 	<div class="col-sm-4">
@@ -530,8 +594,14 @@
             	</button>
           </h5>
 		</div>
-		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
 		<!-- ------------------------------------------- CAMPOS INFO RESERVA  ----------------------------------------- -->
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+
 
 
 		<div id="collapseGeneralReserva" class="collapse" aria-labelledby="headingGeneralReserva" data-parent="#accordionreserva">
@@ -575,6 +645,9 @@
 										<input type="Text" id="emailclienteenviar" style="display: none;color:blue;" align="middle" disabled> Email cliente 
 									</div>
 									<div class="col-xs-1">
+										<input type="Text" id="nombreclienteenviar" style="display: none;color:blue;" align="middle" disabled> Nombre cliente 
+									</div>
+									<div class="col-xs-1">
 										<input type="Text" id="id_clientemodificado" style="display: none" align="middle" disabled> id cliente
 									</div>
 									
@@ -600,40 +673,18 @@
 
 						<div class="row justify-content-center">
 							<div class="col-xs-1">
-								<button class="btn btn-success" id="confirmado"  style="display: none" disabled>Confirmado</button>
+								<button class="btn btn-success btn-block" id="confirmado"  style="display: none" disabled>Confirmar</button>
 							</div>
 							<div class="col-xs-1">
-								<button class="btn btn-secondary" id="disponible"  style="display: none" disabled>Disponible</button>
+								<button class="btn btn-secondary btn-block" id="disponible"  style="display: none" disabled>Disponible</button>
 							</div>
 							<div class="col-xs-1">
-								<button class="btn btn-danger" id="cancelado"  style="display: none" disabled>Cancelado</button>
+								<button class="btn btn-danger btn-block" id="cancelado"  style="display: none" disabled>Cancelar</button>
 							</div>
 							<div class="col-xs-1">
-								<button class="btn btn-info" id="emailcliente"  style="display: none" disabled>Enviar mail a Cliente</button>
+								<button class="btn btn-info btn-block" id="emailcliente"  style="display: none" disabled>Enviar mail a Cliente</button>
 							</div>
-							<div class="col-xs-1">
-								<input type="text" id="fechaactualdesde" style="display: none" value="" placeholder="desde fecha" class="form-control">
-								<div id="calendariodesde">
-
-								</div>
-							</div>
-							<div class="col-xs-1">
-								<input type="text" id="fechaactualhasta" style="display: none" value="" placeholder="hasta fecha" class="form-control">
-								<div id="calendariohasta">
-
-								</div>
-							</div>
-							<div class="col-xs-1">
-								<div id="relojemail" class="input-group clockpicker">
-								    <input id="horaemail" type="text" placeholder="hora" class="form-control" value="">
-								    <span class="input-group-addon">
-								        <span class="glyphicon glyphicon-time"></span>
-								    </span>
-								</div>
-							</div>
-							<div class="col-xs-1">
-								<button class="btn btn-info" id="emailbodega" style="display: none" disabled>Enviar mail a Bodega</button>
-							</div>
+							
 						</div>
 
 						<div id="botones" style="display: none">
@@ -670,27 +721,23 @@
 						</div>
 						
 						</div>
-						<!-- ------------------------------------------- CAMPOS INVISIBLES ----------------------------------------- -->
-
-						<div class="row">
-							
-							<input type="Text" id="emailbodegaenviar" style="display: none" disabled>
-							<input type="Text" id="estadoenviar" style="display: none" disabled>
+						<!-- ------------------------------------ CAMPOS INVISIBLES ---------------------------------- -->
+						<div class="row">	
+							<input type="Text" style="display: none" id="emailbodegaenviar" >
+							<input type="Text" style="display: none" id="estadoenviar" >
 							<!-- ------------------------- texto para el email ------------------------- -->
-							<input type="Text" id="titemailc" style="display: none;" disabled>
-							<input type="Text" id="subtitemailc" style="display: none" disabled>
-							<input type="Text" id="cuerpoemailc" style="display: none" disabled>
-							<input type="Text" id="titemailb" style="display: none" disabled>
-							<input type="Text" id="subtitemailb" style="display: none" disabled>
-							<input type="Text" id="cuerpoemailb" style="display: none" disabled>
-							<input type="Text" id="saludoemailb" style="display: none" disabled>
-							<input type="Text" id="bodegareserva" style="display: none" disabled>
-							<input type="Text" id="hotelreserva" style="display: none" disabled>
-							<input type="Text" id="fechareserva" style="display: none" disabled>
-							<input type="Text" id="horareserva" style="display: none" disabled>
-							<input type="Text" id="cantidadpersonasreserva" style="display: none" disabled>
-							<input type="Text" id="emailcopia" style="display: none" disabled>
+							<input type="Text" style="display: none" id="titemailc" >
+							<input type="Text" style="display: none" id="subtitemailc" >
+							<input type="Text" style="display: none" id="cuerpoemailc" >
+	
+							<input type="Text" style="display: none" id="bodegareserva">
+							<input type="Text" style="display: none" id="hotelreserva" >
+							<input type="Text" style="display: none" id="fechareserva" >
+							<input type="Text" style="display: none" id="horareserva" >
+							<input type="Text" style="display: none" id="cantidadpersonasreserva" >
+							<input type="Text" style="display: none" id="emailcopia">
 						</div>
+						
 						<!-- -------------------------------- FIN CAMPOS INVISIBLES --------------------------------- -->
 
 						<div class="row justify-content-center">
@@ -737,6 +784,8 @@
 
 						                <th scope="col">Cliente</th>
 
+						                <th scope="col">Nombre</th>
+
 						                <th scope="col">Monto</th>
 
 						                <th scope="col">Cantidad</th>
@@ -775,6 +824,8 @@
             </div>
         </div>
     </div>
+
+    
 </div>
 
 <script>
@@ -788,9 +839,11 @@
 			$("#contactobodegaelegido").val("");
 		});
 
+
 		$("#vaciarcliente").click(function(){ //acordeon de hoteles
 			$("#idclienteelegido").val("");
 			$("#emailclienteelegido").val("");
+			$("#nombreclienteelegido").val("");
 		});
 
 		$("#vaciarhotel").click(function(){ //acordeon de hoteles

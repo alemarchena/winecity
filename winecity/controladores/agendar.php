@@ -30,6 +30,7 @@
 
     $id_cliente = $_POST['id_cliente'];
     $emailcliente = $_POST['emailcliente'];
+    $nombrecliente = $_POST['nombrecliente'];
 
     $id_consumision = $_POST['id_consumision'];
     $id_servicio = $_POST['id_servicio'];
