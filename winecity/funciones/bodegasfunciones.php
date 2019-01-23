@@ -70,7 +70,10 @@
 
     {
         $("#idbodegaelegida").val(id);
+        $("#emailbodegaelegida").val(email);
+        $("#emailbodegatraslada").val(email);
         $("#nombrebodegaelegida").val(nombre);
+        validaremailbodega();
         $("#colapsobodega").collapse("hide");
     }
 
@@ -125,7 +128,17 @@
                 alert("Error en la consulta.");
             }
         });
-    }       
+    }     
+
+    function validaremailbodega()
+    {
+        if($("#emailbodegatraslada").val() == "")
+        {
+            document.getElementById("emailbodegatraslada").style.backgroundColor = "red";
+        }else{
+            document.getElementById("emailbodegatraslada").style.backgroundColor = "#81F79F";
+        }
+    }  
 </script>
 
 <script>

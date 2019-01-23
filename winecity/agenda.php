@@ -15,42 +15,115 @@
 
 			<div id="collapseenvioemail" class="collapse" aria-labelledby="headingenvioemail" data-parent="#accordionreserva">
 	            <div class="card-body">
-	            	<!-- MANSA RESERVA -->
+	            	<!-- MANSO EMAIL -->
+	            	<div class="borde border border-success">
+		            	<div class="row my-3">
+			                <div class="col-sm-6"> <!-- panel izquierdo -->
+			                    <br>
+			                    <p class="mensajeservidor">Email a la bodega</p>
+			                    <input type="text" id="emailcopiavpb" name="emailcopiavpb" placeholder="email con copia" class="form-control" maxlength="100" value="wgalimberti@winecity.com.ar" >
+
+			                    <input type="text" id="titemailbvpb" name="titemailbvpb" placeholder="Titulo email" class="form-control" maxlength="100" value="Solicitud" >
+
+			                    <input type="text" id="subtitemailbvpb" name="subtitemailbvpb" placeholder="Sub Titulo email" class="form-control" maxlength="100" value="Reserva" >
+			                   	
+			                </div>
+
+		                   	<div class="col-sm-6"> <!-- panel derecho-->
+			                    <p class="mensajeservidor">Vista previa de Email a la bodega</p>
+			                    <div class="form-group green-border-focus">
+				                        <input type="text" placeholder="Titulo del mensaje" id="titulovistapreviabodega" disabled="">
+
+				                        <input type="text" placeholder="Sub Titulo del mensaje" id="subtitulovistapreviabodega" disabled="">
+				                        
+				                        <textarea class="form-control" placeholder="Mensaje vista previa" id="vistapreviabodega" rows="3" maxlength="255" ></textarea>
+				                    </div>
+			                </div>
+			            </div>
+			            <div class="row my-3">
+			                <div class="col-sm-6">
+			            		<input type="text" id="saludoemailbvpb" name="saludoemailbvpb" placeholder="Saludo del mensaje para bodega" class="form-control" maxlength="255" value=" Aguardo su confirmación, por favor responder a wgalimberti@winecity.com.ar" >
+			            	</div>
+			            	<div class="col-sm-2">
+					    		<label class="w-100">email de la bodega</label>
+							</div>	
+			            	<div class="col-sm-4">
+	                   			<input class="w-100" type="text" id="emailbodegatraslada" value="" disabled="">
+			            	</div>
+		            	</div>
+			            <div class="row my-3">
+							<div class="col-sm-8">
+								<button class="btn btn-info btn-block" id="vistaprevia">Vista previa</button>
+							</div>
+							<div class="col-sm-4">
+								<button class="btn btn-info btn-block" id="emailbodega">Enviar mail a Bodega</button>
+							</div>
+					    </div>
+					</div>
+					<div class="row"></div>
+
 					<div class="border border-success">
-					    <div class="row">
-							<input type="Text" id="emailbodegaenviar" >
-							<input type="Text" id="estadoenviar" >
-							<!-- ------------------------- texto para el email ------------------------- -->
-							
-							<input type="Text" id="titemailb" >
-							<input type="Text" id="subtitemailb" >
-							<input type="Text" id="cuerpoemailb" >
-
-
-
-							<input type="Text" id="saludoemailb" >
-
-							<input type="Text" id="bodegamen">
-							<input type="Text" id="hotelmen" >
-							
-							
-							<input type="Text" id="cantidadpersonasreserva" >
-							<input type="Text" id="emailcopia">
-						</div>
-					    <div class="row">
-					    	<div class="col-xs-1">
-								<input type="text" id="fechaactualdesde" value="" placeholder="desde fecha" class="form-control">
+						<input class="btn-block" type="text" id="parte1" name="parte1" placeholder="Solicito por favor una reserva" value ="Solicito por favor una reserva " style="display: none;">
+						<!-- ------------------------------  FILA 1 --------------------------------- -->
+						<div class="row">
+					    	<div class="col-sm-2">
+					    		<label>Fecha desde</label>
+							</div>	
+							<div class="col-sm-2">
+					    		<label>Fecha hasta</label>
+							</div>
+							<div class="col-sm-8">
+					    		<label>Rango de fechas</label>
+							</div>	
+					    </div>
+						<div class="row">
+                   			
+                   			<div class="col-sm-2">
+								<input type="text" id="fechaactualdesde" value="" placeholder="desde" class="form-control">
 								<div id="calendariodesde">
 
 								</div>
 							</div>
-							<div class="col-xs-1">
-								<input type="text" id="fechaactualhasta" value="" placeholder="hasta fecha" class="form-control">
+							<div class="col-sm-2">
+								<input type="text" id="fechaactualhasta" value="" placeholder="hasta" class="form-control">
 								<div id="calendariohasta">
 
 								</div>
 							</div>
-							<div class="col-xs-1">
+							<div class="col-sm-4">
+					   			<button class="btn btn-block" style="background-color: grey;" id="botonparte2">entre</button>
+					   		</div>
+					   		<div class="col-sm-4">
+					   			<button class="btn btn-block" style="background-color: grey;" id="botonparte3">para</button>
+					   		</div>
+					    </div>
+						<div class="row my-3">
+
+							<input type="text" id="parte2" name="parte2" style="display: none;">
+							<!-- ------------------------------  FILA 2 --------------------------------- -->
+						    <input type="text" id="parte3" name="parte3" placeholder="para" value=" para "style="display: none;">
+						    <input type="text" id="parte4" name="parte4" placeholder="a nombre de winecity por" value=" a nombre de Wine City por " style="display: none;">
+							<input type="text" id="parte5" name="parte5" placeholder=" personas " value=" personas " style="display: none;">
+				
+							<input type="text" id="parte7" name="parte7" placeholder="a nombre de " value =" a nombre de " value=" procedentes de " style="display: none;">
+							<input type="text" id="parte8" name="parte8" placeholder="paga " value=" paga " style="display: none;">
+							<input type="text" id="cuerpoemailbvpb" style="display: none">
+						</div>
+
+						<div class="row">
+					    	<div class="col-sm-2">
+					    		<label>Hora reserva</label>
+							</div>	
+							<div class="col-sm-2">
+					    		<label>Procedencia</label>
+							</div>
+							<div class="col-sm-8">
+					    		<label>Quien paga</label>
+							</div>	
+					    </div>
+						<div class="row">
+
+	                   		<div class="col-sm-2">
 								<div id="relojemail" class="input-group clockpicker">
 								    <input id="horaemail" type="text" placeholder="hora" class="form-control" value="">
 								    <span class="input-group-addon">
@@ -58,11 +131,46 @@
 								    </span>
 								</div>
 							</div>
-							<div class="col-xs-1">
-								<button class="btn btn-info" id="emailbodega">Enviar mail a Bodega</button>
+	                   		<div class="col-sm-2">
+	                   			<input type="text" id="parte6" name="parte6" placeholder="procedencia" value="procedencia   ">
 							</div>
+	                   		<div class="col-sm-4">
+					   			<button class="btn btn-block" style="background-color: grey;" id="botonpagapax">Pax</button>
+					   		</div>
+					   		<div class="col-sm-4">
+					   			<button class="btn btn-block" style="background-color: grey;" id="botonpagaagencia">Agencia</button>
+					   		</div>
+				   		</div>
+	                   		
+	                   	</div>
+
+						<!-- ------------------------------  FILA 3 --------------------------------- -->
+						<div class="row">
+					    	<div class="col-sm-4">
+					    		<label>Cantidad de personas</label>
+							</div>	
+							<div class="col-sm-4">
+					    		<label>Consumo</label>
+							</div>
+							<div class="col-sm-4">
+					    		<label>Nombre del cliente</label>
+							</div>	
 					    </div>
+					    <div class="row">
+					    	<div class="col-sm-4">
+	                   			<input class="w-100" type="text" id="personastraslado" value="">
+							</div>	
+							<div class="col-sm-4">
+	                   			<input class="w-100" type="text" id="consumotraslado" value="" disabled="">
+							</div>
+							<div class="col-sm-4">
+	                   			<input class="w-100" type="text" id="clientetraslado" value="" disabled="">
+							</div>	
+					    </div>
+					    
 				    </div>
+
+
 			    </div>
 		    </div>
 	    </div>
@@ -79,6 +187,11 @@
 		</div>
 		<div id="collapseGeneralDatos" class="collapse" aria-labelledby="headingGeneralDatos" data-parent="#accordiondatos">
             <div class="card-body">
+            	<div class="row justify-content-center">
+					<div class="col-sm-12">
+						<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
+					</div>
+				</div>
             	<!-- MANSO JUMBOTRON ----->
 				<div class="jumbotron jumbotron-fluid">
 
@@ -303,7 +416,9 @@
 										                    <div class="offset-md-2 col-md-2">
 										                        <input type="text" id="idbodega" name="idbodega" placeholder="Id" class="form-control"  value="<?php  if(isset($idbodega)) echo $idbodega ?>" >
 										                    </div>
-										                    
+										                    <div class="offset-md-2 col-md-2">
+										                        <input type="text" id="emailbodegaelegida" name="idbodega" placeholder="Id" class="form-control"  value="<?php  if(isset($emailbodegaelegida)) echo $emailbodegaelegida ?>" >
+										                    </div>
 										                    <div class="col-md-4">
 										                        <form class="form-signin" action="">
 										                            <button type="button"  class="btn btn-md btn-info btn-block" id="consultabodegas_seleccionable"><small>Ver</small></button>
@@ -345,14 +460,14 @@
 										            </button>
 										            <br>
 										            <div class="row">
-								  						<div class="col-sm-8">
+															<div class="col-sm-8">
 												            <input type="Text" id="idconsumisionelegida" style="display:none">
-									  						<small><input type="Text" id="nombreconsumisionelegida" class="form-control" placeholder="consumo elegido" disabled></small>
-									  					</div>
-								  						<div class="col-sm-2 offset-sm-2">
-								  							<input id="vaciarconsumisiones" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
-								  						</div>
-							  						</div>
+																<small><input type="Text" id="nombreconsumisionelegida" class="form-control" placeholder="consumo elegido" disabled></small>
+															</div>
+															<div class="col-sm-2 offset-sm-2">
+																<input id="vaciarconsumisiones" value = '&#128396;' type='button' class = 'btn btn-sm btn-info'>
+															</div>
+														</div>
 										          </h5>
 										        </div>
 
@@ -391,8 +506,10 @@
 										            <!-- FIN DE MOSTRAR EN LA TARJETA-->
 										            </div>
 										        </div>
-									      	</div>
+										  	</div>
 										</div>
+										
+
 							</div>
 
 							
@@ -545,45 +662,26 @@
 						</div> <!--fin row dentro del jumbotron -->
 					</div>
             	<!-- FIN MANSO JUMBOTRON -->
+
+				
+				<div class="row justify-content-center">
+					<div class="col-sm-12">
+						<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit" disabled><small>Agregar Item</small></button>
+						<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
+					</div>
+				</div>
+
             </div>
         </div>
 	</div>
+
 </div>
 
 
-<div class="row justify-content-center">
-	<div class="col-sm-12">
-		<button class="btn btn-info btn-lg btn-block" id="nuevasreservas" action="" type="submit"><small>Nueva Reserva</small></button>
-	</div>
-</div>
-<div class="row justify-content-center">
-	<div class="col-sm-12">
-		<button class="btn btn-info btn-lg btn-block" id="agregarreserva" action="" type="submit" disabled><small>Agregar Item</small></button>
-		<p id="mensaje" style="display: none" class='alert alert-warning mensajeservidor' role='alert'></p>
-	</div>
-</div>
+
 <br>
 <!-- --------------------------------------------- FECHAS DE CONSULTA Y BOTON VER---------------------------------- -->
-<div class="row justify-content-center">
-	<div class="col-sm-2">
-		<input type="text" id="fechaactualver1" value="" placeholder="fecha" class="form-control">
-		<div id="calendariover1">
 
-		</div>
-	</div>
-	<div class="col-sm-2">
-		<input type="text" id="fechaactualver2" value="" placeholder="fecha" class="form-control">
-		<div id="calendariover2">
-
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
-	</div>
-	<div class="col-sm-4">
-		<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit" disabled><small>Guardar Reserva</small></button>
-	</div>
-</div>
 
 <div class="accordion" id="accordionreserva">
 	<div class="card">
@@ -606,6 +704,26 @@
 
 		<div id="collapseGeneralReserva" class="collapse" aria-labelledby="headingGeneralReserva" data-parent="#accordionreserva">
             <div class="card-body">
+            	<div class="row justify-content-center">
+					<div class="col-sm-2">
+						<input type="text" id="fechaactualver1" value="" placeholder="fecha" class="form-control">
+						<div id="calendariover1">
+
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<input type="text" id="fechaactualver2" value="" placeholder="fecha" class="form-control">
+						<div id="calendariover2">
+
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<button class="btn btn-success btn-lg btn-block" id="veragenda" action="" type="submit"><small>Ver Reservas</small></button>
+					</div>
+					<div class="col-sm-4">
+						<button class="btn btn-primary btn-lg btn-block" id="agendar" action="" type="submit" disabled><small>Guardar Reserva</small></button>
+					</div>
+				</div>
             	<!-- MANSA RESERVA -->
 				<div class="border border-success">
 					<small><h5 class="mensajeservidor">RESERVAS</h5></small>
@@ -829,11 +947,10 @@
 </div>
 
 <script>
+	$("#tarjetaconsumisiones").load("tarjetaconsumisiones.php");
 
 	$(document).ready(function()
 	{
-
-
 		$("#vaciarcontacto").click(function(){ //acordeon de hoteles
 			$("#idcontactobodegaelegido").val("");
 			$("#contactobodegaelegido").val("");
@@ -978,6 +1095,82 @@
 			$('#fechaactualhasta').val( formatearfecha( $('#fechaactualhasta').val() )   );
 			
     	});
+
+    	$("#vistaprevia").click(function(){
+        	vistapreviabodega();
+    	});
+
+    	/*cuando elige entre fechas*/
+    	$("#botonparte2").click(function(){
+    		$("#parte2").val(" entre fechas " + $("#fechaactualdesde").val() + " y " + $("#fechaactualhasta").val() + " ");
+    		document.getElementById("fechaactualhasta").style.display = "block";
+
+    		document.getElementById("botonparte2").style.backgroundColor = "#81F79F";
+    		document.getElementById("botonparte3").style.backgroundColor = "grey";
+
+    	});
+    	
+    	/*cuando elige desde fecha*/
+    	$("#botonparte3").click(function(){
+    		$("#parte2").val(" para el " + $("#fechaactualdesde").val() + " ");
+    		document.getElementById("fechaactualhasta").style.display = "none";
+    		document.getElementById("botonparte2").style.backgroundColor = "grey";
+    		document.getElementById("botonparte3").style.backgroundColor = "#81F79F";
+    	});
+
+		$("#botonpagapax").click(function(){
+    		$("#parte8").val(" paga pax");
+    		document.getElementById("botonpagapax").style.backgroundColor = "#81F79F";
+    		document.getElementById("botonpagaagencia").style.backgroundColor = "grey";
+    	});
+    	
+    	$("#botonpagaagencia").click(function(){
+    		$("#parte8").val(" paga agencia");
+    		document.getElementById("botonpagaagencia").style.backgroundColor = "#81F79F";
+    		document.getElementById("botonpagapax").style.backgroundColor = "grey";
+    	});
+
+		if($("#emailbodegatraslada").val() == "")
+		{
+    		document.getElementById("emailbodegatraslada").style.backgroundColor = "red";
+    	}else{
+    		document.getElementById("emailbodegatraslada").style.backgroundColor = "#81F79F";
+    	}
+    	
+		$("#personastraslado").focusout(function(){
+			if($("#personastraslado").val() == "")
+			{
+	    		document.getElementById("personastraslado").style.backgroundColor = "red";
+	    	}else{
+	    		document.getElementById("personastraslado").style.backgroundColor = "#81F79F";
+	    	}
+		});
+    	
+
+    	if($("#personastraslado").val() == "")
+		{
+    		document.getElementById("personastraslado").style.backgroundColor = "red";
+    	}else{
+    		document.getElementById("personastraslado").style.backgroundColor = "#81F79F";
+    	}
+
+
+    	if($("#emailbodegatraslada").val() == "")
+		{
+    		document.getElementById("consumotraslado").style.backgroundColor = "red";
+    	}else{
+    		document.getElementById("consumotraslado").style.backgroundColor = "#81F79F";
+    	}
+    	if($("#clientetraslado").val() == "")
+		{
+    		document.getElementById("clientetraslado").style.backgroundColor = "red";
+    	}else{
+    		document.getElementById("clientetraslado").style.backgroundColor = "#81F79F";
+    	}
+
+    	validacliente();
+		validaconsumo();
+    	validaremailbodega();
 	});
 
 </script>

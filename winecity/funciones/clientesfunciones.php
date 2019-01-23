@@ -119,9 +119,12 @@
 
 
         $("#nombreclienteelegido").val(nombre);//campo nombre en los datos de agenda
+        $("#clientetraslado").val(nombre);//campo nombre en los datos de agenda
+        
         $("#emailclienteelegido").val(email);//campo email en los datos de agenda
         $("#emailclienteenviar").val(email); //campo email en la agenda.
 
+        validarcliente();
 
         $("#nombreclienteelegido").prop("disabled", true);
         $("#emailclienteelegido").prop("disabled", true);
@@ -229,7 +232,15 @@
 
     }       
 
-   
+    function validarcliente()
+    {
+        if($("#clientetraslado").val() == "")
+        {
+            document.getElementById("clientetraslado").style.backgroundColor = "red";
+        }else{
+            document.getElementById("clientetraslado").style.backgroundColor = "#81F79F";
+        }
+    }  
 
 </script>
 

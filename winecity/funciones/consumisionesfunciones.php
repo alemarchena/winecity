@@ -178,24 +178,19 @@
 
      function seleccionar_consumision(id,nombre){
 
-         
-
-        
-
         $("#idconsumisionelegida").val(id);
 
         $("#nombreconsumisionelegida").val(nombre);
-
+        $("#consumotraslado").val(nombre);
+    
+        validarconsumo();
+        
         $("#collapseDos").collapse("hide");
-
     }
 
 
 
     function noseleccionar_consumision(id,nombre){
-
-
-
     }
 
     function consulta_consumisiones(tipo)
@@ -270,6 +265,15 @@
 
     }
 
+    function validarconsumo()
+    {
+        if($("#consumotraslado").val() == "")
+        {
+            document.getElementById("consumotraslado").style.backgroundColor = "red";
+        }else{
+            document.getElementById("consumotraslado").style.backgroundColor = "#81F79F";
+        }
+    }  
 </script> 
 
 
