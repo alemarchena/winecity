@@ -69,7 +69,7 @@
 
     function eliminarconsumision(id,nombre,idempresapasado,idtipoempresapasado,tipoconsulta)
     {
-        var opcion = confirm("Desea Eliminar el consumo id:" + id + "-" + nombre + " ?");
+        var opcion = confirm("Desea Eliminar el consumo ?");
         var idtipoempresa = idtipoempresapasado;
         var idempresa = idempresapasado;
         var tipo = "baja";
@@ -96,6 +96,13 @@
                 alert('Error al procesar la solicitud.');
             });
         }
+        
+        $("#accordionExample1").collapse("hide");
+        $("#accordionExampleabm").collapse("hide");
+        $("#accordionExample").collapse("hide");
+
+/*
+
 
         if(tipoconsulta=="abm")
         {  
@@ -106,6 +113,7 @@
 
             consulta_consumisiones("seleccionable","consultadeagendabodega",1,0);
         }
+        */
     }
 
     
@@ -138,14 +146,9 @@
     }
 
 
-
-    function noseleccionar_consumision(id,nombre,idempresa,idtipoempresa){
-    }
-
     function consulta_consumisiones(tipo,tipoconsultaenviado,idtipoempresaenviado,idempresaenviado)
-
     {
-
+       
         $('#tabla_consumos tr').not(':first').remove(); //elimina todas las filas menos la primera
 
         var idempresa = idempresaenviado;
@@ -158,76 +161,75 @@
         var preciopublico = 0;
         var vigenciadesde = "";
         var vigenciahasta = "";
- 
 
-        $.ajax({
+            $.ajax({
+     
+                url:"controladores/consultaconsumisiones.php",
 
-            url:"controladores/consultaconsumisiones.php",
+                data: {id:id,tipo:tipoconsulta,nombre:"",idempresa:idempresa,idtipoempresa:idtipoempresa,precioagencia:precioagencia,preciopublico:preciopublico,vigenciadesde:vigenciadesde,vigenciahasta:vigenciahasta},
 
-            data: {id:id,tipo:tipoconsulta,nombre:"",idempresa:idempresa,idtipoempresa:idtipoempresa,precioagencia:precioagencia,preciopublico:preciopublico,vigenciadesde:vigenciadesde,vigenciahasta:vigenciahasta},
-
-            type: "post",
-
-
-
-            success:function(data){
+                type: "post",
 
 
 
-                if(data!="consultavacia")
-
-                {
-                    //alert("consulta:" + data);
-                    datadecodificado = JSON.parse(data);
+                success:function(data){
 
 
 
-                    $.each(datadecodificado,function(key,value)
+                    if(data!="consultavacia")
 
                     {
-                        vernombre = datadecodificado[key].nombre_bodega;
-                        if(vernombre==null){ vernombre = "";}
+                        //alert("consulta:" + data);
+                        datadecodificado = JSON.parse(data);
 
-                        if(tipo==="seleccionable")
+
+
+                        $.each(datadecodificado,function(key,value)
+
                         {
-                           var fecdesde= conviertefecha(datadecodificado[key].vigenciadesde);
-                           var fechasta= conviertefecha(datadecodificado[key].vigenciahasta);
+                            vernombre = datadecodificado[key].nombre_bodega;
+                            if(vernombre==null){ vernombre = "";}
 
-                            if(fecdesde=="Invalid Date"){fecdesde=""}
-                            if(fechasta=="Invalid Date"){fechasta=""}
-                            tipoconsulta = "seleccionable";
+                            if(tipo==="seleccionable")
+                            {
+                               var fecdesde= conviertefecha(datadecodificado[key].vigenciadesde);
+                               var fechasta= conviertefecha(datadecodificado[key].vigenciahasta);
 
-                            var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\",\"" + tipoconsulta + "\")' /></td><td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-info' onclick='seleccionar_consumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision + "</td><td>"+ vernombre +"</td><td>"+ datadecodificado[key].precioagencia +"</td><td>"+ datadecodificado[key].preciopublico +"</td>><td>"+ fecdesde +"</td>><td>"+ fechasta +"</td></tr>";
-                        
+                                if(fecdesde=="Invalid Date"){fecdesde=""}
+                                if(fechasta=="Invalid Date"){fechasta=""}
+                                tipoconsulta = "seleccionable";
 
-                        }else{
-                            tipoconsulta = "abm";
+                                var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\",\"" + tipoconsulta + "\")' /></td><td><input type='button' value = '&#10004;' class = 'btn btn-sm btn-info' onclick='seleccionar_consumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision + "</td><td>"+ vernombre +"</td><td>"+ datadecodificado[key].precioagencia +"</td><td>"+ datadecodificado[key].preciopublico +"</td>><td>"+ fecdesde +"</td>><td>"+ fechasta +"</td></tr>";
+                            
 
-                            var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\",\"" + tipoconsulta + "\")' /></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision+"</td></tr>";
-                        
+                            }else{
+                                tipoconsulta = "abm";
 
-                        }
+                                var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombre_consumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\",\"" + tipoconsulta + "\")' /></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarconsumision(\"" +datadecodificado[key].id_consumision+ "\",\"" +datadecodificado[key].nombreconsumision + "\",\"" +datadecodificado[key].id_empresa + "\",\"" +datadecodificado[key].id_tipoempresa + "\")' /></td><td>"+datadecodificado[key].id_consumision+"</td><td>"+datadecodificado[key].nombreconsumision+"</td></tr>";
+                            
 
-                        $("#tabla_consumos").append(fila);
+                            }
 
-                    });
+                            $("#tabla_consumos").append(fila);
+
+                        });
+
+                    }
+
+                },
+
+
+
+                error: function(e)
+
+                {
+
+                    alert("Error en la consulta.");
 
                 }
-
-            },
-
-
-
-            error: function(e)
-
-            {
-
-                alert("Error en la consulta.");
-
-            }
-
-        });
-
+               
+            });
+        
     }
 
     function validarconsumo()
