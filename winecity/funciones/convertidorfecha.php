@@ -13,4 +13,5 @@ function conviertefecha(fecharecibidatexto)
 		return fecha;
 }
 
+
 </script>

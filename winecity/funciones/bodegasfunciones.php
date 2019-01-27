@@ -12,7 +12,7 @@
         if($( "#nombrenuevo" ).val().length<=0) 
         {
             $("#faltanombre").css("display","inline").fadeOut(2000);
-            alert("Escriba un nombre");
+            //alert("Escriba un nombre");
         }else{
             var id = $("#id").val();
             var nombre = $("#nombrenuevo").val();
@@ -27,8 +27,7 @@
                 //console.log("Data devolvio:" + data);
                 if(data!="consultavacia")
                 {
-                    consulta("abm");
-                    nuevo();
+                    
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
                 }else{
                     alert("Error al crear el registro");
@@ -40,8 +39,10 @@
             }
             });
 
-            $("#collapseTwo").collapse("show");
+            //$("#collapseTwo").collapse("show");
         }
+        consulta("abm");
+        nuevo();
     }
 
     function eliminarbodega(id,nombre,email,telefono)
@@ -54,7 +55,6 @@
                 type: "post",                     
                 success:function(data)
                 {
-                    consulta("abm");
                 }
             })
 
@@ -64,6 +64,8 @@
 
             });
         }
+        consulta("abm");
+
     }
 
     function seleccionarbodegas(id,nombre,email,telefono)
@@ -73,8 +75,14 @@
         $("#emailbodegaelegida").val(email);
         $("#emailbodegatraslada").val(email);
         $("#nombrebodegaelegida").val(nombre);
-        validaremailbodega();
+
+        $("#idempresa").val(id);
+        $("#nombodegapaq").val(nombre);
+        
         $("#colapsobodega").collapse("hide");
+        $("#collapsePaq").collapse("show");
+
+        validaremailbodega();
     }
 
     function noseleccionarbodegas(id,nombre,email,telefono)
@@ -116,7 +124,7 @@
 
                         { //agrego botones BORRAR y EDITAR
 
-                            var fila = "<tr><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarbodega(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarbodega(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
+                            var fila = "<tr><td></span><input type='button' value = '&#10004;' class = 'btn btn-sm btn-info' onclick='seleccionarbodegas(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = '&#10008;' class = 'btn btn-sm btn-danger' onclick='eliminarbodega(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td><input type='button' value = '&#9998;' class = 'btn btn-sm btn-info' onclick='editarbodega(\"" +datadecodificado[key].id_bodega+ "\",\"" +datadecodificado[key].nombre_bodega+ "\",\"" +datadecodificado[key].email_bodega+ "\",\"" +datadecodificado[key].telefono_bodega+ "\")' /></td><td>"+datadecodificado[key].id_bodega+"</td><td>"+datadecodificado[key].nombre_bodega+"</td><td>"+datadecodificado[key].email_bodega+"</td><td>"+datadecodificado[key].telefono_bodega+"</td></tr>";
 
                         }
                         $("#tabla_bodegas").append(fila);
@@ -134,9 +142,12 @@
     {
         if($("#emailbodegatraslada").val() == "")
         {
-            document.getElementById("emailbodegatraslada").style.backgroundColor = "red";
+            document.getElementById("emailbodegatraslada").style.backgroundColor = "#FA5858";
+            document.getElementById("emailbodega").disabled = true;
+
         }else{
             document.getElementById("emailbodegatraslada").style.backgroundColor = "#81F79F";
+            document.getElementById("emailbodega").disabled = false;
         }
     }  
 </script>

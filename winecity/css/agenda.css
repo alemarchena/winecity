@@ -14,7 +14,8 @@ tr[class='Cancelado']{
 /*Estados posibles de las reservas, el color se usa en agenda*/
 
 body{
-	font-size: 14px;	
+	font-size: 18px;
+	line-height: 18px;	
 } 
 
 th{

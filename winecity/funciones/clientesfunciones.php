@@ -236,7 +236,7 @@
     {
         if($("#clientetraslado").val() == "")
         {
-            document.getElementById("clientetraslado").style.backgroundColor = "red";
+            document.getElementById("clientetraslado").style.backgroundColor = "#FA5858";
         }else{
             document.getElementById("clientetraslado").style.backgroundColor = "#81F79F";
         }

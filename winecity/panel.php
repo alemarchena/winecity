@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="col-sm-12">
-		<a class="btn btn-outline-info btn-block" id="consumisiones" ref="#">Consumisiones</a>
+		<a class="btn btn-outline-info btn-block" id="consumisiones" ref="#">Consumisiones sin bodega</a>
 	</div>
 
 	<div class="col-sm-12">

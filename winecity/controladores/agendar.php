@@ -42,7 +42,36 @@
 
     //echo "console.log($id)";
 
-   	if($tipo == "consulta")
+   	if($tipo == "consultadisponibilidad")
+    {
+        if($id=="")
+        {
+            $sql = "Select agendados.id_agendado, agendados.fechaagendado,agendados.cantidad,servicios.id_servicio,servicios.nombreservicio,clientes.id_cliente,clientes.nombrecliente,agendados.cantidad from ( ( (   agendados 
+            LEFT JOIN servicios ON agendados.id_servicio = servicios.id_servicio) 
+            LEFT JOIN clientes ON agendados.id_cliente = clientes.id_cliente) )  
+            where agendados.fechaagendado >= '" . $fechaagendadover1 . "' and agendados.fechaagendado <= '" . $fechaagendadover2 . "' order by fechaagendado,id_cliente asc";
+        }else
+        {
+            $sql = "Select * from agendados where id_agendado=" . $id;
+        }
+        
+        $resultado  = $cnx->query($sql);
+        
+        $data = array();
+        if($resultado)
+        {
+            $resultado->data_seek(0);
+            
+            while($fila = $resultado->fetch_assoc())
+            {
+                array_push($data,  $fila );
+            }
+            echo json_encode($data);
+        }else
+        {
+            echo "consultavacia";
+        }
+    }else if($tipo == "consulta")
     {
         if($id=="")
         {

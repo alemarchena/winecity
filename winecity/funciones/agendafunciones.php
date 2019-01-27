@@ -23,8 +23,7 @@ function actualizaremailclienteagenda(id_agendado,id_cliente){
             	if(data!="consultavacia")
                 {
                 	alert(data);
-            		nuevaagenda();
-            		consultaagenda();
+            		
             	}
             }
         })
@@ -35,6 +34,9 @@ function actualizaremailclienteagenda(id_agendado,id_cliente){
 
         });
 	}
+	nuevaagenda();
+	consultaagenda();
+	consultadisponibilidad();
 }
 
 function eliminarregistroagenda(id_agendado)
@@ -56,8 +58,7 @@ function eliminarregistroagenda(id_agendado)
             	if(data!="consultavacia")
                 {
                 	alert(data);
-            		nuevaagenda();
-            		consultaagenda();
+            		
             	}
             }
         })
@@ -68,12 +69,16 @@ function eliminarregistroagenda(id_agendado)
 
         });
 	}
+	nuevaagenda();
+	consultaagenda();
+	consultadisponibilidad();
 }
 
 function nuevaagenda()
 
 {
 	$('#tabla_agenda tr').not(':first').remove(); 
+	$('#tabla_disponibilidad tr').not(':first').remove(); 
 
 }
 
@@ -205,8 +210,7 @@ function cambiarestado(id_agendado,id_estadoagendado)
             	if(data!="consultavacia")
                 {
                 	alert(data);
-            		nuevaagenda();
-            		consultaagenda();
+            		
             	}
             }
         })
@@ -217,6 +221,9 @@ function cambiarestado(id_agendado,id_estadoagendado)
 
         });
     }
+    nuevaagenda();
+	consultaagenda();
+	consultadisponibilidad();
 }
 
 function habilitadeshabilitaagendado(habilita,tienehotelobodega,tieneemail){
@@ -387,7 +394,7 @@ function emailacliente(emailcliente,titulo,subtitulo,cuerpo)
 	                {
 	                    alert(data);
 					}else{
-						console.log("Data devolvio:" + data);
+						//console.log("Data devolvio:" + data);
 					}
 			},
 			error:function(e){
@@ -414,7 +421,7 @@ function emailabodega(emailcopia,emailbodega,titulo,subtitulo,cuerpo)
 	                {
 	                    alert(data);
 					}else{
-						console.log("Data devolvio:" + data);
+						//console.log("Data devolvio:" + data);
 					}
 			},
 			error:function(e){
@@ -428,6 +435,7 @@ function consultaagenda()
 {
 	//blanqueo el id de agendado
 	$('#tabla_agenda tr').not(':first').remove(); 
+	
  	$("#id_agendado").val("");
 
 	habilitadeshabilitaagendado("no");
@@ -490,6 +498,61 @@ function consultaagenda()
 
 						
 						$("#tabla_agenda").append(fila);
+
+					});
+					
+
+				}else{
+					console.log("Data devolvio:" + data);
+				}
+		},
+		error:function(e){
+			alert("Error en la consulta");
+		}
+	});
+}
+
+function consultadisponibilidad()
+{
+	//blanqueo el id de agendado
+	$('#tabla_disponibilidad tr').not(':first').remove(); 
+
+ 	$("#id_agendado").val("");
+
+	id_agendado=$("#id_agendado").val();
+	fechaagendado = $("#fechaactual").val();
+	fechaagendado1 = $("#fechaactualver1").val();
+	fechaagendado2 = $("#fechaactualver2").val();
+
+
+	//alert(fechaagendado);
+	$.ajax({
+
+		url:"controladores/agendar.php",
+		data:{id_agendado:id_agendado,tipo:"consultadisponibilidad",fechaagendado:fechaagendado,fechaagendado1:fechaagendado1,fechaagendado2:fechaagendado2},
+		type:"post",
+		success:function(data){
+ 				if(data!="consultavacia")
+                {
+                    datade= JSON.parse(data);
+
+                    $.each(datade,function(key,value)
+                    {
+                    	//datade[key].nombreestado
+						var fechaage = conviertefecha(datade[key].fechaagendado);
+						
+                		verservicio = datade[key].nombreservicio;
+                		if(verservicio==null) {verservicio="";}
+
+						vernombrecliente = datade[key].nombrecliente;
+                		if(vernombrecliente==null) {vernombrecliente="";}
+
+                		var clase=datade[key].nombreestado;
+
+                	
+					var fila = "<tr class='"+ clase +"'><td>"+datade[key].id_agendado+"</td><td>"+fechaage+"</td><td style='display:none;'>"+datade[key].id_servicio+"</td><td>"+verservicio+"</td><td style='display:none;'>"+datade[key].id_cliente+"</td><td>"+vernombrecliente+"</td><td>"+datade[key].cantidad+"</td></tr>";
+						
+						$("#tabla_disponibilidad").append(fila);
 
 					});
 					
@@ -586,12 +649,9 @@ function guardaragenda()
                 if(data!="consultavacia")
 
                 {
-					nuevaagenda();
-					consultaagenda();             
+					            
                     alert(data); //muestra un mensaje con el texto devuelto por el controlador
-                    document.getElementById("horaseleccionada").disabled = true;
-                    document.getElementById("fechaactual").disabled = true;
-                    document.getElementById("agregarreserva").disabled = true;
+                    
 
                 }else{
 
@@ -609,8 +669,14 @@ function guardaragenda()
 
             }
         });
+        nuevaagenda();
+		consultaagenda(); 
+		consultadisponibilidad();
+		document.getElementById("horaseleccionada").disabled = true;
+        document.getElementById("fechaactual").disabled = true;
+        document.getElementById("agregarreserva").disabled = true;
     }else{
-                alert("Agregue datos a la agenda");
+        alert("Agregue datos a la agenda");
 
     }   
 
@@ -961,7 +1027,7 @@ function guardaragenda()
 			$("#fechareserva").val("");
 			$("#horareserva").val("");
 			$("#infoemail").val("");
-			//----------------------- fin campos invisibles -------------------------
+			//----------------------- fin limpieza de campos invisibles -------------------------
 
 		document.getElementById("agregarreserva").disabled = false;
 		document.getElementById("agendar").disabled = false;
@@ -970,31 +1036,8 @@ function guardaragenda()
 		habilitadeshabilitaagendado("no");
 	});
 
-	function diadehoy()
-	{
-		var now = new Date();
-		var day = ("0" + now.getDate()).slice(-2);
-		var month = ("0" + (now.getMonth() + 1)).slice(-2);
-		var today = (day)+"-"+(month)+"-"+now.getFullYear();
-		return today;
-	}
+	
 
-	function diahasta(dias)
-	{
-		var now = new Date();
-		var day = ("0" + now.getDate() + 15).slice(-2);
-		var dia = parseInt(day) + dias;
-		var month = ("0" + (now.getMonth() + 1)).slice(-2);
-		var today = now.getFullYear()+"/"+(month)+"/"+(dia);
-		return today;
-	}
-
-	function formatearfecha(fecha)
-	{
-		var fechaEjemplo  = moment(fecha).format('DD/MM/YYYY');
-		
-		return fechaEjemplo;
-	}
 	$("input[name=radioingles]").click(function () {    
         setsoloingles();
         consultaparametros("ingles");
@@ -1026,6 +1069,8 @@ function guardaragenda()
         $("#radioingles").prop("checked", false);
         $("#radioportugues").prop("checked", false);
     }
+
+  
 </script>
 
 <?php

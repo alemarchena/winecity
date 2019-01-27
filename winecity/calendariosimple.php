@@ -21,6 +21,14 @@ $( "#fechaactualhasta").datepicker({
 
 });
 
+$( "#fechaavigdesde").datepicker({
+
+});
+
+$( "#fechavighasta").datepicker({
+
+});
+
 </script>
 
  

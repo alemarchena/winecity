@@ -55,12 +55,13 @@ function vistapreviabodega()
     $("#cuerpoemailbvpb").val($("#cuerpoemailbvpb").val() + $("#parte7").val()); /* a nombre de  */
 
     $("#cuerpoemailbvpb").val($("#cuerpoemailbvpb").val() + $("#clientetraslado").val()); /* nombre del cliente */
+    
+    $("#cuerpoemailbvpb").val($("#cuerpoemailbvpb").val() + "-"); /* guion */
 
 
     $("#cuerpoemailbvpb").val($("#cuerpoemailbvpb").val() + $("#parte8").val()); /* paga pax o agencia */
     
-
-    
+    $("#cuerpoemailbvpb").val($("#cuerpoemailbvpb").val() + "-"); /* guion */
 
     $("#vistapreviabodega").val( $("#cuerpoemailbvpb").val() + $("#saludoemailbvpb").val() );
 }
