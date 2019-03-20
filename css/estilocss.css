@@ -1,0 +1,49 @@
+.subcontenedor {
+  position: relative;
+}
+
+
+body {
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 16px;
+        text-align: left;
+      }
+
+.tips{
+   font-size: 14px;
+   text-align: center;
+}
+
+iframe {
+   width: 100%;
+   height: 400px;
+}
+
+.video-responsive {
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    position: relative;
+ }
+
+.video-responsive iframe, .video-responsive object, .video-responsive embed {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    }
+
+.bordedorado{
+   width: 50%;
+   border: #B18904 3px solid;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+h5{
+   color: : red;
+   font-family: 'Lato', sans-serif;
+   font-size: 20px;
+}

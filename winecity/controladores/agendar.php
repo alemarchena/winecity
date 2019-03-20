@@ -7,7 +7,8 @@
     $fho = new DateTime();
     $fechahoraoperativa= $fho->format('Y-m-d H:i:sP');
     
-
+   
+    
     $id = $_POST['id_agendado'];
     $tipo = $_POST['tipo'];
  	
